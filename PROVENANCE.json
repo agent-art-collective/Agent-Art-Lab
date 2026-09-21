@@ -1,0 +1,72 @@
+{
+  "edition": "Agent-Art-Lab-standalone-v0",
+  "preparedDate": "2026-09-20",
+  "status": "public-publication-authorized-push-pending",
+  "sourceRepository": "https://github.com/inshell-art/inshell.art",
+  "sourceCheckoutBaseCommit": "97cb9dff07b602085e63ad746819cc3f6e18b56a",
+  "sourceState": "Documents were uncommitted. Base commit is checkout context, not an identity for these document bytes or a historical canary build.",
+  "sourceDocuments": [
+    {
+      "path": "docs/AGENT_LAB.md",
+      "sha256": "44da41d9612c825af3e6a8e85dca74c6b9c48c62955751ed6d54a30eaad57187",
+      "identityMeaning": "Observed local source-document bytes; not raw-run evidence."
+    },
+    {
+      "path": "docs/agent-lab/GUIDANCE.md",
+      "sha256": "e5a949b3208a3c6d41f43f5230c531bd33edc087cd4cbb010126ce452bc154bc",
+      "identityMeaning": "Observed local source-document bytes; not raw-run evidence."
+    },
+    {
+      "path": "docs/agent-lab/STUDY_TEMPLATE.md",
+      "sha256": "d33ecab3e08fd01b4f8fe45523a0b06a58414998ab8d87a8b135ec36df56a4c7",
+      "identityMeaning": "Observed local source-document bytes; not raw-run evidence."
+    },
+    {
+      "path": "docs/agent-lab/RESEARCH_EVIDENCE.md",
+      "sha256": "35dc0e6f1d10289cc13c1c3b7f7af34988765f0c4a12c5f306d122620321aee7",
+      "identityMeaning": "Observed local source-document bytes; not raw-run evidence."
+    },
+    {
+      "path": "docs/agent-lab/FINDINGS_AND_PRINCIPLES.md",
+      "sha256": "f013e2cab8b2bfd31b35812a03269c2940dbce876e4c4ec870f5f8b24153eb0f",
+      "identityMeaning": "Observed local source-document bytes; not raw-run evidence."
+    },
+    {
+      "path": "docs/agent-lab/THOUGHT_WORKED_CASE.md",
+      "sha256": "1f4786d4fb97ee6e4454a1d583489f442292fb257f909656243d8253470d39d5",
+      "identityMeaning": "Observed local source-document bytes; not raw-run evidence."
+    },
+    {
+      "path": "docs/agent-lab/studies/thought-codex-runtime-model-acquisition-20260920.md",
+      "sha256": "c1fe34eec820451a6546a047cdac45b56163c832ab91cd3f8c7eefc9117510a4",
+      "identityMeaning": "Observed local source-document bytes; not raw-run evidence."
+    },
+    {
+      "path": "docs/agent-lab/pilots/claude-sonnet-5-medium-auto-20260917.md",
+      "sha256": "47cf2b0983bbc54c31db411aea254ed5f811478cdb40aef3664218c87ae43ab7",
+      "identityMeaning": "Observed local source-document bytes; not raw-run evidence."
+    },
+    {
+      "path": "docs/agent-lab/pilots/claude-sonnet-5-medium-auto-pilot-2-20260918.md",
+      "sha256": "1714da4456e94ea216322a07f9b61defb99989c27eb173ff8b7d1102874e1644",
+      "identityMeaning": "Observed local source-document bytes; not raw-run evidence."
+    }
+  ],
+  "adaptations": [
+    "Split shared charter from THOUGHT runtime commands.",
+    "Adapted Guidance and study templates for portable methods including retrospective diagnosis and method evaluation.",
+    "Summarized both Claude pilots and Codex diagnosis; omitted private task/run/command locators and personal machine paths.",
+    "Removed links to unavailable local raw reports and application source; marked evidence access explicitly.",
+    "Corrected unfrozen comparison label to proposed, draft and unrun.",
+    "Did not import live batch settings, runners, application code, private transcripts, credentials or artwork.",
+    "Added repository handoff, publication guidance, and offline packaging checks.",
+    "Operator naming update on 2026-09-20: renamed the current project and repository from Agent Lab / agent-lab to Agent-Art-Lab; preserved original source paths, hashes and historical runner identifiers.",
+    "On 2026-09-20, recorded the completed operator-directed Lab task ownership transfer and added a new local practice-led study proposal. The proposal is not an imported source record or an executed artwork study; missing creative material is explicit.",
+    "On 2026-09-21, updated current organization records to the verified agent-art-collective slug while preserving earlier dated planning notes and source attribution."
+  ],
+  "evidenceAccess": "Derivative summaries are retained here; original private reports and transcripts are not. Their absence limits independent verification.",
+  "sourcePreservation": "Preparation does not move, delete, or modify source originals.",
+  "publication": "Operator selected Agent-Art-Lab as the repository name on 2026-09-20. On 2026-09-21, registration was reported complete and the GitHub API verified agent-art-collective with active owner membership for inshell-art. This registered slug supersedes the earlier intended agent-art namespace. Lab repository visibility and license remain unselected; no remote creation or push occurred. On 2026-09-21 the operator subsequently authorized public publication to agent-art-collective/Agent-Art-Lab. First push pending; existing no-license status retained.",
+  "definitionSource": "Inshell public Agent Art documentation; source attribution, not Agent-Art-Lab governance.",
+  "organizationalContext": "See docs/ORGANIZATION_AND_SPLIT.md and HANDOFF.md. On 2026-09-20 OPS relayed the operator-directed transfer and this dedicated Agent-Art-Lab task accepted Lab continuation ownership. DEPLOY-SUPERVISOR focuses on Inshell Studio Preview; Applications owns product fixes. Intended shared organization: agent-art. Update 2026-09-21: the actual registered organization is agent-art-collective, verified through GitHub API; use it for future repository destinations."
+}
