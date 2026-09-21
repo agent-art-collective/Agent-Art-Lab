@@ -1,7 +1,7 @@
 {
   "edition": "Agent-Art-Lab-standalone-v0",
   "preparedDate": "2026-09-20",
-  "status": "public-publication-authorized-push-pending",
+  "status": "public-standalone-v0",
   "sourceRepository": "https://github.com/inshell-art/inshell.art",
   "sourceCheckoutBaseCommit": "97cb9dff07b602085e63ad746819cc3f6e18b56a",
   "sourceState": "Documents were uncommitted. Base commit is checkout context, not an identity for these document bytes or a historical canary build.",
@@ -66,7 +66,8 @@
   ],
   "evidenceAccess": "Derivative summaries are retained here; original private reports and transcripts are not. Their absence limits independent verification.",
   "sourcePreservation": "Preparation does not move, delete, or modify source originals.",
-  "publication": "Operator selected Agent-Art-Lab as the repository name on 2026-09-20. On 2026-09-21, registration was reported complete and the GitHub API verified agent-art-collective with active owner membership for inshell-art. This registered slug supersedes the earlier intended agent-art namespace. Lab repository visibility and license remain unselected; no remote creation or push occurred. On 2026-09-21 the operator subsequently authorized public publication to agent-art-collective/Agent-Art-Lab. First push pending; existing no-license status retained.",
+  "publication": "Operator authorized public publication to agent-art-collective/Agent-Art-Lab on 2026-09-21. The reviewed 19-file edition was committed as 177ccab and pushed to main. GitHub verified PUBLIC visibility, a nonempty repository and main as the default branch. No reuse license was added; private source originals remain excluded.",
   "definitionSource": "Inshell public Agent Art documentation; source attribution, not Agent-Art-Lab governance.",
-  "organizationalContext": "See docs/ORGANIZATION_AND_SPLIT.md and HANDOFF.md. On 2026-09-20 OPS relayed the operator-directed transfer and this dedicated Agent-Art-Lab task accepted Lab continuation ownership. DEPLOY-SUPERVISOR focuses on Inshell Studio Preview; Applications owns product fixes. Intended shared organization: agent-art. Update 2026-09-21: the actual registered organization is agent-art-collective, verified through GitHub API; use it for future repository destinations."
+  "organizationalContext": "See docs/ORGANIZATION_AND_SPLIT.md and HANDOFF.md. On 2026-09-20 OPS relayed the operator-directed transfer and this dedicated Agent-Art-Lab task accepted Lab continuation ownership. DEPLOY-SUPERVISOR focuses on Inshell Studio Preview; Applications owns product fixes. Intended shared organization: agent-art. Update 2026-09-21: the actual registered organization is agent-art-collective, verified through GitHub API; use it for future repository destinations.",
+  "repository": "https://github.com/agent-art-collective/Agent-Art-Lab"
 }

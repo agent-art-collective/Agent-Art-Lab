@@ -2,11 +2,14 @@
 
 Recorded 2026-09-20 following the operator's correction.
 
-## Public Lab publication authorized, 2026-09-21
+## Public Lab publication completed, 2026-09-21
 
 The operator selected public visibility and explicitly confirmed
-`agent-art-collective` as the owner of `Agent-Art-Lab`. The reviewed local
-edition is being prepared for its first push. No reuse license is added.
+`agent-art-collective` as the owner of `Agent-Art-Lab`. The reviewed 19-file
+edition was pushed to `main`; GitHub verified the repository as public and
+nonempty with `main` as its default branch. The repository is
+[Agent-Art-Lab](https://github.com/agent-art-collective/Agent-Art-Lab).
+No reuse license was added. The registration notes below retain the earlier state.
 The gallery transfer remains a separate pending operation.
 
 ## Registration update, 2026-09-21

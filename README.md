@@ -16,8 +16,8 @@ Each artwork keeps its own artistic aims and implementation.
 4. Use the [project intake](templates/PROJECT.md) and [study template](templates/STUDY.md)
    for a new inquiry.
 
-**Current state:** standalone v0 candidate; public publication authorized on
-2026-09-21 to `agent-art-collective/Agent-Art-Lab`, with the first push pending.
+**Current state:** standalone v0 published on 2026-09-21 at
+[agent-art-collective/Agent-Art-Lab](https://github.com/agent-art-collective/Agent-Art-Lab).
 It contains a usable documentation practice and reviewed derivative records,
 not a validated universal method, portable runtime, or complete artwork archive.
 The shared Agent Art organization is

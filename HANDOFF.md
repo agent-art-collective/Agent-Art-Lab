@@ -20,14 +20,16 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
-- Standalone v0 candidate; public publication authorized on 2026-09-21 to
-  `agent-art-collective/Agent-Art-Lab`; first push pending.
+- Standalone v0 published publicly on 2026-09-21 at
+  [agent-art-collective/Agent-Art-Lab](https://github.com/agent-art-collective/Agent-Art-Lab),
+  default branch `main`.
 - Source originals in Applications remain unchanged; this is an adapted edition.
 - Verified organization: `agent-art-collective`; `agent-art` was the earlier
   intended namespace. On 2026-09-21, GitHub API inspection confirmed active
   owner membership for `inshell-art`. The selected repository name remains
   `Agent-Art-Lab`; public visibility is selected. No reuse license was selected.
-  No repository creation, transfer or push has occurred in this task.
+  Lab repository creation and initial push are complete; the gallery transfer
+  remains pending.
 - THOUGHT provides technical investigations, not a validated general art method.
 - Its Codex diagnostic is complete; the product defect remains Applications-owned.
 - Its proposed comparison remains draft, unrun and unfrozen.
@@ -70,13 +72,27 @@ The operator's latest priority is organizing Agent-Art-Lab and the existing
 `agent-art-collective` organization; see the
 [repository grouping direction](docs/ORGANIZATION_AND_SPLIT.md).
 GitHub inspection on 2026-09-21 verified the gallery is public and currently
-owned by `inshell-art`. Neither repository was moved or published by this task.
+owned by `inshell-art`. Lab publication is complete; the gallery has not moved.
 
-Next complete the authorized public Lab publication, retaining the existing
-no-license status, then prepare the gallery transfer with existing
+Next prepare the gallery transfer with existing
 visibility and deployment dependencies accounted for. Keep gallery implementation
 in its own repository; this organizational work does not resume Inshell release
 coordination here.
+
+## Public Lab publication completed, 2026-09-21
+
+The operator selected public visibility and `agent-art-collective` ownership.
+The 19-file edition was reviewed for credentials, personal identifiers, private
+artwork and third-party material; the retained research consists of attributed
+summaries and links, and raw private evidence remains excluded. Packaging checks
+and all 10 synthetic tests passed; gitleaks reported no leaks. These checks do
+not verify historical claims or establish a universal method.
+
+Initial commit `177ccab` was pushed to `main`. GitHub subsequently reported
+`agent-art-collective/Agent-Art-Lab`, `PUBLIC`, nonempty, with default branch
+`main`. The local `origin` points to that repository. No license was added;
+publication does not authorize new live trials or publication of private originals.
+The dated preparation notes below preserve the state before publication.
 
 ## Organization registered and verified, 2026-09-21
 
@@ -187,5 +203,5 @@ new artwork creation, access private stores or execute live trials by implicatio
 | Usable method | Project and study templates cover artistic and technical work without requiring a runner. |
 | GitHub publication | Operator confirms destination/visibility; reviewed file set committed and pushed separately. |
 
-The first four concern the local candidate. GitHub publication remains pending.
-No record here grants publication authority or an open-source license.
+The first four concern the local edition. GitHub publication was completed on
+2026-09-21 under explicit operator direction. No open-source license is granted.
