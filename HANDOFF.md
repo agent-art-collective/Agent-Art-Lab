@@ -96,6 +96,11 @@ The local checkout remains at `0e1a036`, behind the remote; no pull, merge or
 prototype code push was performed. The gallery repository and remote were not
 modified by this operation.
 
+Later on 2026-09-21, the operator also requested local relocation. The prototype
+checkout was moved into the same parent directory as Agent-Art-Lab, retaining
+the directory name `agent-art-Signature-prototype`. All files and Git metadata
+were verified unchanged across the move; the old checkout location is gone.
+
 ## Public Lab publication completed, 2026-09-21
 
 The operator selected public visibility and `agent-art-collective` ownership.
