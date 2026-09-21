@@ -28,8 +28,8 @@ before making repository-ownership or task-routing proposals.
   intended namespace. On 2026-09-21, GitHub API inspection confirmed active
   owner membership for `inshell-art`. The selected repository name remains
   `Agent-Art-Lab`; public visibility is selected. No reuse license was selected.
-  Lab repository creation and initial push are complete; the gallery transfer
-  remains pending.
+  Lab publication and the Signature prototype transfer are complete. The
+  `signatures.gallery` transfer is on hold at the operator's request.
 - THOUGHT provides technical investigations, not a validated general art method.
 - Its Codex diagnostic is complete; the product defect remains Applications-owned.
 - Its proposed comparison remains draft, unrun and unfrozen.
@@ -67,17 +67,34 @@ interpretation or private historical evidence.
 
 ## Next bounded Lab action
 
-The operator's latest priority is organizing Agent-Art-Lab and the existing
-`Agent-Art-signatures.gallery` repository under the registered
-`agent-art-collective` organization; see the
-[repository grouping direction](docs/ORGANIZATION_AND_SPLIT.md).
-GitHub inspection on 2026-09-21 verified the gallery is public and currently
-owned by `inshell-art`. Lab publication is complete; the gallery has not moved.
+The requested Signature prototype transfer is complete. Leave the working
+`signatures.gallery` repository and its deployment untouched until the operator
+explicitly resumes that transfer; no timed retry or automatic continuation is
+scheduled. See the [current repository status](docs/ORGANIZATION_AND_SPLIT.md).
 
-Next prepare the gallery transfer with existing
-visibility and deployment dependencies accounted for. Keep gallery implementation
-in its own repository; this organizational work does not resume Inshell release
-coordination here.
+The next available Lab study step is to obtain an operator-selected existing
+THOUGHT candidate and permitted review material, or defer the proposed inquiry.
+No material retrieval, live creation or Inshell release work is implied.
+
+## Prototype transferred; gallery held, 2026-09-21
+
+The operator paused the `signatures.gallery` transfer because work is ongoing
+there, and requested transfer of the separate `agent-art-Signature-prototype`
+repository instead. GitHub ownership was transferred from `inshell-art` to
+`agent-art-collective`, retaining the repository name, public visibility and
+default branch `main`:
+[agent-art-Signature-prototype](https://github.com/agent-art-collective/agent-art-Signature-prototype).
+
+Before/after API inspection confirmed the same repository identity and remote
+`main` commit `d00c018d1a740a5807480126d1f1bd0c620fb96d`. The pre-transfer check
+reported no GitHub Pages site, Actions workflows, deployment records or webhooks;
+this does not inventory unknown external services or test the artwork.
+
+The existing local prototype checkout's `origin` now uses the new organization.
+Tracking refs were fetched, while local `main` and working files were preserved.
+The local checkout remains at `0e1a036`, behind the remote; no pull, merge or
+prototype code push was performed. The gallery repository and remote were not
+modified by this operation.
 
 ## Public Lab publication completed, 2026-09-21
 

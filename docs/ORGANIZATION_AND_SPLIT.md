@@ -2,6 +2,22 @@
 
 Recorded 2026-09-20 following the operator's correction.
 
+## Current repository status, 2026-09-21
+
+The operator put `signatures.gallery` transfer on hold while work continues
+there and requested the separate Signature prototype transfer instead.
+
+| Repository | Current owner and state |
+| --- | --- |
+| [Agent-Art-Lab](https://github.com/agent-art-collective/Agent-Art-Lab) | Public under `agent-art-collective`; published. |
+| [agent-art-Signature-prototype](https://github.com/agent-art-collective/agent-art-Signature-prototype) | Transfer to `agent-art-collective` complete; public, same repository identity and remote `main` commit as before transfer. Local `origin` updated. |
+| `Agent-Art-signatures.gallery` | Remains under `inshell-art`; transfer explicitly on hold. Leave its repository and deployment untouched until the operator resumes it. |
+
+The prototype's local checkout remains at its existing commit, behind remote
+`main`; only its remote URL and fetched tracking refs changed. This transfer
+does not move application code into the Lab or establish a new artistic study.
+Earlier grouping and registration records below are retained as dated history.
+
 ## Public Lab publication completed, 2026-09-21
 
 The operator selected public visibility and explicitly confirmed
