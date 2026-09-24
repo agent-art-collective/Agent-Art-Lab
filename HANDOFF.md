@@ -20,6 +20,12 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- Latest work, 2026-09-24: [sanitized THOUGHT follow-up](projects/thought/studies/2026-09-24-boundaries-and-canary-follow-up.md)
+  and practical Guidance/findings updated locally from OPS reports. Production
+  completion is OPS-reported; no Lab experiment or deployment was performed.
+  Initially prepared locally under the OPS handoff; the operator subsequently
+  authorized committing and pushing this sanitized update on 2026-09-24.
+
 - Standalone v0 published publicly on 2026-09-21 at
   [agent-art-collective/Agent-Art-Lab](https://github.com/agent-art-collective/Agent-Art-Lab),
   default branch `main`.
@@ -66,6 +72,17 @@ and all 10 synthetic checker tests passed. These checks do not validate artwork
 interpretation or private historical evidence.
 
 ## Next bounded Lab action
+
+The bounded 2026-09-24 learning-list handoff is complete locally. It retains
+representation, final-worker and safe-diagnostic lessons with functional success
+separate from compliance and privacy claims. Raw private evidence was not
+imported; no new release gate or shared tooling was added. The operator's later
+2026-09-24 instruction authorizes publication of these documentation changes.
+No product or release action is needed to complete the Lab update.
+
+Local validation passed: 17 documents, 64 local links, all 10 synthetic checker
+tests, whitespace check and a redacted gitleaks scan. These are documentation
+checks, not fresh verification of OPS's runtime or production observations.
 
 The requested Signature prototype transfer is complete. Leave the working
 `signatures.gallery` repository and its deployment untouched until the operator

@@ -77,6 +77,18 @@ an App receipt; other projects need not.
 - Evaluate the method itself after a study: observed benefits, missed steps,
   cost if measured, and limits. One useful application is not causal proof.
 - Maintain publication-safe derivatives separately from private originals.
+- For exact representations, inspect both sending and receiving boundaries;
+  test plausible incorrect interpretations as well as the reference helper.
+- For worker protections, check the final process/channel with fake input;
+  a proof made before a process transition may not cover what executes later.
+- Keep secret-free operation/class evidence and follow established recovery
+  rules; an uncertain error is not proof of no commit or permission to replay.
+- Record functional completion and instruction compliance separately. A
+  successful return can coexist with omitted checks; neither should erase the other.
+
+These additions are bounded by the THOUGHT follow-up and P-04–P-06 in the
+linked findings register; they do not establish general reliability or require
+every artwork to use workers.
 
 The [findings register](findings/REGISTER.md) records scope and review conditions.
 Start from [project intake](templates/PROJECT.md) and [study](templates/STUDY.md);

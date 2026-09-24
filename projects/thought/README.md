@@ -16,6 +16,7 @@ Applications; they are not the central Lab's next priority.
 | Claude CLI pilot, 2026-09-17 | Completed observation with conflicting outcomes | Reviewed summary below and reported artifact identity | Raw JSON/report and transcript unavailable here. |
 | Claude CLI pilot, 2026-09-18 | Completed strict-fixture observation | Reviewed summary below and reported artifact identity | Raw report unavailable; not a real-App canary. |
 | [Codex diagnostic](studies/2026-09-20-model-acquisition.md) | Completed retrospective diagnosis | Sanitized analysis, excerpt, method review | Original run privately retained; exact canary build/handoff identity unknown. |
+| [Boundary corrections and canary follow-up](studies/2026-09-24-boundaries-and-canary-follow-up.md) | Retrospective update; OPS reports production delivered | Sanitized observations, scoped lessons and source references | Raw evidence excluded; Lab did not independently rerun or verify canaries/deployments. |
 | Initiation-reliability comparison | Proposed, unfrozen, unrun | Scope/status note below | No comparison results. |
 | [Practice-led artwork study](studies/2026-09-20-intentional-participation-proposal.md) | Proposal prepared; study unrun | Question, evidence inventory and proposed reading method | No candidate selected or artwork exported for interpretation. |
 
@@ -27,6 +28,9 @@ originals remain outside the published file set.
 The source checkout contained uncommitted documents; its Git HEAD alone does
 not identify them or the tested implementation. [Provenance](../../PROVENANCE.json)
 records the observed source-document hashes.
+
+The 2026-09-24 follow-up was initially a local-only addition from sanitized OPS
+reports. The operator subsequently authorized its commit and push that day.
 
 Raw reports and run evidence are privately retained and unavailable here.
 Their recorded hashes do not make the evidence independently inspectable.
@@ -90,6 +94,15 @@ not established.
 The [diagnostic](studies/2026-09-20-model-acquisition.md) explains why a synthetic
 failure-handling PASS did not contradict that observation. Supported acquisition
 and product repair remain unresolved.
+
+## Follow-up, 2026-09-24
+
+The [later boundary study](studies/2026-09-24-boundaries-and-canary-follow-up.md)
+records hash/worker corrections, two successful fresh manual staging canaries,
+remaining Codex compliance gaps and completed production delivery as reported by
+OPS. Production delivery checks included no production Agent run. These later
+observations preserve the earlier failed cases; they do not establish the cause
+of the historical HTTP failure, complete compliance or general reliability.
 
 ## Draft comparison and artistic gap
 

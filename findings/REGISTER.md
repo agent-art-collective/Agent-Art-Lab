@@ -12,6 +12,9 @@ automatically promote a claim.
 | O-01 | First Claude CLI pilot reached fixture acceptance but ended abnormally. | [THOUGHT collection](../projects/thought/README.md); preserved analysis, private raw report unavailable. No clean completion. |
 | O-02 | Second Claude CLI pilot completed a stricter synthetic exchange cleanly. | Same collection; one fixture observation, not Desktop/product success or causal comparison. |
 | O-03 | Inspected Codex command looked for host model in App claim data. | [Diagnostic](../projects/thought/studies/2026-09-20-model-acquisition.md); attributed OPS inspection, exact canary build identity unknown. |
+| O-04 | A result-side hash correction left an incoming `/start` representation ambiguity. | [2026-09-24 follow-up](../projects/thought/studies/2026-09-24-boundaries-and-canary-follow-up.md); OPS source inspection and synthetic reproduction, missing historical response. |
+| O-05 | Parent-shell no-echo proof did not cover an interactive child; generic failure output did not establish the failing operation. | Same follow-up; attributed OPS inspection and fake-only regression. Private-transcript exposure reported; external disclosure and HTTP cause unestablished. |
+| O-06 | Fresh Codex-49 and Claude-49 both returned; Codex-49 retained proof/check omissions after a preclaim failure. | Same follow-up; OPS/operator-reported manual staging canaries, one per cell. Functional success, not full compliance, privacy attestation or provider reliability. |
 
 ## Provisional practices
 
@@ -55,6 +58,45 @@ Distinguish qualitative usefulness from measured time savings or causal effects.
 - Review: streamline or remove record fields that demonstrably add cost without
   helping interpretation or handoff. Preserve necessary evidence boundaries.
 
+### P-04: audit representations across boundaries
+
+After finding a representation error, inspect other producers and consumers
+of the same value. State the bytes, encoding and envelope precisely; test
+plausible wrong interpretations as well as a correct reference helper.
+
+- Support: O-04; THOUGHT's result correction did not settle incoming text hashes.
+- Scope: protocols that bind text or artifacts to exact representations.
+- Limits: decoded UTF-8 and `sha256:` are this contract's rules, not a universal
+  hash recipe. Passing negative vectors does not establish Agent compliance.
+- Review: revisit when serialization changes or a new representation error appears.
+
+### P-05: prove protections in the final execution context
+
+Exercise the actual process/channel transition with fake input. Bind the proof
+to the worker that will receive protected data; inspect whether a later process
+or terminal change invalidates it.
+
+- Support: O-05; Codex-48's child shell invalidated the parent-shell proof.
+- Scope: worker handoffs and controls that depend on execution context.
+- Limits: the fake regression supports its tested path. O-06 shows successful
+  completion can coexist with skipped proof; neither outcome is a privacy attestation.
+- Review: recheck on worker/channel changes or evidence of divergent implementation.
+
+### P-06: retain safe operation evidence and preserve uncertainty
+
+Record bounded, secret-free operation and failure-class markers. Keep parsing,
+transport, schema and HTTP outcomes separate. Attribute conclusions to actual
+output; do not infer a no-commit state or replay permission from a generic error
+or a valid error envelope. Apply the operation's existing recovery contract.
+
+- Support: O-05's shared catch erased attribution; O-06 separates functional
+  completion from instruction compliance. This extends P-01's evidence discipline.
+- Scope: diagnosing and recovering multi-step, state-changing operations.
+- Limits: safe diagnostics improve inspectability, not proof of a particular
+  historical cause, complete compliance or first-attempt reliability.
+- Review: revise when evidence establishes the operation/commit state or a
+  diagnostic exposes secrets, loses distinctions or contradicts observed output.
+
 ## Hypotheses and prior research
 
 The THOUGHT initiation-reliability comparison is **draft, unfrozen and unrun**.
@@ -66,3 +108,7 @@ It is not a completed preregistration or a result. See
 2026-09-20: portable derivative register created from the internal Agent Lab
 documents. It preserves observation limits and corrects the earlier loose use
 of “preregistered” for an unfrozen draft. It does not overwrite the source record.
+
+2026-09-24: added O-04–O-06 and P-04–P-06 from the sanitized OPS follow-up.
+Successful staging returns and compliance gaps are both retained. This
+update is not a new theory, production Agent trial or additional release gate.
