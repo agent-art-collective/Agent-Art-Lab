@@ -20,6 +20,14 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-09-28 contribution: [Pulse document-access study](projects/pulse/studies/2026-09-28-document-access.md)
+  and O-07/P-07 are prepared for public PR review at the operator's request.
+  This lane is a project study; Lab continuation ownership and Pulse product
+  ownership are unchanged. It records a simpler acquisition contract with
+  explicit evidence limits, not a measured cross-agent reliability gain.
+  Next action: Lab maintainers review the contribution and scoped practice.
+  No live agent trial, product deployment or shared tooling is requested.
+
 - Latest work, 2026-09-24: [sanitized THOUGHT follow-up](projects/thought/studies/2026-09-24-boundaries-and-canary-follow-up.md)
   and practical Guidance/findings updated locally from OPS reports. Production
   completion is OPS-reported; no Lab experiment or deployment was performed.

@@ -13,6 +13,7 @@ Each artwork keeps its own artistic aims and implementation.
 1. Read [agent instructions](AGENTS.md) and [Guidance](GUIDANCE.md).
 2. Read [handoff and current status](HANDOFF.md).
 3. Browse the [THOUGHT collection](projects/thought/README.md), our first case.
+   The [Pulse collection](projects/pulse/README.md) studies document access for agents.
 4. Use the [project intake](templates/PROJECT.md) and [study template](templates/STUDY.md)
    for a new inquiry.
 
@@ -32,7 +33,7 @@ Repository visibility is public. No reuse license has been selected. See the
 | --- | --- |
 | [Guidance](GUIDANCE.md) | Shared foundations and methods, not a fixed creative recipe. |
 | [Research notes](research/README.md) | Sources, what they suggest, and where transfer is unsupported. |
-| [Project collections](projects/thought/README.md) | Project-specific studies, observations and evidence limits. |
+| Project collections: [THOUGHT](projects/thought/README.md), [Pulse](projects/pulse/README.md) | Project-specific studies, observations and evidence limits. |
 | [Findings register](findings/REGISTER.md) | Observations and scoped provisional practices; no automatic promotion to theory. |
 | [Templates](templates/STUDY.md) | Lightweight records adapted to the work, including retrospective diagnosis. |
 | [Boundaries](docs/BOUNDARIES.md) | Lab, project tooling, live trials, canaries and releases have different aims. |
