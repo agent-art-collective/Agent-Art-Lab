@@ -15,6 +15,7 @@ automatically promote a claim.
 | O-04 | A result-side hash correction left an incoming `/start` representation ambiguity. | [2026-09-24 follow-up](../projects/thought/studies/2026-09-24-boundaries-and-canary-follow-up.md); OPS source inspection and synthetic reproduction, missing historical response. |
 | O-05 | Parent-shell no-echo proof did not cover an interactive child; generic failure output did not establish the failing operation. | Same follow-up; attributed OPS inspection and fake-only regression. Private-transcript exposure reported; external disclosure and HTTP cause unestablished. |
 | O-06 | Fresh Codex-49 and Claude-49 both returned; Codex-49 retained proof/check omissions after a preclaim failure. | Same follow-up; OPS/operator-reported manual staging canaries, one per cell. Functional success, not full compliance, privacy attestation or provider reliability. |
+| O-07 | Pulse's ten public document exports were acquired and verified, then replayed from saved files without site execution or RPC. | [Pulse study](../projects/pulse/studies/2026-09-28-document-access.md); one direct client check, source inspection and separate session reports. Reader failure cause and comparative reliability unresolved; reported task-following failure survived retrieval. |
 
 ## Provisional practices
 
@@ -97,6 +98,22 @@ or a valid error envelope. Apply the operation's existing recovery contract.
 - Review: revise when evidence establishes the operation/commit state or a
   diagnostic exposes secrets, loses distinctions or contradicts observed output.
 
+### P-07: simplify acquisition and make the data contract explicit
+
+For static project knowledge, prefer known URLs, a small discovery index and
+complete sources that agents can inspect with permitted ordinary HTTP and local
+reading tools. State revisions, provenance, integrity checks and failure behavior.
+Keep optional interactive or live services outside documentation readiness.
+
+- Support: O-07 demonstrates one such path and documents its test coverage.
+- Scope: static documents for agents with permitted HTTP and local storage;
+  source format and storage requirements remain project choices.
+- Limits: no comparative reliability, efficiency or comprehension gain is
+  established. Hashes do not establish truth; simpler operations do not remove
+  permissions, server failures, missing host capabilities or task-following errors.
+- Review: revisit for rich media, live-state questions, hosts without storage,
+  metadata drift, or a declared comparison that contradicts the expected benefit.
+
 ## Hypotheses and prior research
 
 The THOUGHT initiation-reliability comparison is **draft, unfrozen and unrun**.
@@ -112,3 +129,6 @@ of “preregistered” for an unfrozen draft. It does not overwrite the source r
 2026-09-24: added O-04–O-06 and P-04–P-06 from the sanitized OPS follow-up.
 Successful staging returns and compliance gaps are both retained. This
 update is not a new theory, production Agent trial or additional release gate.
+
+2026-09-28: added the Pulse study, O-07 and scoped P-07. This is a retrospective
+technical case with a bounded read-only check, not a controlled reliability result.
