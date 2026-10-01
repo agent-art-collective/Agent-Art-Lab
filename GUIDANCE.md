@@ -94,6 +94,28 @@ The [findings register](findings/REGISTER.md) records scope and review condition
 Start from [project intake](templates/PROJECT.md) and [study](templates/STUDY.md);
 neither template grants execution authority.
 
+## Provisional connection: supported tools and explicit prerequisites
+
+Prepared locally on 2026-10-01; the operator subsequently authorized this
+sanitized documentation contribution that day. The guidance remains provisional.
+
+**Use the smallest supported native path, state its tools and permissions
+explicitly, and verify completion.** Smallest means sufficient for the task and
+its checks. Native means an existing supported tool using its normal identity;
+name it when compatibility matters. State permissions for the command/process
+that actually executes, not only the client it launches. A named tool grants no
+authority; unavailable or denied permission is a boundary to respect.
+
+Plain/raw concerns the exchange and its exact representation; native concerns
+the supported means; explicit concerns the execution contract. These choices
+leave artistic interpretation within the work's bounds. Stability is a design
+aim, not a measured universal outcome. Pulse succeeded with Python, so this is
+not an "always curl" rule or a requirement to use raw text for every project.
+
+The [2026-10-01 THOUGHT study](projects/thought/studies/2026-10-01-native-explicit-execution.md)
+connects P-04–P-07 without changing their scopes. Its new runtime evidence is
+OPS-reported; the Lab has not independently verified the private records.
+
 ## Transfer to another artwork
 
 Reuse evidence distinctions, research habits and record discipline. Reconsider

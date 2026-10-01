@@ -20,6 +20,25 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-01 publication authorization (Lab project-learning lane): the operator
+  subsequently directed rollout of the sanitized native/explicit execution item.
+  This supersedes the preparation-only publication boundary in the entry below.
+  The four-file contribution comprises Guidance, this handoff, the THOUGHT
+  collection index and the new study. Its connecting guidance stays provisional;
+  new runtime observations remain OPS-reported, and P-04–P-07 are unchanged.
+  Authorization covers ordinary repository publication after review, with no
+  private raw records, artwork, runtime work or release changes. Next action:
+  revisit the scoped guidance when relevant new evidence becomes available.
+
+- 2026-10-01 local contribution (Lab project-learning lane):
+  [native tools and explicit execution prerequisites](projects/thought/studies/2026-10-01-native-explicit-execution.md)
+  and a proposed Guidance connection are prepared from the sanitized OPS draft.
+  New runtime evidence is OPS-reported; no private underlying records were
+  retrieved or live checks run by the Lab. The proposal connects P-04–P-07;
+  existing studies and practices are preserved. Applications/OPS retain product
+  and release ownership. Next action: operator review of wording and a separate
+  publication decision. This handoff authorizes no commit, push, PR or publication.
+
 - 2026-09-28 review completion (project-study lane):
   [PR #1](https://github.com/agent-art-collective/Agent-Art-Lab/pull/1) merged
   as `e875614`. This supersedes the pending review action below. Review of the

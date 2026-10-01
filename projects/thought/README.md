@@ -17,6 +17,7 @@ Applications; they are not the central Lab's next priority.
 | Claude CLI pilot, 2026-09-18 | Completed strict-fixture observation | Reviewed summary below and reported artifact identity | Raw report unavailable; not a real-App canary. |
 | [Codex diagnostic](studies/2026-09-20-model-acquisition.md) | Completed retrospective diagnosis | Sanitized analysis, excerpt, method review | Original run privately retained; exact canary build/handoff identity unknown. |
 | [Boundary corrections and canary follow-up](studies/2026-09-24-boundaries-and-canary-follow-up.md) | Retrospective update; OPS reports production delivered | Sanitized observations, scoped lessons and source references | Raw evidence excluded; Lab did not independently rerun or verify canaries/deployments. |
+| [Native tools and explicit execution prerequisites](studies/2026-10-01-native-explicit-execution.md) | Retrospective contribution authorized by the operator on 2026-10-01 | Sanitized OPS account and provisional connection to P-04–P-07 | Private runtime evidence unavailable here; no Lab rerun or controlled reliability/timing comparison. |
 | Initiation-reliability comparison | Proposed, unfrozen, unrun | Scope/status note below | No comparison results. |
 | [Practice-led artwork study](studies/2026-09-20-intentional-participation-proposal.md) | Proposal prepared; study unrun | Question, evidence inventory and proposed reading method | No candidate selected or artwork exported for interpretation. |
 
@@ -31,6 +32,10 @@ records the observed source-document hashes.
 
 The 2026-09-24 follow-up was initially a local-only addition from sanitized OPS
 reports. The operator subsequently authorized its commit and push that day.
+
+The 2026-10-01 native/explicit execution study was initially prepared locally
+without publication authority. The operator subsequently authorized publication
+of this sanitized contribution that day; the connecting guidance stays provisional.
 
 Raw reports and run evidence are privately retained and unavailable here.
 Their recorded hashes do not make the evidence independently inspectable.
