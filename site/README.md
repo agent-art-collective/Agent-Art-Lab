@@ -26,10 +26,10 @@ its preference script are removed from published pages, so previously saved
 comparison choices no longer change the reading style. The earlier style demo
 preserves its original, separate previews.
 
-The favicon is a typewriter-style `A.` mark drawn with SVG paths in the same
-warm paper/ink palette. Its SVG carries its own system light/dark colors and needs no
-font loading. The icon links in both page builders include an appearance version
-so browsers can request the new mark instead of retaining the earlier red icon.
+The favicon uses a three-by-three crop of the site's Dots pattern on warm paper.
+The dots are enlarged and use the muted text colors to stay visible at tab size.
+Its SVG carries its own system light/dark colors. Both page builders use a
+versioned icon URL to refresh earlier cached designs.
 
 ## Build and preview
 

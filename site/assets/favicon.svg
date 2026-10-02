@@ -1,14 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-labelledby="title">
-  <title id="title">Agent-Art-Lab — A.</title>
+  <title id="title">Agent-Art-Lab — Dots</title>
   <style>
     .paper { fill: #fbf9f4; }
-    .ink { fill: #34312d; }
+    .dots { fill: #69625a; }
     @media (prefers-color-scheme: dark) {
       .paper { fill: #1c1b19; }
-      .ink { fill: #ebe5da; }
+      .dots { fill: #b7afa2; }
     }
   </style>
   <rect class="paper" width="32" height="32" rx="2"/>
-  <path class="ink" d="M6 24 12 6h3L9 24Zm8-18h3l6 18h-3ZM11 6h7v2h-7ZM10 17h10v2H10ZM3 24h10v2H3Zm13 0h9v2h-9Z"/>
-  <circle class="ink" cx="28" cy="24" r="2"/>
+  <g class="dots">
+    <circle cx="8" cy="8" r="2"/><circle cx="16" cy="8" r="2"/><circle cx="24" cy="8" r="2"/>
+    <circle cx="8" cy="16" r="2"/><circle cx="16" cy="16" r="2"/><circle cx="24" cy="16" r="2"/>
+    <circle cx="8" cy="24" r="2"/><circle cx="16" cy="24" r="2"/><circle cx="24" cy="24" r="2"/>
+  </g>
 </svg>
