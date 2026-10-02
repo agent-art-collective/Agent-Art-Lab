@@ -96,7 +96,7 @@ ${source ? `<link rel="alternate" type="application/json" title="Complete docume
 <meta name="color-scheme" content="light"><link rel="icon" href="${url('assets/favicon.svg')}" type="image/svg+xml">
 <link rel="stylesheet" href="${url('assets/site.css')}"></head><body>
 <a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header"><a class="brand" href="${url('index.html')}" aria-label="Agent-Art-Lab home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Agent-Art-Lab</a>
+<header class="site-header"><a class="brand" href="${url('index.html')}" aria-label="Agent-Art-Lab home">Agent-Art-Lab</a>
 <nav class="site-nav" aria-label="Main navigation">${nav.map(([label, file]) => `<a href="${url(file)}"${active === label ? ' aria-current="page"' : ''}>${label}</a>`).join('')}<a href="${repo}">GitHub <span aria-hidden="true">↗</span></a></nav></header>
 <main id="main">${content}</main>
 <footer class="site-footer"><div><a class="brand" href="${url('index.html')}">Agent-Art-Lab</a><p>${esc(slogan)}</p></div><nav aria-label="Reference links"><a href="${url('guidance/index.html')}">Guidance</a><a href="${url('agent-access/index.html')}">Agent access</a><a href="${url('agent-index.json')}">Document index (JSON)</a><a href="${url('contribute/index.html')}">Contribute</a><a href="${url('research/index.html')}">Research notes</a><a href="${repo}">Source &amp; history ↗</a><p>Part of agent-art-collective</p></nav></footer></body></html>\n`;
@@ -128,9 +128,9 @@ write('llms.txt', `# Agent-Art-Lab\n\n> Shared guidance and an annotated archive
 
 write('index.html', shell('Blog', 'Blog', `
 <section class="home-hero journal-home"><header class="hero-intro"><h1>${esc(slogan)}</h1></header>
-<aside class="journal-sidebar"><section class="hero-prompt" aria-labelledby="agent-prompt-heading"><p class="eyebrow">Bring your own agent</p><h2 id="agent-prompt-heading">Read with your agent.</h2><p class="prompt-intro">Copy this prompt, then ask your agent about anything on the blog.</p><div class="prompt-actions"><button class="button prompt-copy" type="button" id="copy-agent-prompt" hidden>Copy prompt <span aria-hidden="true">↗</span></button><a href="${url('agent-access/index.html')}">How it works ↗</a></div><pre id="agent-prompt" tabindex="0" aria-label="Prompt to copy for your agent">${esc(agentPrompt)}</pre><p class="prompt-status" id="prompt-copy-status" role="status" aria-live="polite">You can also select and copy the text.</p></section>
-</aside>
-<section class="journal-feed" id="articles" aria-labelledby="recent-heading"><div class="section-heading"><h2 id="recent-heading">Latest articles</h2></div>${posts(studies)}</section></section><script src="${url('assets/copy-prompt.js')}" defer></script>`));
+<details class="hero-prompt" id="agent-prompt-disclosure"><summary><span id="agent-prompt-heading">Read with your agent.</span><span class="disclosure-icon" aria-hidden="true"></span></summary>
+<div class="prompt-content"><p class="prompt-intro">Copy this prompt, then ask your agent about anything on the blog.</p><div class="prompt-actions"><button class="button prompt-copy" type="button" id="copy-agent-prompt" hidden>Copy prompt <span aria-hidden="true">↗</span></button><a href="${url('agent-access/index.html')}">How it works ↗</a></div><pre id="agent-prompt" tabindex="0" aria-label="Prompt to copy for your agent">${esc(agentPrompt)}</pre><p class="prompt-status" id="prompt-copy-status" role="status" aria-live="polite">You can also select and copy the text.</p></div></details></section>
+<section class="journal-feed" id="articles" aria-labelledby="recent-heading"><div class="section-heading"><h2 id="recent-heading">Latest articles</h2></div>${posts(studies)}</section><script src="${url('assets/copy-prompt.js')}" defer></script>`));
 
 // Keep old list URLs usable without maintaining duplicate browsing surfaces.
 for (const route of ['studies/index.html', 'lessons/index.html']) {

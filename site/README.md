@@ -8,7 +8,8 @@ The public reading site renders the existing repository Markdown. Edit the
 original study or Guidance to change its article; do not edit generated HTML.
 The homepage is the single blog feed. The former `/studies/` and `/lessons/`
 listing URLs redirect to its articles section, with a visible fallback link and
-no JavaScript requirement. The existing palette and typography remain in use.
+no JavaScript requirement. The selected Quiet editorial style uses a narrow
+reading column, warm white background, serif headings and restrained rules.
 
 ## Build and preview
 
@@ -70,10 +71,12 @@ source paths and study evidence labels. Article pages link to their complete
 document, and every page advertises the index. The generated `llms.txt` provides
 another discovery entry point without promising automatic agent support.
 
-The homepage hero displays the prompt from the access guide's “A prompt to use”
-section. Edit that canonical prompt to update both places. A small optional
-script copies it on click; the full text remains selectable without JavaScript,
-and clipboard failure selects it for manual copying.
+The homepage hero contains the prompt from the access guide's “A prompt to use”
+section in a native `details` disclosure, closed by default. “Read with your
+agent.” opens it with a pointer or keyboard, including without JavaScript.
+Edit that canonical prompt to update both places. The full text remains in the
+HTML source. A small optional script copies it on click; the expanded text is
+selectable without JavaScript, and clipboard failure selects it for manual copying.
 
 The site check requires the complete page inventory (including the 404 page),
 exact agreement between the hero prompt and its source, and a labelled document
@@ -99,7 +102,8 @@ The [visual direction demo](https://agent-art-collective.github.io/Agent-Art-Lab
 compares Plain-text journal, Swiss index and Quiet editorial. These replace the
 earlier rejected proposals. All three use the current slogan, canonical agent
 prompt and the same three recent articles with their record dates and evidence
-labels. Styles are isolated from the production blog; selection is still pending.
+labels. Quiet editorial was selected and applied to the production blog; the
+demo styles remain isolated to preserve the original comparison.
 Links and copy buttons work, and all previews remain readable without JavaScript.
 
 GitHub Pages uses the existing repository's GitHub Actions source. The pinned

@@ -32,6 +32,6 @@ export function renderStyleDemo({ basePath, slogan, agentPrompt, studies, docume
 <main id="main"><header class="demo-intro"><h1>Three minimal directions.</h1><p>The same slogan, agent prompt and recent articles in each.</p></header>
 <nav class="direction-index" aria-label="Compare minimalist directions">${directions.map(d => `<a href="#${d.id}"><span>${d.number}</span><strong>${d.name}</strong><small>${d.short}</small></a>`).join('')}</nav>
 ${directions.map(d => `<section class="direction" id="${d.id}" aria-labelledby="${d.id}-heading"><div class="direction-heading"><span class="direction-number">${d.number}</span><h2 id="${d.id}-heading">${d.name}</h2><p>${d.description}</p></div>${preview(d)}<a class="back-to-options" href="#main">Back to the options ↑</a></section>`).join('')}
-<footer class="demo-outro"><p>These are previews. Choose a direction before it is applied to the blog.</p><a href="${url('index.html')}">Current blog ↗</a><a href="${url('agent-index.json')}">Document index (JSON) ↗</a></footer></main>
+<footer class="demo-outro"><p>Quiet editorial is now applied to the blog. These previews preserve the three proposed directions.</p><a href="${url('index.html')}">Current blog ↗</a><a href="${url('agent-index.json')}">Document index (JSON) ↗</a></footer></main>
 <script src="${url('assets/style-demo.js')}" defer></script></body></html>\n`;
 }

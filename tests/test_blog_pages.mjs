@@ -72,12 +72,22 @@ test('homepage includes every study in descending record-date and title order', 
   assert.deepEqual(postIdentities(feed.inner), expectedPosts(studies));
 });
 
-test('the homepage hero retains exactly one complete canonical agent prompt', () => {
+test('the homepage keeps the complete canonical prompt inside a native, initially closed disclosure', () => {
   const homepage = read('_site/index.html');
   assert.equal([...homepage.matchAll(/\bid="agent-prompt"/g)].length, 1);
   const hero = one(homepage, 'section', 'home-hero');
-  const prompt = elements(hero.inner, 'pre').filter(item => item.attrs.id === 'agent-prompt');
-  assert.equal(prompt.length, 1, 'the prompt remains within the homepage hero');
+  const disclosure = one(hero.inner, 'details', 'hero-prompt');
+  assert.equal(disclosure.attrs.id, 'agent-prompt-disclosure');
+  assert.ok(!('open' in disclosure.attrs), 'the native disclosure is closed by default');
+  assert.equal(text(one(disclosure.inner, 'summary').inner), 'Read with your agent.');
+  const prompt = elements(disclosure.inner, 'pre').filter(item => item.attrs.id === 'agent-prompt');
+  assert.equal(prompt.length, 1, 'the full prompt remains inside the hero disclosure');
+  const copyButton = elements(disclosure.inner, 'button').filter(item => item.attrs.id === 'copy-agent-prompt');
+  assert.equal(copyButton.length, 1, 'copy remains available inside the expanded disclosure');
+  assert.equal(copyButton[0].attrs.type, 'button');
+  const status = elements(disclosure.inner, 'p').filter(item => item.attrs.id === 'prompt-copy-status');
+  assert.equal(status.length, 1, 'copy status remains inside the disclosure');
+  assert.equal(status[0].attrs.role, 'status');
   const tokens = markdown.parse(read('docs/AGENT_ACCESS.md'), {});
   const heading = tokens.findIndex(token => token.type === 'inline' && token.content === 'A prompt to use');
   assert.notEqual(heading, -1);

@@ -20,6 +20,24 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 Quiet editorial (Lab-site lane): the operator selected this style
+  for the production blog. The shared site now uses warm paper, a narrow reading
+  column, serif type and light rules. The hero's “Read with your agent.” prompt
+  is a native disclosure, closed by default; it expands with pointer or keyboard
+  and without JavaScript. Its full canonical text stays in the HTML and the copy
+  button preserves manual-selection recovery. The agent index and all 15 full
+  document exports are byte-identical to the previous build. Local validation
+  passed 43 tests, both base paths, 20 generated pages and 442 internal links.
+  Chrome checked 19 production pages at four widths (76 views, 320–1440px),
+  keyboard toggling/tab order, exact clipboard text, denied-copy recovery and
+  no-JavaScript expansion/redirects. A temporary disk-space failure was retried;
+  the manual-selection check was corrected to compare the selected source range,
+  since rendered text normalizes whitespace. No remaining check failed.
+  Method lesson: native disclosure adds the requested interaction without a new
+  script; visual and keyboard checks cover behavior absent from byte checks.
+  Reader preference and agent comprehension remain unmeasured. Next action:
+  maintain the selected style and add future articles through canonical records.
+
 - 2026-10-02 minimal style previews (Lab-site lane): `/style-demo/` now compares
   Plain-text journal, Swiss index and Quiet editorial at the operator's request.
   It replaces the earlier rejected theme proposals. Every preview uses the same
