@@ -2,8 +2,9 @@
 
 The public reading site renders the existing repository Markdown. Edit the
 original study or Guidance to change its article; do not edit generated HTML.
-The site presents a journal on the homepage and a monthly article archive at
-`/studies/`. The existing palette and typography remain the visual baseline.
+The homepage is the single blog feed. The former `/studies/` and `/lessons/`
+listing URLs redirect to its articles section, with a visible fallback link and
+no JavaScript requirement. The existing palette and typography remain in use.
 
 ## Build and preview
 
@@ -40,17 +41,19 @@ excluded from the source packaging scan; the site checker validates the output.
 4. Build and check the generated pages. Inspect desktop and narrow layouts when
    changing templates, styles or wide content.
 
-The homepage and archive list every catalogue entry, ordered by record date
+The homepage lists every catalogue entry, ordered by record date
 (newest first), with title as the tie-breaker. New records appear automatically;
 there is no separately curated homepage feature. Dates are the source's record
 dates, not inferred publication dates or the date of a rebuild. Article pages
-label this explicitly and link to the previous/next entry in archive order.
+label this explicitly and link to the previous/next entry in feed order.
 Preserve earlier dates when making a correction; record the dated addition in
 the source. The site does not imply a fixed publication schedule.
 
-The lesson index extracts P-01 onward from the existing findings register.
-It uses Markdown paragraph boundaries so wrapped source lines cannot truncate
-the preview. Regression tests cover the seven complete published introductions.
+There are no separate Archive or Lessons browsing sections. Guidance and other
+reference documents remain available through the footer, article links and agent
+index. The complete findings register remains a source document. The older style
+demo still uses an excerpt from it; Markdown paragraph extraction preserves that
+excerpt without truncating wrapped source lines.
 Article bodies, links and heading anchors come from their original Markdown.
 Repository operations such as the handoff stay linked on GitHub. Only the
 explicit reading-page list and site assets are copied to the deployment artifact.

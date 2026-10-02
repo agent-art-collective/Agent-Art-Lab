@@ -20,6 +20,19 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 single blog (Lab-site lane): the operator requested removing the
+  overlapping Journal, Archive and Lessons views. The homepage is now the only
+  article feed, labelled Blog. The two old listing URLs redirect to its articles
+  section without JavaScript and include readable fallback links. Article return
+  links point to that feed; Guidance and reference links are in the footer.
+  Canonical records, evidence limits, agent exports and the existing style remain
+  intact. Checks passed 43 tests and 448 internal links; ten browser views covered
+  home, both old URLs, an article and Guidance at desktop/mobile widths. Native
+  copying, denied-copy recovery and both redirects without JavaScript passed.
+  Method lesson: separate views of the same small collection added unnecessary
+  navigation. Reader preference and Agent comprehension were not measured.
+  Next action: maintain one dated blog feed as new articles are added.
+
 - 2026-10-02 journal refinement (Lab-site lane): the operator found the three
   theme proposals generic and chose the existing visual style with a blog-like
   structure. This supersedes the pending theme-selection action below. The

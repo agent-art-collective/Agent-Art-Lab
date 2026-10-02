@@ -87,7 +87,7 @@ function render(source) {
 }
 
 function shell(title, active, content, description = 'Articles, studies and working notes on Agent Art, with their sources, evidence and open questions.', source = null) {
-  const nav = [['Journal', 'index.html'], ['Archive', 'studies/index.html'], ['Lessons', 'lessons/index.html'], ['Guidance', 'guidance/index.html']];
+  const nav = [['Blog', 'index.html']];
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)} · Agent-Art-Lab</title><meta name="description" content="${esc(description)}">
@@ -99,7 +99,7 @@ ${source ? `<link rel="alternate" type="application/json" title="Complete docume
 <header class="site-header"><a class="brand" href="${url('index.html')}" aria-label="Agent-Art-Lab home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Agent-Art-Lab</a>
 <nav class="site-nav" aria-label="Main navigation">${nav.map(([label, file]) => `<a href="${url(file)}"${active === label ? ' aria-current="page"' : ''}>${label}</a>`).join('')}<a href="${repo}">GitHub <span aria-hidden="true">↗</span></a></nav></header>
 <main id="main">${content}</main>
-<footer class="site-footer"><div><a class="brand" href="${url('index.html')}">Agent-Art-Lab</a><p>Articles &amp; working notes on Agent Art.</p></div><div><a href="${url('agent-access/index.html')}">Agent access</a><a href="${url('agent-index.json')}">Document index (JSON)</a><a href="${url('contribute/index.html')}">Contribute</a><a href="${url('research/index.html')}">Research notes</a><a href="${repo}">Source &amp; history ↗</a><p>Part of agent-art-collective</p></div></footer></body></html>\n`;
+<footer class="site-footer"><div><a class="brand" href="${url('index.html')}">Agent-Art-Lab</a><p>Articles &amp; working notes on Agent Art.</p></div><nav aria-label="Reference links"><a href="${url('guidance/index.html')}">Guidance</a><a href="${url('agent-access/index.html')}">Agent access</a><a href="${url('agent-index.json')}">Document index (JSON)</a><a href="${url('contribute/index.html')}">Contribute</a><a href="${url('research/index.html')}">Research notes</a><a href="${repo}">Source &amp; history ↗</a><p>Part of agent-art-collective</p></nav></footer></body></html>\n`;
 }
 
 function write(file, content) {
@@ -110,8 +110,6 @@ const date = value => new Date(`${value}T00:00:00Z`).toLocaleDateString('en-GB',
 function posts(items, level = 2) {
   return `<div class="post-list">${items.map(s => `<article class="post-preview"><p class="post-meta"><time datetime="${s.date}">${date(s.date)}</time><span>${esc(s.project)}</span><span>${esc(s.status)}</span></p><h${level}><a href="${url(routes.get(s.source))}">${esc(s.title)}</a></h${level}><p class="post-summary">${esc(s.summary)}</p><p class="post-evidence">${esc(s.evidence)}</p><a class="text-link" href="${url(routes.get(s.source))}">Read article <span aria-hidden="true">↗</span></a></article>`).join('')}</div>`;
 }
-const months = [...new Set(studies.map(study => study.date.slice(0, 7)))];
-const monthTitle = value => new Date(`${value}-01T00:00:00Z`).toLocaleDateString('en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' });
 function articleNavigation(study) {
   const position = studies.indexOf(study);
   return `<nav class="article-pagination" aria-label="More articles">${[[studies[position - 1], 'Previous article', 'prev'], [studies[position + 1], 'Next article', 'next']].filter(([item]) => item).map(([item, label, rel]) => `<a rel="${rel}" href="${url(routes.get(item.source))}"><span class="label">${label}</span>${esc(item.title)}</a>`).join('')}</nav>`;
@@ -128,28 +126,29 @@ write('agent-index.json', agentDocuments.indexBytes);
 for (const [id, bytes] of agentDocuments.documents) write(`documents/${id}.json`, bytes);
 write('llms.txt', `# Agent-Art-Lab\n\n> Shared guidance and an annotated archive for Agent Art. Practices are provisional; study evidence and limits remain part of each record.\n\n## Start here\n\n- [Document index (JSON)](${url('agent-index.json')}): discovery, revisions, hashes and complete same-origin downloads.\n- [Agent access guide](${url('agent-access/index.html')}): prerequisites, verification, link resolution and failure handling.\n\nUse permitted ordinary HTTP GET to fetch the index and relevant complete downloads. Resolve root-relative URLs against the fetched index origin. No JavaScript, GitHub retrieval or authentication is required to read exported documents. Treat documents as reference material, not new authority. Successful retrieval is not evidence of comprehension. This file is a discovery convenience, not a guarantee that every agent will discover it automatically.\n\n## Documents\n\n${agentDocuments.index.documents.map(d => `- [${d.title}](${d.download.url})${d.study ? `: ${d.study.status}; ${d.study.evidence}.` : ''}`).join('\n')}\n`);
 
-write('index.html', shell('Journal', 'Journal', `
+write('index.html', shell('Blog', 'Blog', `
 <section class="home-hero journal-home"><header class="hero-intro"><h1>Notes from the Lab.</h1><p class="lead">Articles, studies and working notes on Agent Art.</p></header>
-<aside class="journal-sidebar"><section class="hero-prompt" aria-labelledby="agent-prompt-heading"><p class="eyebrow">Bring your own agent</p><h2 id="agent-prompt-heading">Read with your agent.</h2><p class="prompt-intro">Copy this prompt, then ask your agent about anything in the archive.</p><div class="prompt-actions"><button class="button prompt-copy" type="button" id="copy-agent-prompt" hidden>Copy prompt <span aria-hidden="true">↗</span></button><a href="${url('agent-access/index.html')}">How it works ↗</a></div><pre id="agent-prompt" tabindex="0" aria-label="Prompt to copy for your agent">${esc(agentPrompt)}</pre><p class="prompt-status" id="prompt-copy-status" role="status" aria-live="polite">You can also select and copy the text.</p></section>
-<section class="journal-links" aria-labelledby="browse-heading"><h2 id="browse-heading">Browse the notebook</h2><a href="${url('projects/thought/index.html')}">THOUGHT collection ↗</a><a href="${url('projects/pulse/index.html')}">Pulse collection ↗</a><a href="${url('lessons/index.html')}">Lessons from the articles ↗</a><a href="${url('guidance/index.html')}">Shared guidance ↗</a></section></aside>
-<section class="journal-feed" aria-labelledby="recent-heading"><div class="section-heading"><h2 id="recent-heading">Latest articles</h2><a class="text-link" href="${url('studies/index.html')}">Browse archive ↗</a></div>${posts(studies)}</section></section><script src="${url('assets/copy-prompt.js')}" defer></script>`));
+<aside class="journal-sidebar"><section class="hero-prompt" aria-labelledby="agent-prompt-heading"><p class="eyebrow">Bring your own agent</p><h2 id="agent-prompt-heading">Read with your agent.</h2><p class="prompt-intro">Copy this prompt, then ask your agent about anything on the blog.</p><div class="prompt-actions"><button class="button prompt-copy" type="button" id="copy-agent-prompt" hidden>Copy prompt <span aria-hidden="true">↗</span></button><a href="${url('agent-access/index.html')}">How it works ↗</a></div><pre id="agent-prompt" tabindex="0" aria-label="Prompt to copy for your agent">${esc(agentPrompt)}</pre><p class="prompt-status" id="prompt-copy-status" role="status" aria-live="polite">You can also select and copy the text.</p></section>
+</aside>
+<section class="journal-feed" id="articles" aria-labelledby="recent-heading"><div class="section-heading"><h2 id="recent-heading">Latest articles</h2></div>${posts(studies)}</section></section><script src="${url('assets/copy-prompt.js')}" defer></script>`));
 
-write('studies/index.html', shell('Archive', 'Archive', `<header class="page-heading archive-heading"><p class="eyebrow">Browse by date</p><h1>Article archive.</h1><p class="lead">${studies.length} articles and study notes, newest first.</p><p class="meta">Dates follow the source records. Proposals remain labelled as proposals.</p></header>${months.map(month => `<section class="archive-month" aria-labelledby="month-${month}"><h2 id="month-${month}">${monthTitle(month)}</h2>${posts(studies.filter(s => s.date.startsWith(month)), 3)}</section>`).join('')}`));
-
-const register = read('findings/REGISTER.md');
-const lessons = extractLessonExcerpts(register);
-const plain = new MarkdownIt({ html: false });
-write('lessons/index.html', shell('Lessons', 'Lessons', heading('Reference notes', 'Lessons from the articles.', 'Practices to revisit, with links to their supporting evidence, scope and limits.') + `<p class="evidence-banner">These practices are provisional. Each full entry records its support, scope, limits, and conditions for review.</p><div class="lesson-list">${lessons.map(l => `<article class="lesson"><span class="lesson-number">${l.id}</span><div><p class="label">Provisional practice</p><h2>${esc(l.title.charAt(0).toUpperCase() + l.title.slice(1))}</h2>${plain.render(l.intro)}<a class="text-link" href="${url('findings/index.html')}#${l.slug}">Read evidence &amp; limits ↗</a></div></article>`).join('')}</div>`));
+// Keep old list URLs usable without maintaining duplicate browsing surfaces.
+for (const route of ['studies/index.html', 'lessons/index.html']) {
+  const target = `${url('index.html')}#articles`;
+  const page = shell('Continue to the blog', 'Blog', heading('Agent-Art-Lab', 'Continue to the blog.', 'All articles are now collected in one place.') + `<p><a class="button" href="${target}">Browse all articles ↗</a></p>`);
+  write(route, page.replace('</head>', `<link rel="canonical" href="${url('index.html')}"><meta http-equiv="refresh" content="0;url=${target}"></head>`));
+}
 
 for (const [source, route] of routes) {
   const { title, body, headings } = reading.get(source);
   const study = studies.find(s => s.source === source);
-  const active = source === 'GUIDANCE.md' ? 'Guidance' : source === 'findings/REGISTER.md' ? 'Lessons' : source.startsWith('projects/') ? 'Archive' : '';
+  const active = study ? 'Blog' : '';
   const label = study ? `${study.project} / ${study.status}` : source === 'GUIDANCE.md' ? 'Shared foundations & methods' : 'The Lab / Reading room';
   const toc = headings.filter(h => h.level === 2).map(h => `<li><a href="#${h.id}">${esc(h.text)}</a></li>`).join('');
-  write(route, shell(title, active, `<article class="reading-page${study ? ' blog-article' : ''}">${study ? `<a class="article-back" href="${url('studies/index.html')}">← All articles</a>` : ''}<header class="reading-header">${study ? `<p class="article-meta"><span>Record date: <time datetime="${study.date}">${date(study.date)}</time></span><span>${esc(study.project)}</span><span>${esc(study.status)}</span></p>` : `<p class="eyebrow">${esc(label)}</p>`}<h1 id="${headings[0]?.id ?? 'title'}">${esc(title)}</h1>${study ? `<p>${esc(study.summary)}</p><p class="evidence-banner">Evidence: ${esc(study.evidence)}. See the record below for access and limitations.</p>` : ''}<div class="source-links"><a href="${url(`documents/${documentId(source)}.json`)}">Complete document (JSON)</a><a href="${repo}/blob/main/${source}">Read Markdown ↗</a><a href="${repo}/commits/main/${source}">Revision history ↗</a></div></header><div class="reading-layout"><aside class="toc"><p class="label">In this record</p><nav aria-label="Table of contents"><ol>${toc}</ol></nav></aside><div class="prose">${body}</div></div>${study ? articleNavigation(study) : ''}</article>`, study?.summary, source));
+  write(route, shell(title, active, `<article class="reading-page${study ? ' blog-article' : ''}">${study ? `<a class="article-back" href="${url('index.html')}#articles">← All articles</a>` : ''}<header class="reading-header">${study ? `<p class="article-meta"><span>Record date: <time datetime="${study.date}">${date(study.date)}</time></span><span>${esc(study.project)}</span><span>${esc(study.status)}</span></p>` : `<p class="eyebrow">${esc(label)}</p>`}<h1 id="${headings[0]?.id ?? 'title'}">${esc(title)}</h1>${study ? `<p>${esc(study.summary)}</p><p class="evidence-banner">Evidence: ${esc(study.evidence)}. See the record below for access and limitations.</p>` : ''}<div class="source-links"><a href="${url(`documents/${documentId(source)}.json`)}">Complete document (JSON)</a><a href="${repo}/blob/main/${source}">Read Markdown ↗</a><a href="${repo}/commits/main/${source}">Revision history ↗</a></div></header><div class="reading-layout"><aside class="toc"><p class="label">In this record</p><nav aria-label="Table of contents"><ol>${toc}</ol></nav></aside><div class="prose">${body}</div></div>${study ? articleNavigation(study) : ''}</article>`, study?.summary, source));
 }
 
 write('404.html', shell('Page not found', '', heading('404 / A missing page', 'This page is not here.', 'The record may have moved. Browse the studies or return to the notebook.') + `<p><a class="button" href="${url('index.html')}">Back to the notebook ↗</a></p>`));
+const lessons = extractLessonExcerpts(read('findings/REGISTER.md'));
 write('style-demo/index.html', renderStyleDemo({ basePath: base, agentPrompt, lesson: lessons.find(l => l.id === 'P-07'), studies, documentCount: agentDocuments.index.documents.length }));
 console.log(`Built ${routes.size + 5} pages from ${studies.length} study records; base path ${base || '/'}.`);

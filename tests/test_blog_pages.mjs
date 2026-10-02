@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -17,6 +17,8 @@ const href = study => `${base}/${route(study)}`;
 const decode = value => value.replace(/&(?:#\d+|#x[\da-f]+|[a-z][a-z\d]+);/gi,
   entity => markdown.utils.unescapeAll(entity));
 const text = html => decode(html.replace(/<[^>]*>/g, ' ')).replace(/\s+/g, ' ').trim();
+const attributes = source => Object.fromEntries([...source.matchAll(/\b([a-z-]+)(?:="([^"]*)")?/g)]
+  .map(attribute => [attribute[1], decode(attribute[2] ?? '')]));
 
 // Match known generated tags by nesting depth, so sections inside the hero do
 // not falsely end it. This deliberately avoids a new DOM/test dependency.
@@ -26,8 +28,7 @@ function elements(html, tag, className) {
   const result = [];
   for (const match of html.matchAll(tokens)) {
     if (!match[1]) {
-      const attrs = Object.fromEntries([...match[2].matchAll(/\b([a-z-]+)="([^"]*)"/g)]
-        .map(attribute => [attribute[1], decode(attribute[2])]));
+      const attrs = attributes(match[2]);
       stack.push({ attrs, start: match.index, innerStart: match.index + match[0].length });
     } else {
       const item = stack.pop();
@@ -67,6 +68,7 @@ before(() => {
 test('homepage includes every study in descending record-date and title order', () => {
   const homepage = read('_site/index.html');
   const feed = one(homepage, 'section', 'journal-feed');
+  assert.equal(feed.attrs.id, 'articles', 'legacy links land on the single article feed');
   assert.deepEqual(postIdentities(feed.inner), expectedPosts(studies));
 });
 
@@ -84,23 +86,47 @@ test('the homepage hero retains exactly one complete canonical agent prompt', ()
   assert.equal(decode(prompt[0].inner), canonical.content.replace(/\n$/, ''));
 });
 
-test('the archive groups the same articles by source-record month without losing ordering', () => {
-  const archive = read('_site/studies/index.html');
-  const months = elements(archive, 'section', 'archive-month');
-  const expectedMonths = [...new Set(studies.map(study => study.date.slice(0, 7)))];
-  assert.deepEqual(months.map(month => one(month.inner, 'h2').attrs.id),
-    expectedMonths.map(month => `month-${month}`));
-  for (const [index, month] of months.entries()) {
-    assert.deepEqual(postIdentities(month.inner), expectedPosts(studies.filter(study =>
-      study.date.startsWith(expectedMonths[index]))));
+test('legacy studies and lessons URLs redirect to the single blog with a visible fallback', () => {
+  for (const route of ['studies/index.html', 'lessons/index.html']) {
+    const page = read(`_site/${route}`);
+    assert.equal(elements(page, 'article', 'post-preview').length, 0, route);
+    assert.equal(elements(page, 'div', 'lesson-list').length, 0, route);
+    const metas = [...page.matchAll(/<meta\b([^>]*)>/g)].map(match => attributes(match[1]));
+    const refresh = metas.filter(meta => meta['http-equiv']?.toLowerCase() === 'refresh');
+    assert.equal(refresh.length, 1, route);
+    const destination = refresh[0].content?.match(/^\s*0\s*;\s*url=(.+?)\s*$/i);
+    assert.ok(destination, `${route} redirects immediately`);
+    assert.equal(destination[1], `${base}/#articles`, route);
+    const links = [...page.matchAll(/<link\b([^>]*)>/g)].map(match => attributes(match[1]));
+    assert.deepEqual(links.filter(link => link.rel === 'canonical').map(link => link.href), [`${base}/`], route);
+    const fallback = elements(one(page, 'main').inner, 'a')
+      .filter(link => link.attrs.href === `${base}/#articles`);
+    assert.ok(fallback.some(link => text(link.inner) && !('hidden' in link.attrs)
+      && link.attrs['aria-hidden'] !== 'true'), `${route} has a readable fallback`);
   }
-  assert.deepEqual(postIdentities(archive), expectedPosts(studies));
+});
+
+test('main navigation has only Blog and GitHub throughout the reading site', () => {
+  let checked = 0;
+  for (const file of readdirSync(path.join(root, '_site'), { recursive: true }).filter(file => file.endsWith('.html'))) {
+    const page = read(`_site/${file}`);
+    const navigation = elements(page, 'nav', 'site-nav');
+    if (!navigation.length) continue; // The isolated style demonstration has its own controls.
+    assert.equal(navigation.length, 1, file);
+    const links = elements(navigation[0].inner, 'a');
+    assert.deepEqual(links.map(link => link.attrs.href), [`${base}/`, 'https://github.com/agent-art-collective/Agent-Art-Lab'], file);
+    assert.equal(text(links[0].inner), 'Blog', file);
+    assert.match(text(links[1].inner), /^GitHub\b/, file);
+    checked += 1;
+  }
+  assert.ok(checked > studies.length, 'check the reading pages as well as the articles');
 });
 
 test('article pages retain complete source text and identify dates as record dates', () => {
   for (const study of studies) {
     const page = read(`_site/${route(study)}`);
     const article = one(page, 'article', 'blog-article');
+    assert.equal(one(article.inner, 'a', 'article-back').attrs.href, `${base}/#articles`, study.source);
     const meta = one(article.inner, 'p', 'article-meta');
     assert.equal(one(meta.inner, 'time').attrs.datetime, study.date, study.source);
     assert.match(text(meta.inner), /Record date:/);
