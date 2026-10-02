@@ -20,6 +20,17 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 font chooser (Lab-site lane): added a floating Fonts panel to every
+  reading page with Georgia, Palatino, Times New Roman, Arial and Courier New.
+  Choices apply across page text and persist locally; the collapsible panel
+  starts closed on narrower screens. Native radio controls, keyboard selection,
+  Escape, blocked-storage feedback and no-JavaScript reading were verified.
+  All five actual typefaces rendered in Chrome; 60 font/page/viewport checks
+  passed from 320px to desktop, plus a short landscape screen. Local tests and
+  source/export checks passed. Device fonts use fallbacks where unavailable;
+  the original style demo remains separate. No agent documents changed.
+  Next action: let the operator compare the five fonts on the live site.
+
 - 2026-10-02 larger type (Lab-site lane): increased screen text sizes throughout
   the Quiet editorial site, including responsive overrides and table code.
   Article prose is 21px on desktop and 20px on mobile; summaries are 20px and

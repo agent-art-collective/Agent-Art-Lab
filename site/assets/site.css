@@ -4,10 +4,18 @@
   --ink: #34312d;
   --muted: #69625a;
   --line: #ded9cf;
-  --serif: Georgia, "Times New Roman", serif;
-  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --site-font: Georgia, "Times New Roman", serif;
+  --serif: var(--site-font);
+  --sans: var(--site-font);
+  --mono: var(--site-font);
+  --font-controls: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
 }
+
+html[data-font="georgia"] { --site-font: Georgia, "Times New Roman", serif; }
+html[data-font="palatino"] { --site-font: "Palatino Linotype", "Book Antiqua", Palatino, serif; }
+html[data-font="times"] { --site-font: "Times New Roman", Times, serif; }
+html[data-font="arial"] { --site-font: Arial, Helvetica, sans-serif; }
+html[data-font="courier"] { --site-font: "Courier New", Courier, monospace; }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { background: var(--paper); scroll-padding-top: 25px; }
@@ -128,7 +136,71 @@ main { min-width: 0; }
 .site-footer nav { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 20px; margin-top: 20px; }
 .site-footer nav p { flex-basis: 100%; margin-top: 3px; }
 
+/* A small, native control; only the option previews change its interface font. */
+body.font-tools-ready { padding-bottom: 80px; }
+.font-panel {
+  position: fixed;
+  z-index: 30;
+  right: 20px;
+  bottom: 20px;
+  width: 250px;
+  max-width: calc(100vw - 40px);
+  max-height: min(490px, calc(100vh - 40px));
+  max-height: min(490px, calc(100dvh - 40px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-padding-top: 54px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  color: var(--ink);
+  background: var(--paper);
+  box-shadow: 0 5px 22px rgb(52 49 45 / 9%);
+  font: 400 14px/1.5 var(--font-controls);
+}
+.font-panel > summary {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) 14px;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 12px 14px;
+  background: var(--paper);
+  list-style: none;
+  cursor: pointer;
+}
+.font-panel > summary::-webkit-details-marker { display: none; }
+.font-panel > summary::marker { content: ""; }
+.font-panel > summary:focus-visible { outline-offset: -4px; }
+.font-panel > summary > :first-child { font-weight: 550; }
+.font-panel[open] > summary { border-bottom: 1px solid var(--line); }
+#font-current { min-width: 0; color: var(--muted); font-size: 14px; text-align: right; overflow-wrap: anywhere; }
+.font-panel-icon { position: relative; width: 14px; height: 14px; }
+.font-panel-icon::before, .font-panel-icon::after { content: ""; position: absolute; left: 2px; top: 6px; width: 10px; height: 1px; background: currentColor; }
+.font-panel-icon::after { transform: rotate(90deg); }
+.font-panel[open] .font-panel-icon::after { display: none; }
+.font-panel fieldset { min-width: 0; margin: 0; padding: 12px 0 0; border: 0; }
+.font-panel legend { padding: 0 14px; color: var(--muted); font-size: 14px; }
+.font-option { display: grid; grid-template-columns: 16px minmax(0, 1fr) 35px; align-items: center; gap: 10px; min-height: 53px; padding: 9px 14px; cursor: pointer; }
+.font-option:hover, .font-option:has(input:checked) { background: #f1eee7; }
+.font-option input { width: 15px; height: 15px; margin: 0; accent-color: var(--ink); cursor: pointer; }
+.font-option input:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.font-option > span { min-width: 0; }
+.font-option strong { display: block; font: 400 16px/1.35 var(--option-font); }
+.font-option small { display: block; margin-top: 2px; color: var(--muted); font: 400 14px/1.4 var(--font-controls); }
+.font-sample { justify-self: end; font: 400 25px/1.2 var(--option-font); }
+.font-option[data-font-choice="georgia"] { --option-font: Georgia, "Times New Roman", serif; }
+.font-option[data-font-choice="palatino"] { --option-font: "Palatino Linotype", "Book Antiqua", Palatino, serif; }
+.font-option[data-font-choice="times"] { --option-font: "Times New Roman", Times, serif; }
+.font-option[data-font-choice="arial"] { --option-font: Arial, Helvetica, sans-serif; }
+.font-option[data-font-choice="courier"] { --option-font: "Courier New", Courier, monospace; }
+.font-panel-hint { margin: 12px 14px 14px; color: var(--muted); font: 400 14px/1.5 var(--font-controls); }
+
 @media (max-width: 720px) {
+  body.font-tools-ready { padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
+  .font-panel { right: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); max-width: calc(100vw - 24px); max-height: min(420px, calc(100vh - 96px)); max-height: min(420px, calc(100dvh - 96px)); }
   .site-header, main, .site-footer { width: calc(100% - 48px); }
   .site-header { padding-top: 29px; gap: 15px 22px; }
   .site-nav { gap: 19px; }
@@ -186,8 +258,9 @@ main { min-width: 0; }
 
 @media print {
   html, body { color: #000; background: #fff; }
+  body.font-tools-ready { padding-bottom: 0; }
   .site-header, main, .site-footer { width: 100%; }
-  .site-nav, .skip-link, .hero-prompt, .toc, .source-links, .article-back, .article-pagination, .prompt-copy { display: none; }
+  .site-nav, .skip-link, .hero-prompt, .toc, .source-links, .article-back, .article-pagination, .prompt-copy, .font-panel { display: none; }
   .site-header { padding-top: 0; }
   .prose { font-size: 11pt; }
   .prose h2, .prose h3 { break-after: avoid; }

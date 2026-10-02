@@ -1,4 +1,4 @@
-// Markdown remains canonical; optional client JS only copies agent prompts.
+// Markdown remains canonical; optional client JS handles reading preferences and copying.
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -86,19 +86,30 @@ function render(source) {
   return { title, headings, body: md.renderer.render(tokens, md.options, {}) };
 }
 
+const fontOptions = [
+  ['georgia', 'Georgia', 'Warm serif'],
+  ['palatino', 'Palatino', 'Bookish serif'],
+  ['times', 'Times New Roman', 'Classic editorial'],
+  ['arial', 'Arial', 'Clean sans serif'],
+  ['courier', 'Courier New', 'Typewriter'],
+];
+function fontPicker() {
+  return `<details id="font-panel" class="font-panel" hidden open><summary><span>Fonts</span><span id="font-current">Georgia</span><span class="font-panel-icon" aria-hidden="true"></span></summary><fieldset><legend>Try a typeface</legend>${fontOptions.map(([id, name, description]) => `<label class="font-option" data-font-choice="${id}"><input type="radio" name="site-font" value="${id}"${id === 'georgia' ? ' checked' : ''}><span><strong>${name}</strong><small>${description}</small></span><span class="font-sample" aria-hidden="true">Aa</span></label>`).join('')}</fieldset><p class="font-panel-hint">Your choice follows you between pages.</p></details>`;
+}
+
 function shell(title, content, description = slogan, source = null) {
   return `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en" data-font="georgia"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)} · Agent-Art-Lab</title><meta name="description" content="${esc(description)}">
 <link rel="alternate" type="application/json" title="Agent document index" href="${url('agent-index.json')}">
 ${source ? `<link rel="alternate" type="application/json" title="Complete document" href="${url(`documents/${documentId(source)}.json`)}">` : ''}
 <meta name="color-scheme" content="light"><link rel="icon" href="${url('assets/favicon.svg')}" type="image/svg+xml">
-<link rel="stylesheet" href="${url('assets/site.css')}"></head><body>
+<script src="${url('assets/font-picker.js')}"></script><link rel="stylesheet" href="${url('assets/site.css')}"></head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><a class="brand" href="${url('index.html')}" aria-label="Agent-Art-Lab home">Agent-Art-Lab</a>
 <nav class="site-nav" aria-label="Main navigation"><a href="${repo}">GitHub <span aria-hidden="true">↗</span></a></nav></header>
 <main id="main">${content}</main>
-<footer class="site-footer"><div><a class="brand" href="${url('index.html')}">Agent-Art-Lab</a><p>${esc(slogan)}</p></div><nav aria-label="Reference links"><a href="${url('guidance/index.html')}">Guidance</a><a href="${url('agent-access/index.html')}">Agent access</a><a href="${url('agent-index.json')}">Document index (JSON)</a><a href="${url('contribute/index.html')}">Contribute</a><a href="${url('research/index.html')}">Research notes</a><a href="${repo}">Source &amp; history ↗</a><p>Part of agent-art-collective</p></nav></footer></body></html>\n`;
+<footer class="site-footer"><div><a class="brand" href="${url('index.html')}">Agent-Art-Lab</a><p>${esc(slogan)}</p></div><nav aria-label="Reference links"><a href="${url('guidance/index.html')}">Guidance</a><a href="${url('agent-access/index.html')}">Agent access</a><a href="${url('agent-index.json')}">Document index (JSON)</a><a href="${url('contribute/index.html')}">Contribute</a><a href="${url('research/index.html')}">Research notes</a><a href="${repo}">Source &amp; history ↗</a><p>Part of agent-art-collective</p></nav></footer>${fontPicker()}</body></html>\n`;
 }
 
 function write(file, content) {

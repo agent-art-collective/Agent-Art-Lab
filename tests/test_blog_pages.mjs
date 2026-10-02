@@ -134,6 +134,30 @@ test('the brand returns home and top navigation contains only GitHub', () => {
   assert.ok(checked > studies.length, 'check the reading pages as well as the articles');
 });
 
+test('every reading page provides five labelled font choices with an inert no-JavaScript fallback', () => {
+  for (const file of readdirSync(path.join(root, '_site'), { recursive: true }).filter(file => file.endsWith('.html') && !file.startsWith('style-demo/'))) {
+    const page = read(`_site/${file}`);
+    const panel = one(page, 'details', 'font-panel');
+    assert.ok('hidden' in panel.attrs, `${file}: hide controls until they work`);
+    assert.equal(one(panel.inner, 'legend').inner, 'Try a typeface', file);
+    const labels = elements(panel.inner, 'label', 'font-option');
+    const choices = labels.map(label => {
+      const input = [...label.inner.matchAll(/<input\b([^>]*)>/g)];
+      assert.equal(input.length, 1, file);
+      const attrs = attributes(input[0][1]);
+      assert.equal(attrs.type, 'radio', file);
+      assert.equal(attrs.name, 'site-font', file);
+      assert.ok(text(one(label.inner, 'strong').inner), `${file}: give the option a visible name`);
+      return attrs;
+    });
+    assert.deepEqual(choices.map(choice => choice.value), ['georgia', 'palatino', 'times', 'arial', 'courier'], file);
+    assert.deepEqual(choices.filter(choice => 'checked' in choice).map(choice => choice.value), ['georgia'], file);
+    const pickerScript = elements(page, 'script').filter(script => script.attrs.src === `${base}/assets/font-picker.js`);
+    assert.equal(pickerScript.length, 1, file);
+    assert.ok(pickerScript[0].start < page.indexOf('<body>'), `${file}: restore the preference before page rendering`);
+  }
+});
+
 test('article pages retain complete source text and identify dates as record dates', () => {
   for (const study of studies) {
     const page = read(`_site/${route(study)}`);

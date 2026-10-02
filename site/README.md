@@ -12,6 +12,24 @@ no JavaScript requirement. The selected Quiet editorial style uses a narrow
 reading column, warm white background, serif headings and restrained rules.
 The header's Agent-Art-Lab name links home; GitHub is the only separate top link.
 
+## Font comparison
+
+Every reading page has a floating, collapsible Fonts panel with Georgia,
+Palatino, Times New Roman, Arial and Courier New. A choice applies to the whole
+reading page, including navigation, headings, metadata, prompt and code. The
+chooser keeps stable controls and previews each option in its own typeface.
+These are device fonts with CSS fallbacks; exact rendering depends on installed
+fonts. No font service or font download is required. The earlier style demo
+preserves its original, separate previews.
+
+The optional `font-picker.js` restores a validated choice from local storage
+before rendering and saves changes for later pages and visits. Storage denial
+does not prevent switching; the panel explains when a choice cannot be saved.
+Its open/closed state lasts for the browser session. With no saved panel state,
+it starts collapsed at widths up to 1320px and open on wider screens. Native
+radio controls support keyboard selection; Escape closes the panel. Without
+JavaScript, the panel stays hidden and all content is readable in Georgia.
+
 ## Build and preview
 
 Requires Node.js 22+ and Python 3.10+ for the offline checks:
@@ -110,7 +128,8 @@ Links and copy buttons work, and all previews remain readable without JavaScript
 GitHub Pages uses the existing repository's GitHub Actions source. The pinned
 workflow builds and checks pull requests; pushes to `main` also deploy `_site`.
 Reading requires no client JavaScript, remote fonts, analytics, database or
-third-party runtime. The homepage and demo load only their optional copy scripts.
+third-party runtime. Reading pages load the optional font picker; the homepage
+and demo also load their optional copy scripts.
 Build dependencies are pinned in `package-lock.json` and can be
 updated through an ordinary reviewed change.
 
