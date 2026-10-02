@@ -11,7 +11,7 @@ import re
 import sys
 from urllib.parse import unquote, urlsplit
 
-from check_agent_documents import check_agent_documents, public_agent_files
+from check_agent_documents import check_agent_documents, public_agent_files, source_catalogue
 
 
 VOID_TAGS = {
@@ -36,6 +36,8 @@ class Page(HTMLParser):
         self.title = []
         self.text = []
         self.evidence = []
+        self.visible_anchors = []
+        self.agent_prompts = []
 
     def record_start(self, tag, attrs, closed=False):
         attrs = dict(attrs)
@@ -47,11 +49,25 @@ class Page(HTMLParser):
         if tag == "link" and "stylesheet" in (attrs.get("rel") or "").split():
             self.stylesheets.append(attrs.get("href"))
         in_nav = tag == "nav" or any(item[0] == "nav" for item in self.stack)
+        hidden = (tag in {"head", "script", "style", "template"}
+                  or "hidden" in attrs or attrs.get("aria-hidden", "").lower() == "true"
+                  or bool(re.search(r"(?:display\s*:\s*none|visibility\s*:\s*hidden)",
+                                    attrs.get("style", ""), re.IGNORECASE))
+                  or any(item[2] for item in self.stack))
+        anchor = None
+        if tag == "a" and "href" in attrs and not hidden:
+            anchor = len(self.visible_anchors)
+            self.visible_anchors.append((attrs["href"], []))
+        prompt = None
+        if tag == "pre" and attrs.get("id") == "agent-prompt" and not hidden:
+            prompt = len(self.agent_prompts)
+            self.agent_prompts.append([])
         for attribute in ("href", "src"):
             if attribute in attrs:
                 self.links.append((attrs[attribute] or "", in_nav, attribute))
         if tag not in VOID_TAGS and not closed:
-            self.stack.append((tag, "evidence-banner" in (attrs.get("class") or "").split()))
+            self.stack.append((tag, "evidence-banner" in (attrs.get("class") or "").split(),
+                               hidden, anchor, prompt))
 
     def handle_starttag(self, tag, attrs):
         self.record_start(tag, attrs)
@@ -71,10 +87,27 @@ class Page(HTMLParser):
             self.title.append(data)
         if any(item[1] for item in self.stack):
             self.evidence.append(data)
+        if not any(item[2] for item in self.stack):
+            for item in self.stack:
+                if item[3] is not None:
+                    self.visible_anchors[item[3]][1].append(data)
+                if item[4] is not None:
+                    self.agent_prompts[item[4]].append(data)
 
 
 def normalized(parts):
     return " ".join(" ".join(parts).split())
+
+
+def canonical_agent_prompt(root):
+    text = (root / "docs/AGENT_ACCESS.md").read_bytes().decode("utf-8")
+    sections = re.findall(r"^## A prompt to use\s*\n(.*?)(?=^## |\Z)", text, re.MULTILINE | re.DOTALL)
+    if len(sections) != 1:
+        raise ValueError("expected one 'A prompt to use' section")
+    prompts = re.findall(r"^```text\r?\n(.*?)\r?\n```[ \t]*$", sections[0], re.MULTILINE | re.DOTALL)
+    if len(prompts) != 1 or not prompts[0].strip():
+        raise ValueError("expected one nonempty text code block in the prompt section")
+    return prompts[0]
 
 
 def local_target(href, source, output, base):
@@ -113,6 +146,7 @@ def check_site(root, base):
         return ["missing _site directory; build the site first"], 0, 0, 0
     try:
         agent_files = public_agent_files(root)
+        routes, _ = source_catalogue(root)
     except (OSError, UnicodeError, ValueError, TypeError, KeyError) as exc:
         return [f"cannot derive public document allowlist: {exc}"], 0, 0, 0
 
@@ -149,6 +183,23 @@ def check_site(root, base):
         errors.append("missing .nojekyll marker")
     if output / "index.html" not in pages:
         errors.append("missing readable homepage")
+    expected_pages = {Path("index.html"), Path("lessons/index.html"),
+                      Path("studies/index.html"), Path("404.html")} | {
+        Path(route) / "index.html" if route.endswith("/") else Path(route)
+        for route in routes.values()
+    }
+    actual_pages = {path.relative_to(output) for path in pages}
+    for relative in sorted(expected_pages - actual_pages):
+        errors.append(f"missing generated page: {relative}")
+    for relative in sorted(actual_pages - expected_pages):
+        errors.append(f"unexpected generated page: {relative}")
+    try:
+        prompt = canonical_agent_prompt(root)
+        homepage = pages.get(output / "index.html")
+        if homepage is not None and ["".join(parts) for parts in homepage.agent_prompts] != [prompt]:
+            errors.append("homepage agent prompt differs from canonical access-guide code block")
+    except (OSError, UnicodeError, ValueError) as exc:
+        errors.append(f"cannot verify canonical agent prompt: {exc}")
 
     for source, page in sorted(pages.items()):
         relative = source.relative_to(output)
@@ -190,6 +241,9 @@ def check_site(root, base):
                     valid_navigation += 1
         if not page.navs or not valid_navigation:
             errors.append(f"missing working navigation to another page: {relative}")
+        if not any(href == f"{base}/agent-index.json" and normalized(label)
+                   for href, label in page.visible_anchors):
+            errors.append(f"missing visible document-index link: {relative}")
 
     try:
         studies = json.loads((root / "site/studies.json").read_text(encoding="utf-8"))

@@ -40,6 +40,8 @@ excluded from the source packaging scan; the site checker validates the output.
    changing templates, styles or wide content.
 
 The lesson index extracts P-01 onward from the existing findings register.
+It uses Markdown paragraph boundaries so wrapped source lines cannot truncate
+the preview. Regression tests cover the seven complete published introductions.
 Article bodies, links and heading anchors come from their original Markdown.
 Repository operations such as the handoff stay linked on GitHub. Only the
 explicit reading-page list and site assets are copied to the deployment artifact.
@@ -58,6 +60,11 @@ The homepage hero displays the prompt from the access guide's “A prompt to use
 section. Edit that canonical prompt to update both places. A small optional
 script copies it on click; the full text remains selectable without JavaScript,
 and clipboard failure selects it for manual copying.
+
+The site check requires the complete page inventory (including the 404 page),
+exact agreement between the hero prompt and its source, and a labelled document
+index link on every page. Browser checks are still needed for computed visibility,
+responsive overflow, clipboard behavior and reading without JavaScript.
 
 See [the access guide](../docs/AGENT_ACCESS.md) for the reading contract, relative
 source-link resolution and failure handling. `scripts/check_agent_documents.py`

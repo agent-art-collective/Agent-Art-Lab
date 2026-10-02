@@ -1,6 +1,7 @@
 """Synthetic export corruption checks; no build, network or Agent is needed."""
 
 import hashlib
+from html import escape
 import json
 from pathlib import Path
 import sys
@@ -13,6 +14,7 @@ from check_site import check_site
 
 
 BASE = "/Agent-Art-Lab"
+PROMPT = 'Read the source <carefully> & preserve its limits.\nCite the URL and revision.'
 
 
 def serialized(value):
@@ -23,7 +25,7 @@ def digest(value):
     return hashlib.sha256(value).hexdigest()
 
 
-class AgentDocumentChecks(unittest.TestCase):
+class AgentDocumentFixture:
     def setUp(self):
         temp = tempfile.TemporaryDirectory(prefix="Agent-Art-Lab-export-check-")
         self.addCleanup(temp.cleanup)
@@ -32,8 +34,10 @@ class AgentDocumentChecks(unittest.TestCase):
         self.put("_site/.nojekyll", b"")
         self.put("_site/style.css", b"body { color: black; }\n")
         self.entries = []
-        source_bytes = b"# Record\n\nObservation.\n\n## Limits\nUnverified, not a reliability result.\n"
         for source, route in ROUTES.items():
+            source_bytes = b"# Record\n\nObservation.\n\n## Limits\nUnverified, not a reliability result.\n"
+            if source == "docs/AGENT_ACCESS.md":
+                source_bytes += ("\n## A prompt to use\n\n```text\n" + PROMPT + "\n```\n").encode()
             self.put(source, source_bytes)
             identifier = document_id(source)
             identity = {
@@ -50,7 +54,9 @@ class AgentDocumentChecks(unittest.TestCase):
             self.entries.append({**identity, "download": {"url": target, "mediaType": "application/json",
                                                           "sha256": digest(raw), "byteLength": len(raw)}})
             self.put(f"_site/{route}{'index.html' if route.endswith('/') else ''}", self.page(target))
-        self.put("_site/index.html", self.page())
+        self.put("_site/index.html", self.page(prompt=PROMPT))
+        for route in ("lessons/index.html", "studies/index.html", "404.html"):
+            self.put(f"_site/{route}", self.page())
         self.put("_site/llms.txt", (f"[Index]({BASE}/agent-index.json)\n" + "".join(
             f"[Record]({entry['download']['url']})\n" for entry in self.entries)).encode())
         self.write_index()
@@ -61,13 +67,15 @@ class AgentDocumentChecks(unittest.TestCase):
         target.write_bytes(data)
         return target
 
-    def page(self, target=None):
+    def page(self, target=None, prompt=None):
         alternate = f'<link rel="alternate" type="application/json" title="Complete document" href="{target}">' if target else ""
         anchor = f'<a href="{target}">Complete document</a>' if target else ""
+        prompt_html = f'<pre id="agent-prompt">{escape(prompt)}</pre>' if prompt is not None else ""
         return (f'<html><head><title>Record</title><link rel="stylesheet" href="{BASE}/style.css">'
                 f'<link rel="alternate" type="application/json" title="Agent document index" href="{BASE}/agent-index.json">'
                 f'{alternate}</head><body><nav><a href="{BASE}/">Home</a><a href="{BASE}/guidance/">Guidance</a></nav>'
-                f'<main><h1>Record</h1>{anchor}</main></body></html>').encode()
+                f'<main><h1>Record</h1>{anchor}{prompt_html}</main>'
+                f'<footer><a href="{BASE}/agent-index.json">Document index (JSON)</a></footer></body></html>').encode()
 
     def write_index(self):
         index = {"schema": "agent-art-lab.index/v1", "scope": {"includes": "Synthetic text"},
@@ -78,6 +86,8 @@ class AgentDocumentChecks(unittest.TestCase):
     def errors(self):
         return check_agent_documents(self.root, BASE)
 
+
+class AgentDocumentChecks(AgentDocumentFixture, unittest.TestCase):
     def test_intact_fixture_passes_both_checkers(self):
         self.assertEqual(self.errors(), [])
         self.assertEqual(check_site(self.root, BASE)[0], [])

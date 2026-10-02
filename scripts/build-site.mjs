@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import MarkdownIt from 'markdown-it';
 import GithubSlugger from 'github-slugger';
 import { buildAgentDocuments, documentId } from './agent-documents.mjs';
+import { extractLessonExcerpts } from './lesson-excerpts.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const output = path.join(root, '_site');
@@ -129,11 +130,7 @@ write('index.html', shell('Lessons from making Agent Art', 'Home', `
 write('studies/index.html', shell('Studies', 'Studies', heading('The annotated archive', 'Studies from practice.', 'Completed investigations and open questions, kept with their methods, evidence, and limits.') + `<p class="evidence-banner">A proposal is not a result. Reported observations and direct checks are labelled separately in each record.</p>` + rows(studies)));
 
 const register = read('findings/REGISTER.md');
-const lessonSlugs = new GithubSlugger();
-const lessons = [...register.matchAll(/^### (P-\d+: .+)\n\n([\s\S]*?)(?=\n### |\n## |$)/gm)].map(match => {
-  const [id, ...title] = match[1].split(': ');
-  return { id, title: title.join(': '), slug: lessonSlugs.slug(match[1]), intro: match[2].split('\n\n')[0] };
-});
+const lessons = extractLessonExcerpts(register);
 const plain = new MarkdownIt({ html: false });
 write('lessons/index.html', shell('Lessons', 'Lessons', heading('Provisional practices', 'Lessons worth carrying forward.', 'Small, revisable practices drawn from particular projects. Read the supporting evidence before transferring a lesson to another work.') + `<p class="evidence-banner">These practices are provisional. Each full entry records its support, scope, limits, and conditions for review.</p><div class="lesson-list">${lessons.map(l => `<article class="lesson"><span class="lesson-number">${l.id}</span><div><p class="label">Provisional practice</p><h2>${esc(l.title.charAt(0).toUpperCase() + l.title.slice(1))}</h2>${plain.render(l.intro)}<a class="text-link" href="${url('findings/index.html')}#${l.slug}">Read evidence &amp; limits ↗</a></div></article>`).join('')}</div>`));
 
