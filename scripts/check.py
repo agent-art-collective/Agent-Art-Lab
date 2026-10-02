@@ -43,7 +43,7 @@ def check_tree(root, require_layout=True):
             if not (root / item).is_file():
                 errors.append(f"missing required file: {item}")
     for folder, dirs, names in os.walk(root, followlinks=False):
-        dirs[:] = sorted(d for d in dirs if d not in {".git", "__pycache__"})
+        dirs[:] = sorted(d for d in dirs if d not in {".git", "__pycache__", "node_modules", "_site"})
         for name in list(dirs):
             path = Path(folder) / name
             if path.is_symlink():

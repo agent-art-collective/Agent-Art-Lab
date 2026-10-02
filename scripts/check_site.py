@@ -1,0 +1,232 @@
+#!/usr/bin/env python3
+"""Check generated public pages and local navigation without network access."""
+
+import argparse
+from collections import Counter
+from html.parser import HTMLParser
+import json
+import os
+from pathlib import Path
+import re
+import sys
+from urllib.parse import unquote, urlsplit
+
+
+VOID_TAGS = {
+    "area", "base", "br", "col", "embed", "hr", "img", "input", "link",
+    "meta", "param", "source", "track", "wbr",
+}
+PUBLIC_TYPES = {".html", ".css", ".svg"}
+PRIVATE_FOLDERS = {"private", "local", "tmp", "node_modules", "__pycache__"}
+
+
+class Page(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.stack = []
+        self.ids = Counter()
+        self.h1s = 0
+        self.mains = 0
+        self.navs = 0
+        self.stylesheets = []
+        self.links = []
+        self.title = []
+        self.text = []
+        self.evidence = []
+
+    def record_start(self, tag, attrs, closed=False):
+        attrs = dict(attrs)
+        if "id" in attrs:
+            self.ids[attrs["id"]] += 1
+        self.h1s += tag == "h1"
+        self.mains += tag == "main" or attrs.get("role") == "main"
+        self.navs += tag == "nav"
+        if tag == "link" and "stylesheet" in (attrs.get("rel") or "").split():
+            self.stylesheets.append(attrs.get("href"))
+        in_nav = tag == "nav" or any(item[0] == "nav" for item in self.stack)
+        for attribute in ("href", "src"):
+            if attribute in attrs:
+                self.links.append((attrs[attribute] or "", in_nav, attribute))
+        if tag not in VOID_TAGS and not closed:
+            self.stack.append((tag, "evidence-banner" in (attrs.get("class") or "").split()))
+
+    def handle_starttag(self, tag, attrs):
+        self.record_start(tag, attrs)
+
+    def handle_startendtag(self, tag, attrs):
+        self.record_start(tag, attrs, closed=True)
+
+    def handle_endtag(self, tag):
+        for index in range(len(self.stack) - 1, -1, -1):
+            if self.stack[index][0] == tag:
+                del self.stack[index:]
+                break
+
+    def handle_data(self, data):
+        self.text.append(data)
+        if any(item[0] == "title" for item in self.stack):
+            self.title.append(data)
+        if any(item[1] for item in self.stack):
+            self.evidence.append(data)
+
+
+def normalized(parts):
+    return " ".join(" ".join(parts).split())
+
+
+def local_target(href, source, output, base):
+    """Return (file, fragment), None for external URLs, or raise ValueError."""
+    parsed = urlsplit(href)
+    if parsed.scheme or parsed.netloc:
+        return None
+    requested = unquote(parsed.path)
+    if requested.startswith("/"):
+        if base and requested != base and not requested.startswith(base + "/"):
+            raise ValueError("root-relative URL is outside the configured base path")
+        target = output / requested[len(base):].lstrip("/")
+    elif requested:
+        target = source.parent / requested
+    else:
+        target = source
+    target = target.resolve()
+    try:
+        target.relative_to(output)
+    except ValueError as exc:
+        raise ValueError("URL escapes the generated site") from exc
+    if target.is_dir():
+        target /= "index.html"
+    return target, unquote(parsed.fragment).split(":~:", 1)[0]
+
+
+def check_site(root, base):
+    if (root / "_site").is_symlink():
+        return ["generated site directory must not be a symlink"], 0, 0, 0
+    output = (root / "_site").resolve()
+    errors = []
+    pages = {}
+    files = []
+    links = 0
+    if not output.is_dir():
+        return ["missing _site directory; build the site first"], 0, 0, 0
+
+    for folder, directories, names in os.walk(output, followlinks=False):
+        for name in sorted(directories):
+            path = Path(folder) / name
+            if path.is_symlink() or name.startswith(".") or name in PRIVATE_FOLDERS:
+                errors.append(f"excluded directory: {path.relative_to(output)}")
+                directories.remove(name)
+        for name in sorted(names):
+            path = Path(folder) / name
+            relative = path.relative_to(output)
+            if path.is_symlink():
+                errors.append(f"symlink file: {relative}")
+                continue
+            if relative == Path(".nojekyll"):
+                files.append(path)
+                continue
+            if name.startswith(".") or path.suffix not in PUBLIC_TYPES:
+                errors.append(f"non-public output file: {relative}")
+                continue
+            files.append(path)
+            if path.suffix == ".html":
+                page = Page()
+                try:
+                    page.feed(path.read_text(encoding="utf-8"))
+                    page.close()
+                except (OSError, UnicodeError, ValueError) as exc:
+                    errors.append(f"cannot parse HTML: {relative}: {exc}")
+                    continue
+                pages[path] = page
+
+    if not (output / ".nojekyll").is_file():
+        errors.append("missing .nojekyll marker")
+    if output / "index.html" not in pages:
+        errors.append("missing readable homepage")
+
+    for source, page in sorted(pages.items()):
+        relative = source.relative_to(output)
+        if page.h1s != 1:
+            errors.append(f"expected one h1, found {page.h1s}: {relative}")
+        if not normalized(page.title):
+            errors.append(f"empty or missing title: {relative}")
+        if page.mains != 1:
+            errors.append(f"expected one main landmark, found {page.mains}: {relative}")
+        duplicates = [value for value, count in page.ids.items() if count > 1]
+        if duplicates:
+            errors.append(f"duplicate HTML ids: {relative}: {duplicates}")
+        if not page.stylesheets or not any(
+            href and re.search(r"\.css(?:[?#]|$)", href) for href in page.stylesheets
+        ):
+            errors.append(f"missing CSS stylesheet link: {relative}")
+
+        valid_navigation = 0
+        for href, in_nav, attribute in page.links:
+            try:
+                resolved = local_target(href, source, output, base)
+            except ValueError as exc:
+                errors.append(f"invalid {attribute}: {relative}: {href!r}: {exc}")
+                continue
+            if resolved is None:
+                continue
+            links += 1
+            target, fragment = resolved
+            if not target.is_file():
+                errors.append(f"missing {attribute} target: {relative}: {href!r}")
+                continue
+            if target.suffix == ".html":
+                target_page = pages.get(target)
+                if target_page is None:
+                    errors.append(f"unreadable HTML target: {relative}: {href!r}")
+                elif fragment and fragment not in target_page.ids:
+                    errors.append(f"missing fragment: {relative}: {href!r}")
+                elif in_nav and target != source:
+                    valid_navigation += 1
+        if not page.navs or not valid_navigation:
+            errors.append(f"missing working navigation to another page: {relative}")
+
+    try:
+        studies = json.loads((root / "site/studies.json").read_text(encoding="utf-8"))
+        proposals = [study for study in studies if study["status"] == "Study proposal"
+                     or Path(study["source"]).stem.endswith("-proposal")]
+        for study in proposals:
+            route = Path(study["source"]).with_suffix(".html")
+            page = pages.get(output / route)
+            if page is None:
+                errors.append(f"missing proposal page: {route}")
+                continue
+            if not re.search(r"\bunrun\b", normalized(page.text), re.IGNORECASE):
+                errors.append(f"proposal omits unrun status: {route}")
+            if study["status"] != "Study proposal":
+                errors.append(f"proposal has incorrect catalogue status: {route}")
+            evidence = study.get("evidence", "").strip()
+            if not evidence or evidence not in normalized(page.evidence):
+                errors.append(f"proposal omits catalogue evidence metadata: {route}")
+    except (OSError, UnicodeError, ValueError, TypeError, KeyError) as exc:
+        errors.append(f"cannot verify study catalogue: {exc}")
+
+    return errors, len(pages), len(files), links
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--base-path", default=os.environ.get("SITE_BASE_PATH", "/Agent-Art-Lab"),
+        help="published path prefix; pass an empty string for a domain root",
+    )
+    args = parser.parse_args()
+    if args.base_path and not re.fullmatch(r"/[A-Za-z0-9_-]+(?:/[A-Za-z0-9_-]+)*", args.base_path):
+        parser.error("base path must be empty or a path without a trailing slash")
+    root = Path(__file__).resolve().parent.parent
+    errors, pages, files, links = check_site(root, args.base_path)
+    for error in errors:
+        print(error, file=sys.stderr)
+    print(json.dumps({
+        "status": "FAIL" if errors else "PASS", "pages": pages,
+        "public_files": files, "local_links": links,
+        "errors": len(errors), "network_requests": 0,
+    }))
+    return 1 if errors else 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

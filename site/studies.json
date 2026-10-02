@@ -1,0 +1,47 @@
+[
+  {
+    "source": "projects/thought/studies/2026-10-01-native-explicit-execution.md",
+    "title": "Native tools and explicit prerequisites",
+    "project": "THOUGHT",
+    "date": "2026-10-01",
+    "status": "Retrospective study",
+    "evidence": "OPS-reported probes and staging canaries",
+    "summary": "Client compatibility and permission for the complete command are separate requirements. OPS reports illustrate both; Pulse's successful Python path limits any universal tool recommendation."
+  },
+  {
+    "source": "projects/pulse/studies/2026-09-28-document-access.md",
+    "title": "Simplifying document access for agents",
+    "project": "Pulse",
+    "date": "2026-09-28",
+    "status": "Retrospective study",
+    "evidence": "Direct acquisition check and session reports",
+    "summary": "One client acquired and verified ten public documents, then replayed saved files. Successful retrieval did not establish comprehension, correct answers, or comparative reliability."
+  },
+  {
+    "source": "projects/thought/studies/2026-09-24-boundaries-and-canary-follow-up.md",
+    "title": "Representation, worker boundaries, and completion",
+    "project": "THOUGHT",
+    "date": "2026-09-24",
+    "status": "Retrospective study",
+    "evidence": "OPS-reported source checks and canaries",
+    "summary": "Reported hash and process corrections show why exact representations and final execution contexts matter. Successful staging returns coexisted with omitted checks and unresolved historical causes."
+  },
+  {
+    "source": "projects/thought/studies/2026-09-20-model-acquisition.md",
+    "title": "When a fixture supplies what an agent must acquire",
+    "project": "THOUGHT",
+    "date": "2026-09-20",
+    "status": "Retrospective study",
+    "evidence": "OPS inspection and source-review reports",
+    "summary": "A reported failed run searched application data for host identity. A passing synthetic failure test did not establish real acquisition; the diagnostic left product repair unresolved."
+  },
+  {
+    "source": "projects/thought/studies/2026-09-20-intentional-participation-proposal.md",
+    "title": "Studying intentional participation",
+    "project": "THOUGHT",
+    "date": "2026-09-20",
+    "status": "Study proposal",
+    "evidence": "Unrun; review material not available",
+    "summary": "A proposed close reading asks which documented choices could support a situated interpretation of Agent intention. No candidate is selected; review material and permitted scope are still needed."
+  }
+]

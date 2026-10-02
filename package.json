@@ -1,0 +1,14 @@
+{
+  "name": "agent-art-lab-reading-site",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/build-site.mjs",
+    "check:site": "python3 -B scripts/check_site.py"
+  },
+  "dependencies": {
+    "github-slugger": "2.0.0",
+    "markdown-it": "15.0.2"
+  }
+}

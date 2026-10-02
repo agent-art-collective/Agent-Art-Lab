@@ -20,6 +20,15 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 reading-site work (Lab establishment): the operator accepted a
+  small GitHub Pages reading site for this lessons repository. Home, Lessons,
+  Studies and Guidance render the existing Markdown with scoped evidence labels;
+  no source study or numbered practice is replaced. A small static build and
+  pinned Pages workflow provide publication from `main`. Maintenance is in
+  [the site notes](site/README.md). Next action: verify the first deployed site
+  and retain the same checks when adding future studies. This scope does not
+  authorize project runtime work, private evidence publication or license changes.
+
 - 2026-10-01 publication authorization (Lab project-learning lane): the operator
   subsequently directed rollout of the sanitized native/explicit execution item.
   This supersedes the preparation-only publication boundary in the entry below.
@@ -79,7 +88,9 @@ before making repository-ownership or task-routing proposals.
 - Its [practice-led study proposal](projects/thought/studies/2026-09-20-intentional-participation-proposal.md)
   is prepared; artwork inspection remains unrun because material is unavailable.
 - No artwork or private raw report is exported here for independent interpretation.
-- No live agent runner, account configuration, paid service or CI is enabled.
+- The initial edition enabled no live agent runner, account configuration, paid
+  service or CI. The 2026-10-02 reading site adds documentation checks and a
+  GitHub Pages publishing workflow; no Agent trial is part of that workflow.
 
 The objective is a usable Lab home. A THOUGHT repair, new runner, live trial or
 deployment is not a prerequisite.

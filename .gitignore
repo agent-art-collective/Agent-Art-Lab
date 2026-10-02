@@ -6,3 +6,5 @@ private/
 local/
 tmp/
 .DS_Store
+node_modules/
+_site/
