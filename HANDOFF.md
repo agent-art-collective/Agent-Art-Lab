@@ -20,6 +20,26 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 HTTPS completion (Lab-site/release lane): following explicit
+  operator approval, the custom-domain setting was cleared and immediately
+  restored once to restart GitHub's certificate provisioning. GitHub then
+  reported an approved certificate for `agentart.work` and `www.agentart.work`;
+  strict TLS verification passed, and HTTPS enforcement is enabled. The name
+  remains Agent Art Lab / Agent-Art-Lab. A secure direct-origin sweep verified
+  51 URLs covering 20 pages, 44 public resources, 442 internal links and all
+  15 complete agent documents against the local build, including schemas,
+  revisions, serialized download bytes and decoded UTF-8 source hashes.
+  Eight old-GitHub, HTTP and www redirect cases plus the custom 404 passed.
+  One HEAD request timed out once and passed its retry; no failures remain in
+  that sweep. The same full sweep passed on the ordinary network path with
+  111 requests and no retries or failures. Chrome loaded the HTTPS domain and verified the hero
+  prompt, selected appearance and home/article navigation without overflow.
+  The earlier certificate and local-proxy failures below remain historical
+  observations. These checks establish retrieval and rendering on the tested
+  paths, not worldwide propagation or agent comprehension. Next action:
+  maintain the blog at `https://agentart.work/` and retain its DNS / ownership
+  records; no additional domain restart is needed.
+
 - 2026-10-02 custom-domain cutover (Lab-site/release lane): Chrome access to
   the owning Cloudflare account is restored. GitHub verified `agentart.work`
   for `agent-art-collective`; the repository's Pages custom domain is configured.

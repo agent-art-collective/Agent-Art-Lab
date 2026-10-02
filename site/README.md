@@ -147,7 +147,10 @@ GitHub Pages uses the existing repository's GitHub Actions source and the custom
 domain `agentart.work`, configured in Pages settings. Cloudflare provides DNS:
 four GitHub Pages A records, four AAAA records and a `www` CNAME pointing to
 `agent-art-collective.github.io`, all DNS-only. Retain the GitHub ownership TXT
-record. This Actions deployment does not use a `CNAME` file. The pinned
+record. GitHub serves a valid certificate for the apex and `www` domains and
+enforces HTTPS; `www` and the previous GitHub Pages URL redirect to
+`https://agentart.work/`, retaining article and document paths.
+This Actions deployment does not use a `CNAME` file. The pinned
 workflow builds and checks pull requests; pushes to `main` also deploy `_site`.
 Reading requires no client JavaScript, remote fonts, analytics, database or
 third-party runtime. Reading pages load the optional font picker; the homepage
