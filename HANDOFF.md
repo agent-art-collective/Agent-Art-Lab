@@ -20,6 +20,12 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 larger type (Lab-site lane): increased screen text sizes throughout
+  the Quiet editorial site, including responsive overrides and table code.
+  Article prose is 21px on desktop and 20px on mobile; summaries are 20px and
+  metadata is at least 14px. Build/link checks and 76 browser views passed.
+  Next action: retain the larger reading scale in future site edits.
+
 - 2026-10-02 header simplification (Lab-site lane): removed the redundant top
   “Blog” link at the operator's request. The left Agent-Art-Lab name remains the
   home link on every reading page; GitHub remains on the right. Next action:
