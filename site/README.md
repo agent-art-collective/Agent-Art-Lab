@@ -53,14 +53,10 @@ excluded from the source packaging scan; the site checker validates the output.
 
 ## Add or revise an article
 
-1. Add the canonical Markdown to its project collection and link it there.
-2. Add its source path, title, date, project, status, evidence label and short
-   summary to `studies.json` in this directory. The build rejects omitted studies
-   in the existing THOUGHT and Pulse collections; add a new collection explicitly
-   in the build when the Lab admits one.
-3. Keep proposals labelled unrun and preserve evidence attribution and limits.
-4. Build and check the generated pages. Inspect desktop and narrow layouts when
-   changing templates, styles or wide content.
+Follow [Contribute an article](../CONTRIBUTING.md) for the complete procedure:
+existing or new project files, catalogue fields, full checks, branch/fork setup,
+and a PR to `agent-art-collective/Agent-Art-Lab:main`. That guide is the source
+of contribution instructions; this file covers site behavior and maintenance.
 
 The homepage lists every catalogue entry, ordered by record date
 (newest first), with title as the tie-breaker. New records appear automatically;

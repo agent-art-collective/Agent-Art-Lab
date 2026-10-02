@@ -20,6 +20,24 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 contribution pipeline (Lab establishment/site lane): the operator
+  requested rollout of a discoverable cross-repository article-to-PR procedure.
+  CONTRIBUTING.md now covers existing/new collections, exact publication
+  registration, full checks, writer/fork branches, PR destination/base and the
+  maintainer merge/deployment boundary. README, AGENTS, site notes and the PR
+  template point to it; obsolete first-publication/no-Actions wording is removed.
+  Local checks passed 45 tests, 20 pages and 428 links; Chrome desktop/narrow
+  guide views had no page overflow. Independent source review found no blocker.
+  A fresh agent followed only repository docs in a disposable copy to add a
+  fictional new collection and unrun proposal: 45 tests, 22 pages, 468 links and
+  all 17 exports passed, including the two new sources' exact byte integrity.
+  The rehearsal exposed a title/H1 wording mismatch, corrected to allow shorter
+  feed titles consistent with existing articles. It did not exercise remote
+  forks or PR access and does not establish general contributor reliability.
+  No fixture or new tooling is included in this change. Next action: merge the
+  reviewed guide rollout when CI passes, verify publication and the updated
+  contribution download, then use this procedure for the next real article PR.
+
 - 2026-10-02 appearance-panel removal (Lab-site lane): the operator clarified
   that the chooser was for internal design only. Published reading pages now
   use fixed Courier New Regular (400) with Dots. The panel, preference script,

@@ -7,6 +7,8 @@ Read docs/ORGANIZATION_AND_SPLIT.md for the registered `agent-art-collective` co
 the operator-directed separation from Inshell release coordination.
 Then read the relevant project collection, its evidence limits and study record.
 Use findings/REGISTER.md for provisional practices, not as universal truth.
+For article contributions, including those prepared from another repository,
+follow [CONTRIBUTING.md](CONTRIBUTING.md) for the complete article-to-PR procedure.
 
 ## Mission and anti-drift boundary
 
