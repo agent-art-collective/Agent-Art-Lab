@@ -21,12 +21,15 @@ before making repository-ownership or task-routing proposals.
 ## Current position
 
 - 2026-10-02 dots favicon (Lab-site lane): the operator chose the background
-  dots motif in place of the earlier `A.` mark. The icon now uses a three-by-three
+  dots motif in place of the earlier `A.` mark. The initial icon used a three-by-three
   dot pattern on the same paper/charcoal tile, with larger dots and muted text
   colors for tab-size visibility. Both page builders use `?v=dots-1`. Chrome
   loaded and visually verified eight samples at 16, 32, 64 and 128 pixels in
-  light/dark image contexts. Next action: retain the dots favicon alongside the
-  site's selected Dots background; the earlier letter mark remains history.
+  light/dark image contexts. Later on 2026-10-02 the operator requested more
+  dots: the current icon uses five-by-five smaller circles and `?v=dots-2`.
+  Chrome verified six samples at 16, 32 and 128 pixels in both themes. Next
+  action: retain this denser dots favicon alongside the selected background;
+  the earlier three-by-three and letter marks remain history.
 
 - 2026-10-02 editorial favicon (Lab-site lane): the operator requested an icon
   aligned with the selected site style. The red four-square tile is replaced

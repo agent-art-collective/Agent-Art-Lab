@@ -26,7 +26,7 @@ its preference script are removed from published pages, so previously saved
 comparison choices no longer change the reading style. The earlier style demo
 preserves its original, separate previews.
 
-The favicon uses a three-by-three crop of the site's Dots pattern on warm paper.
+The favicon uses a five-by-five crop of the site's Dots pattern on warm paper.
 The dots are enlarged and use the muted text colors to stay visible at tab size.
 Its SVG carries its own system light/dark colors. Both page builders use a
 versioned icon URL to refresh earlier cached designs.
