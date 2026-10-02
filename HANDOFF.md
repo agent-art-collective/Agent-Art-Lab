@@ -20,6 +20,23 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 agent-access publication verified (Lab-site lane): commit `8ee23f8`
+  passed Pages build/deploy. Direct read-only GET and HEAD checks passed for
+  the index, all 15 complete documents, the guide, discovery text, home and CSS;
+  JSON responses were `application/json` and fetched bytes matched the local
+  build. Source/download identities, lengths and hashes passed, followed by a
+  separate saved-file replay with no network code. Index revision:
+  `sha256:57465fead5f9277b4fbb020e778ca023772f6c9c5e2d709dd95c68d41aed5ece`.
+  This is one client acquisition path, not a comparative Agent trial. Raw
+  responses were retained temporarily, not archived in this repo. Offline checks
+  passed 19 pages, 39 public files, 431 links, 7 Node tests and 16 Python tests;
+  desktop/mobile views had no page-width overflow. Method evaluation: the Pulse
+  contract helped separate complete-source and download checks; synthetic
+  corruption was rejected, with no unexpected failure in this pass. Discovery
+  across Agent products, comprehension and efficiency remain unmeasured.
+  This completes the verification action below. Next action: keep export
+  selection, canonical documents and evidence labels aligned when adding records.
+
 - 2026-10-02 agent-access implementation (Lab-site lane): the operator requested
   applying the existing document-access lessons to the reading pages. The Pulse
   study, P-07 and native/explicit Guidance support a generated same-origin index
