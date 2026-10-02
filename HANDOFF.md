@@ -20,6 +20,26 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 complete site validation (Lab-site lane): fixed lesson previews in
+  `949f0b1`; the old multiline regex stopped at source line endings. Markdown
+  paragraph extraction now retains all seven complete introductions. Added
+  persistent regressions for excerpts, page inventory including 404, exact hero
+  prompt parity and visible agent discovery. All 37 tests passed; both site base
+  paths passed 19 pages, 40 build files and 432 internal links. Browser checks
+  covered all 19 pages at desktop, tablet and mobile widths (57 views).
+  After deployment, all 39 public resources passed GET/HEAD and exact-build
+  comparisons; the 15 full article texts and seven previews matched their
+  sources. A missing nested URL returned the custom 404 and working recovery
+  links. Native clipboard copy on the live homepage, simulated denial/manual
+  selection and reading without JavaScript passed in a normal Chrome window.
+  Initial headless clipboard reads were empty/inconclusive; the normal-window
+  check read back the exact prompt. One live HEAD request had a TLS EOF and
+  succeeded on one retry; no remaining failure was hidden. Method lesson: link
+  and byte checks alone missed truncated previews, so complete-text regressions
+  now accompany them. External references, private evidence and general Agent
+  comprehension remain outside this check. Next action: retain these CI checks
+  and repeat browser/live validation when changing reading routes or interactions.
+
 - 2026-10-02 homepage prompt (Lab-site lane): at the operator's request, the
   homepage hero now displays the canonical access-guide prompt and a copy button,
   with directions to paste it into an agent and add a question. The build reads
