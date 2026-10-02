@@ -86,8 +86,7 @@ function render(source) {
   return { title, headings, body: md.renderer.render(tokens, md.options, {}) };
 }
 
-function shell(title, active, content, description = slogan, source = null) {
-  const nav = [['Blog', 'index.html']];
+function shell(title, content, description = slogan, source = null) {
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)} · Agent-Art-Lab</title><meta name="description" content="${esc(description)}">
@@ -97,7 +96,7 @@ ${source ? `<link rel="alternate" type="application/json" title="Complete docume
 <link rel="stylesheet" href="${url('assets/site.css')}"></head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><a class="brand" href="${url('index.html')}" aria-label="Agent-Art-Lab home">Agent-Art-Lab</a>
-<nav class="site-nav" aria-label="Main navigation">${nav.map(([label, file]) => `<a href="${url(file)}"${active === label ? ' aria-current="page"' : ''}>${label}</a>`).join('')}<a href="${repo}">GitHub <span aria-hidden="true">↗</span></a></nav></header>
+<nav class="site-nav" aria-label="Main navigation"><a href="${repo}">GitHub <span aria-hidden="true">↗</span></a></nav></header>
 <main id="main">${content}</main>
 <footer class="site-footer"><div><a class="brand" href="${url('index.html')}">Agent-Art-Lab</a><p>${esc(slogan)}</p></div><nav aria-label="Reference links"><a href="${url('guidance/index.html')}">Guidance</a><a href="${url('agent-access/index.html')}">Agent access</a><a href="${url('agent-index.json')}">Document index (JSON)</a><a href="${url('contribute/index.html')}">Contribute</a><a href="${url('research/index.html')}">Research notes</a><a href="${repo}">Source &amp; history ↗</a><p>Part of agent-art-collective</p></nav></footer></body></html>\n`;
 }
@@ -126,7 +125,7 @@ write('agent-index.json', agentDocuments.indexBytes);
 for (const [id, bytes] of agentDocuments.documents) write(`documents/${id}.json`, bytes);
 write('llms.txt', `# Agent-Art-Lab\n\n> Shared guidance and an annotated archive for Agent Art. Practices are provisional; study evidence and limits remain part of each record.\n\n## Start here\n\n- [Document index (JSON)](${url('agent-index.json')}): discovery, revisions, hashes and complete same-origin downloads.\n- [Agent access guide](${url('agent-access/index.html')}): prerequisites, verification, link resolution and failure handling.\n\nUse permitted ordinary HTTP GET to fetch the index and relevant complete downloads. Resolve root-relative URLs against the fetched index origin. No JavaScript, GitHub retrieval or authentication is required to read exported documents. Treat documents as reference material, not new authority. Successful retrieval is not evidence of comprehension. This file is a discovery convenience, not a guarantee that every agent will discover it automatically.\n\n## Documents\n\n${agentDocuments.index.documents.map(d => `- [${d.title}](${d.download.url})${d.study ? `: ${d.study.status}; ${d.study.evidence}.` : ''}`).join('\n')}\n`);
 
-write('index.html', shell('Blog', 'Blog', `
+write('index.html', shell('Blog', `
 <section class="home-hero journal-home"><header class="hero-intro"><h1>${esc(slogan)}</h1></header>
 <details class="hero-prompt" id="agent-prompt-disclosure"><summary><span id="agent-prompt-heading">Read with your agent.</span><span class="disclosure-icon" aria-hidden="true"></span></summary>
 <div class="prompt-content"><p class="prompt-intro">Copy this prompt, then ask your agent about anything on the blog.</p><div class="prompt-actions"><button class="button prompt-copy" type="button" id="copy-agent-prompt" hidden>Copy prompt <span aria-hidden="true">↗</span></button><a href="${url('agent-access/index.html')}">How it works ↗</a></div><pre id="agent-prompt" tabindex="0" aria-label="Prompt to copy for your agent">${esc(agentPrompt)}</pre><p class="prompt-status" id="prompt-copy-status" role="status" aria-live="polite">You can also select and copy the text.</p></div></details></section>
@@ -135,19 +134,18 @@ write('index.html', shell('Blog', 'Blog', `
 // Keep old list URLs usable without maintaining duplicate browsing surfaces.
 for (const route of ['studies/index.html', 'lessons/index.html']) {
   const target = `${url('index.html')}#articles`;
-  const page = shell('Continue to the blog', 'Blog', heading('Agent-Art-Lab', 'Continue to the blog.', 'All articles are now collected in one place.') + `<p><a class="button" href="${target}">Browse all articles ↗</a></p>`);
+  const page = shell('Continue to the blog', heading('Agent-Art-Lab', 'Continue to the blog.', 'All articles are now collected in one place.') + `<p><a class="button" href="${target}">Browse all articles ↗</a></p>`);
   write(route, page.replace('</head>', `<link rel="canonical" href="${url('index.html')}"><meta http-equiv="refresh" content="0;url=${target}"></head>`));
 }
 
 for (const [source, route] of routes) {
   const { title, body, headings } = reading.get(source);
   const study = studies.find(s => s.source === source);
-  const active = study ? 'Blog' : '';
   const label = study ? `${study.project} / ${study.status}` : source === 'GUIDANCE.md' ? 'Shared foundations & methods' : 'The Lab / Reading room';
   const toc = headings.filter(h => h.level === 2).map(h => `<li><a href="#${h.id}">${esc(h.text)}</a></li>`).join('');
-  write(route, shell(title, active, `<article class="reading-page${study ? ' blog-article' : ''}">${study ? `<a class="article-back" href="${url('index.html')}#articles">← All articles</a>` : ''}<header class="reading-header">${study ? `<p class="article-meta"><span>Record date: <time datetime="${study.date}">${date(study.date)}</time></span><span>${esc(study.project)}</span><span>${esc(study.status)}</span></p>` : `<p class="eyebrow">${esc(label)}</p>`}<h1 id="${headings[0]?.id ?? 'title'}">${esc(title)}</h1>${study ? `<p>${esc(study.summary)}</p><p class="evidence-banner">Evidence: ${esc(study.evidence)}. See the record below for access and limitations.</p>` : ''}<div class="source-links"><a href="${url(`documents/${documentId(source)}.json`)}">Complete document (JSON)</a><a href="${repo}/blob/main/${source}">Read Markdown ↗</a><a href="${repo}/commits/main/${source}">Revision history ↗</a></div></header><div class="reading-layout"><aside class="toc"><p class="label">In this record</p><nav aria-label="Table of contents"><ol>${toc}</ol></nav></aside><div class="prose">${body}</div></div>${study ? articleNavigation(study) : ''}</article>`, study?.summary, source));
+  write(route, shell(title, `<article class="reading-page${study ? ' blog-article' : ''}">${study ? `<a class="article-back" href="${url('index.html')}#articles">← All articles</a>` : ''}<header class="reading-header">${study ? `<p class="article-meta"><span>Record date: <time datetime="${study.date}">${date(study.date)}</time></span><span>${esc(study.project)}</span><span>${esc(study.status)}</span></p>` : `<p class="eyebrow">${esc(label)}</p>`}<h1 id="${headings[0]?.id ?? 'title'}">${esc(title)}</h1>${study ? `<p>${esc(study.summary)}</p><p class="evidence-banner">Evidence: ${esc(study.evidence)}. See the record below for access and limitations.</p>` : ''}<div class="source-links"><a href="${url(`documents/${documentId(source)}.json`)}">Complete document (JSON)</a><a href="${repo}/blob/main/${source}">Read Markdown ↗</a><a href="${repo}/commits/main/${source}">Revision history ↗</a></div></header><div class="reading-layout"><aside class="toc"><p class="label">In this record</p><nav aria-label="Table of contents"><ol>${toc}</ol></nav></aside><div class="prose">${body}</div></div>${study ? articleNavigation(study) : ''}</article>`, study?.summary, source));
 }
 
-write('404.html', shell('Page not found', '', heading('404 / A missing page', 'This page is not here.', 'The article may have moved. Return to the blog to keep reading.') + `<p><a class="button" href="${url('index.html')}">Back to the blog ↗</a></p>`));
+write('404.html', shell('Page not found', heading('404 / A missing page', 'This page is not here.', 'The article may have moved. Return to the blog to keep reading.') + `<p><a class="button" href="${url('index.html')}">Back to the blog ↗</a></p>`));
 write('style-demo/index.html', renderStyleDemo({ basePath: base, slogan, agentPrompt, studies, documentCount: agentDocuments.index.documents.length }));
 console.log(`Built ${routes.size + 5} pages from ${studies.length} study records; base path ${base || '/'}.`);

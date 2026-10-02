@@ -10,6 +10,7 @@ The homepage is the single blog feed. The former `/studies/` and `/lessons/`
 listing URLs redirect to its articles section, with a visible fallback link and
 no JavaScript requirement. The selected Quiet editorial style uses a narrow
 reading column, warm white background, serif headings and restrained rules.
+The header's Agent-Art-Lab name links home; GitHub is the only separate top link.
 
 ## Build and preview
 

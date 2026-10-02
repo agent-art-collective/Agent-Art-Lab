@@ -20,6 +20,11 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 header simplification (Lab-site lane): removed the redundant top
+  “Blog” link at the operator's request. The left Agent-Art-Lab name remains the
+  home link on every reading page; GitHub remains on the right. Next action:
+  preserve this navigation as articles are added.
+
 - 2026-10-02 Quiet editorial (Lab-site lane): the operator selected this style
   for the production blog. The shared site now uses warm paper, a narrow reading
   column, serif type and light rules. The hero's “Read with your agent.” prompt

@@ -116,7 +116,7 @@ test('legacy studies and lessons URLs redirect to the single blog with a visible
   }
 });
 
-test('main navigation has only Blog and GitHub throughout the reading site', () => {
+test('the brand returns home and top navigation contains only GitHub', () => {
   let checked = 0;
   for (const file of readdirSync(path.join(root, '_site'), { recursive: true }).filter(file => file.endsWith('.html'))) {
     const page = read(`_site/${file}`);
@@ -124,9 +124,11 @@ test('main navigation has only Blog and GitHub throughout the reading site', () 
     if (!navigation.length) continue; // The isolated style demonstration has its own controls.
     assert.equal(navigation.length, 1, file);
     const links = elements(navigation[0].inner, 'a');
-    assert.deepEqual(links.map(link => link.attrs.href), [`${base}/`, 'https://github.com/agent-art-collective/Agent-Art-Lab'], file);
-    assert.equal(text(links[0].inner), 'Blog', file);
-    assert.match(text(links[1].inner), /^GitHub\b/, file);
+    assert.deepEqual(links.map(link => link.attrs.href), ['https://github.com/agent-art-collective/Agent-Art-Lab'], file);
+    assert.match(text(links[0].inner), /^GitHub\b/, file);
+    const brand = one(one(page, 'header', 'site-header').inner, 'a', 'brand');
+    assert.equal(brand.attrs.href, `${base}/`, file);
+    assert.equal(brand.attrs['aria-label'], 'Agent-Art-Lab home', file);
     checked += 1;
   }
   assert.ok(checked > studies.length, 'check the reading pages as well as the articles');
