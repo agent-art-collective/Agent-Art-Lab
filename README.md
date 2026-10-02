@@ -1,5 +1,7 @@
 # Agent-Art-Lab
 
+Articles, studies and working notes on Agent Art.
+
 Agent-Art-Lab is a shared practice and annotated archive for **Agent Art:
 art in which an Agent participates at the level of intention**.
 

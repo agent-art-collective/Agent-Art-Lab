@@ -1,5 +1,9 @@
 # Reading site maintenance
 
+The site slogan is “Articles, studies and working notes on Agent Art.” Its shared
+value in `scripts/build-site.mjs` supplies the homepage heading, footer and default
+page description. Article-specific descriptions keep their own summaries.
+
 The public reading site renders the existing repository Markdown. Edit the
 original study or Guidance to change its article; do not edit generated HTML.
 The homepage is the single blog feed. The former `/studies/` and `/lessons/`

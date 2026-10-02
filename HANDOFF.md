@@ -20,6 +20,12 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 slogan (Lab-site lane): the operator selected “Articles, studies
+  and working notes on Agent Art.” as the slogan. The homepage heading, footer,
+  default page description and README now use that exact wording. The existing
+  style is retained. Build/link checks, 18 Node tests and both desktop/mobile
+  views passed. Next action: keep this wording consistent in future site edits.
+
 - 2026-10-02 single blog (Lab-site lane): the operator requested removing the
   overlapping Journal, Archive and Lessons views. The homepage is now the only
   article feed, labelled Blog. The two old listing URLs redirect to its articles
