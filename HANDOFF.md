@@ -20,6 +20,18 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 appearance-panel removal (Lab-site lane): the operator clarified
+  that the chooser was for internal design only. Published reading pages now
+  use fixed Courier New Regular (400) with Dots. The panel, preference script,
+  alternate-style rules and unused paper texture are removed; stored comparison
+  choices no longer affect pages. System light/dark colors and the hero agent
+  prompt remain. Local checks passed 45 tests, 20 pages and 423 internal links;
+  the agent index and all 15 document exports are byte-identical. Chrome's
+  desktop and narrow mobile previews showed the selected font, weight and dots,
+  no chooser, and no horizontal overflow. The existing separate style demo is
+  unchanged. Next action: publish this removal through the existing Pages
+  workflow, then verify the live site and complete agent downloads.
+
 - 2026-10-02 HTTPS completion (Lab-site/release lane): following explicit
   operator approval, the custom-domain setting was cleared and immediately
   restored once to restart GitHub's certificate provisioning. GitHub then

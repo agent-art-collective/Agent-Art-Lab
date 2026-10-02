@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -134,54 +134,30 @@ test('the brand returns home and top navigation contains only GitHub', () => {
   assert.ok(checked > studies.length, 'check the reading pages as well as the articles');
 });
 
-test('every reading page provides font, weight and texture choices with an inert no-JavaScript fallback', () => {
+test('reading pages keep the selected static appearance without publishing chooser controls or code', () => {
+  assert.ok(!existsSync(path.join(root, '_site/assets/font-picker.js')), 'do not publish the retired preference script');
+  const stylesheet = read('_site/assets/site.css');
+  assert.match(stylesheet, /--site-font:\s*"Courier New",\s*Courier,\s*monospace\s*;/);
+  assert.match(stylesheet, /--site-weight:\s*400\s*;/);
+  assert.match(stylesheet, /--texture-image:\s*radial-gradient\(/, 'keep the selected dots background without JavaScript');
+  assert.match(stylesheet, /color-scheme:\s*light dark\s*;/);
+  assert.match(stylesheet, /@media\s*\(prefers-color-scheme:\s*dark\)/, 'colors follow the system preference');
   for (const file of readdirSync(path.join(root, '_site'), { recursive: true }).filter(file => file.endsWith('.html') && !file.startsWith('style-demo/'))) {
     const page = read(`_site/${file}`);
-    const panel = one(page, 'details', 'font-panel');
-    assert.ok('hidden' in panel.attrs, `${file}: hide controls until they work`);
-    assert.equal(one(one(panel.inner, 'fieldset', 'font-family-controls').inner, 'legend').inner, 'Try a typeface', file);
-    const weightGroup = one(panel.inner, 'fieldset', 'weight-controls');
-    assert.equal(one(weightGroup.inner, 'legend').inner, 'Weight', file);
-    const weights = elements(weightGroup.inner, 'label', 'weight-option').map(label => {
-      const input = [...label.inner.matchAll(/<input\b([^>]*)>/g)];
-      assert.equal(input.length, 1, file);
-      const attrs = attributes(input[0][1]);
-      assert.equal(attrs.type, 'radio', file);
-      assert.equal(attrs.name, 'site-weight', file);
-      return { ...attrs, label: text(one(label.inner, 'span').inner) };
-    });
-    assert.deepEqual(weights.map(choice => [choice.value, choice.label]), [['300', 'Light'], ['400', 'Regular'], ['700', 'Bold']], file);
-    assert.deepEqual(weights.filter(choice => 'checked' in choice).map(choice => choice.value), ['400'], file);
-    const textureGroup = one(panel.inner, 'fieldset', 'texture-controls');
-    assert.equal(one(textureGroup.inner, 'legend').inner, 'Background', file);
-    const textures = elements(textureGroup.inner, 'label', 'texture-option').map(label => {
-      const input = [...label.inner.matchAll(/<input\b([^>]*)>/g)];
-      assert.equal(input.length, 1, file);
-      const attrs = attributes(input[0][1]);
-      assert.equal(attrs.type, 'radio', file);
-      assert.equal(attrs.name, 'site-texture', file);
-      const swatch = one(label.inner, 'span', 'texture-swatch');
-      assert.equal(swatch.attrs['data-texture'], attrs.value, file);
-      assert.equal(swatch.attrs['aria-hidden'], 'true', file);
-      return { ...attrs, label: text(one(label.inner, 'span', 'texture-name').inner) };
-    });
-    assert.deepEqual(textures.map(choice => [choice.value, choice.label]), [['plain', 'Plain'], ['paper', 'Paper'], ['linen', 'Linen'], ['canvas', 'Canvas'], ['laid', 'Laid'], ['dots', 'Dots']], file);
-    assert.deepEqual(textures.filter(choice => 'checked' in choice).map(choice => choice.value), ['dots'], file);
-    const labels = elements(panel.inner, 'label', 'font-option');
-    const choices = labels.map(label => {
-      const input = [...label.inner.matchAll(/<input\b([^>]*)>/g)];
-      assert.equal(input.length, 1, file);
-      const attrs = attributes(input[0][1]);
-      assert.equal(attrs.type, 'radio', file);
-      assert.equal(attrs.name, 'site-font', file);
-      assert.ok(text(one(label.inner, 'strong').inner), `${file}: give the option a visible name`);
-      return attrs;
-    });
-    assert.deepEqual(choices.map(choice => choice.value), ['georgia', 'palatino', 'times', 'arial', 'courier'], file);
-    assert.deepEqual(choices.filter(choice => 'checked' in choice).map(choice => choice.value), ['courier'], file);
-    const pickerScript = elements(page, 'script').filter(script => script.attrs.src === `${base}/assets/font-picker.js`);
-    assert.equal(pickerScript.length, 1, file);
-    assert.ok(pickerScript[0].start < page.indexOf('<body>'), `${file}: restore the preference before page rendering`);
+    const defaults = one(page, 'html').attrs;
+    assert.equal(defaults['data-font'], 'courier', file);
+    assert.equal(defaults['data-weight'], '400', file);
+    assert.equal(defaults['data-texture'], 'dots', file);
+    assert.equal(elements(page, 'details', 'font-panel').length, 0, `${file}: omit the appearance panel`);
+    assert.doesNotMatch(page, /\bid="(?:font-panel|font-current|weight-current|texture-current)"/, file);
+    const inputs = [...page.matchAll(/<input\b([^>]*)>/g)].map(match => attributes(match[1]));
+    assert.ok(inputs.every(input => !['site-font', 'site-weight', 'site-texture'].includes(input.name)),
+      `${file}: omit preference controls`);
+    const scripts = elements(page, 'script');
+    assert.ok(scripts.every(script => !/(?:^|\/)font-picker\.js(?:[?#]|$)/.test(script.attrs.src ?? '')),
+      `${file}: do not load the preference script`);
+    assert.ok(scripts.every(script => !/agent-art-lab:(?:font|weight|texture)/.test(script.inner)),
+      `${file}: saved choices cannot override the fixed appearance`);
   }
 });
 

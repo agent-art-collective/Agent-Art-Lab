@@ -10,42 +10,21 @@ The homepage is the single blog feed. The former `/studies/` and `/lessons/`
 listing URLs redirect to its articles section, with a visible fallback link and
 no JavaScript requirement. The selected Quiet editorial layout uses a narrow
 reading column and restrained rules. The operator selected Courier New Regular
-with Dots as the default appearance on 2026-10-02.
+with Dots as the fixed appearance on 2026-10-02.
 The header's Agent-Art-Lab name links home; GitHub is the only separate top link.
 Light and dark colors follow the system preference through CSS, including live
 system changes and reading without JavaScript. Dark mode uses warm charcoal,
-light text and a matching appearance panel. Print keeps a light background and dark
-text regardless of the screen theme.
+light text and subtle dots. Print keeps a light background and dark text
+regardless of the screen theme.
 
-## Appearance comparison
+## Appearance
 
-Every reading page has a floating, collapsible Appearance panel with Georgia,
-Palatino, Times New Roman, Arial and Courier New. A choice applies to the whole
-reading page, including navigation, headings, metadata, prompt and code. The
-chooser keeps stable controls and previews each option in its own typeface.
-Light (300), Regular (400) and Bold (700) apply a base weight to page text and
-font previews; source emphasis and table headings remain bold. The panel shows
-the active weight beside the font name. Some device fonts have no light face,
-so browsers may render Light like Regular; the panel explains this when selected.
-These are device fonts with CSS fallbacks; exact rendering depends on installed
-fonts. No font service or font download is required. The earlier style demo
+Courier New Regular and the Dots texture are set in the shared HTML and CSS.
+Source emphasis and table headings remain bold. Device fonts use CSS fallbacks;
+no font service or font download is required. The internal design chooser and
+its preference script are removed from published pages, so previously saved
+comparison choices no longer change the reading style. The earlier style demo
 preserves its original, separate previews.
-
-The Background controls offer five textures: Paper grain, Linen, Canvas,
-Laid paper and Dots, with Plain restoring the original untextured background.
-Each choice has a preview swatch. Lightweight local CSS/SVG patterns follow the
-system color theme and stay subtle behind text; print remains plain white.
-
-The optional `font-picker.js` restores validated font, weight and texture choices from
-separate local storage keys before rendering and saves changes for later pages
-and visits. The default is Courier New Regular on Dots; saved reader choices
-take precedence. Storage denial does not prevent switching; the panel explains
-when a choice cannot be saved.
-Its open/closed state lasts for the browser session. With no saved panel state,
-it starts collapsed at widths up to 1320px and open on wider screens. Native
-radio controls support keyboard selection; Escape closes the panel. Without
-JavaScript, the panel stays hidden and all content is readable in Courier New
-Regular on Dots.
 
 ## Build and preview
 
@@ -153,8 +132,7 @@ enforces HTTPS; `www` and the previous GitHub Pages URL redirect to
 This Actions deployment does not use a `CNAME` file. The pinned
 workflow builds and checks pull requests; pushes to `main` also deploy `_site`.
 Reading requires no client JavaScript, remote fonts, analytics, database or
-third-party runtime. Reading pages load the optional font picker; the homepage
-and demo also load their optional copy scripts.
+third-party runtime. The homepage and demo load their optional copy scripts.
 Build dependencies are pinned in `package-lock.json` and can be
 updated through an ordinary reviewed change.
 

@@ -21,7 +21,6 @@ VOID_TAGS = {
 PUBLIC_TYPES = {".html", ".css", ".svg"}
 PUBLIC_SCRIPTS = {
     Path("assets/copy-prompt.js"), Path("assets/style-demo.js"),
-    Path("assets/font-picker.js"),
 }
 PRIVATE_FOLDERS = {"private", "local", "tmp", "node_modules", "__pycache__"}
 

@@ -1,4 +1,4 @@
-// Markdown remains canonical; optional client JS handles reading preferences and copying.
+// Markdown remains canonical; optional client JS handles prompt copying.
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -86,21 +86,6 @@ function render(source) {
   return { title, headings, body: md.renderer.render(tokens, md.options, {}) };
 }
 
-const fontOptions = [
-  ['georgia', 'Georgia', 'Warm serif'],
-  ['palatino', 'Palatino', 'Bookish serif'],
-  ['times', 'Times New Roman', 'Classic editorial'],
-  ['arial', 'Arial', 'Clean sans serif'],
-  ['courier', 'Courier New', 'Typewriter'],
-];
-const textureOptions = [
-  ['plain', 'Plain'], ['paper', 'Paper'], ['linen', 'Linen'],
-  ['canvas', 'Canvas'], ['laid', 'Laid'], ['dots', 'Dots'],
-];
-function fontPicker() {
-  return `<details id="font-panel" class="font-panel" hidden open><summary><span>Appearance</span><span class="font-selection"><span id="font-current">Courier New</span><span class="appearance-current"><span id="weight-current">Regular</span> · <span id="texture-current">Dots</span></span></span><span class="font-panel-icon" aria-hidden="true"></span></summary><fieldset class="weight-controls"><legend>Weight</legend><div class="weight-options">${[['300', 'Light'], ['400', 'Regular'], ['700', 'Bold']].map(([value, label]) => `<label class="weight-option"><input type="radio" name="site-weight" value="${value}"${value === '400' ? ' checked' : ''}><span>${label}</span></label>`).join('')}</div><p class="weight-note" hidden>Light may look like Regular when a font has no light face.</p></fieldset><fieldset class="texture-controls"><legend>Background</legend><div class="texture-options">${textureOptions.map(([value, label]) => `<label class="texture-option"><input type="radio" name="site-texture" value="${value}"${value === 'dots' ? ' checked' : ''}><span class="texture-swatch" data-texture="${value}" aria-hidden="true"></span><span class="texture-name">${label}</span></label>`).join('')}</div></fieldset><fieldset class="font-family-controls"><legend>Try a typeface</legend>${fontOptions.map(([id, name, description]) => `<label class="font-option" data-font-choice="${id}"><input type="radio" name="site-font" value="${id}"${id === 'courier' ? ' checked' : ''}><span><strong>${name}</strong><small>${description}</small></span><span class="font-sample" aria-hidden="true">Aa</span></label>`).join('')}</fieldset><p class="font-panel-hint">Your choices follow you between pages.</p></details>`;
-}
-
 function shell(title, content, description = slogan, source = null) {
   return `<!doctype html>
 <html lang="en" data-font="courier" data-weight="400" data-texture="dots"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -108,12 +93,12 @@ function shell(title, content, description = slogan, source = null) {
 <link rel="alternate" type="application/json" title="Agent document index" href="${url('agent-index.json')}">
 ${source ? `<link rel="alternate" type="application/json" title="Complete document" href="${url(`documents/${documentId(source)}.json`)}">` : ''}
 <meta name="color-scheme" content="light dark"><meta name="theme-color" content="#fbf9f4" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><link rel="icon" href="${url('assets/favicon.svg')}" type="image/svg+xml">
-<script src="${url('assets/font-picker.js')}"></script><link rel="stylesheet" href="${url('assets/site.css')}"></head><body>
+<link rel="stylesheet" href="${url('assets/site.css')}"></head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><a class="brand" href="${url('index.html')}" aria-label="Agent-Art-Lab home">Agent-Art-Lab</a>
 <nav class="site-nav" aria-label="Main navigation"><a href="${repo}">GitHub <span aria-hidden="true">↗</span></a></nav></header>
 <main id="main">${content}</main>
-<footer class="site-footer"><div><a class="brand" href="${url('index.html')}">Agent-Art-Lab</a><p>${esc(slogan)}</p></div><nav aria-label="Reference links"><a href="${url('guidance/index.html')}">Guidance</a><a href="${url('agent-access/index.html')}">Agent access</a><a href="${url('agent-index.json')}">Document index (JSON)</a><a href="${url('contribute/index.html')}">Contribute</a><a href="${url('research/index.html')}">Research notes</a><a href="${repo}">Source &amp; history ↗</a><p>Part of agent-art-collective</p></nav></footer>${fontPicker()}</body></html>\n`;
+<footer class="site-footer"><div><a class="brand" href="${url('index.html')}">Agent-Art-Lab</a><p>${esc(slogan)}</p></div><nav aria-label="Reference links"><a href="${url('guidance/index.html')}">Guidance</a><a href="${url('agent-access/index.html')}">Agent access</a><a href="${url('agent-index.json')}">Document index (JSON)</a><a href="${url('contribute/index.html')}">Contribute</a><a href="${url('research/index.html')}">Research notes</a><a href="${repo}">Source &amp; history ↗</a><p>Part of agent-art-collective</p></nav></footer></body></html>\n`;
 }
 
 function write(file, content) {
