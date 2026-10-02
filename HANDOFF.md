@@ -25,11 +25,21 @@ before making repository-ownership or task-routing proposals.
   for `agent-art-collective`; the repository's Pages custom domain is configured.
   Cloudflare now holds the retained verification TXT plus four GitHub Pages A
   records, four AAAA records and a `www` CNAME to
-  `agent-art-collective.github.io`, all DNS-only. The root-path site build and
-  updated agent prompt are ready for publication. HTTPS and live navigation /
-  download checks remain pending at this checkpoint. Next action: publish this
-  build, confirm the certificate and HTTPS enforcement, then verify all pages,
-  exports and old-URL redirects. Keep the site and repository names unchanged.
+  `agent-art-collective.github.io`, all DNS-only. Commit `d88fb0c` published the
+  root-path site build and updated agent prompt; GitHub Actions passed. Public
+  DNS and GitHub's DNS check passed. All 44 served files, including 20 pages
+  and 15 agent exports, match the checked local build over HTTP directly to
+  GitHub's published IP. Local validation passed 45 tests and 442 links; Chrome
+  verified root-path home/article navigation, typography and prompt disclosure.
+  These checks do not establish HTTPS: GitHub still reports no certificate,
+  and strict direct TLS verification rejects the current hostname mismatch.
+  The local proxy separately returned resets / HTTP 502 for the new domain.
+  A documented certificate-provisioning restart was blocked by automatic
+  approval review because it briefly removes the live domain; no removal
+  occurred, and operator approval was requested. Next action: wait for issuance
+  or carry out one restart if approved, enable HTTPS, then verify secure page
+  and export acquisition plus old-URL, HTTP and www redirects. Keep the site
+  and repository names unchanged.
 
 - 2026-10-02 custom-domain preparation (Lab-site/release lane): the operator
   registered `agentart.work` and requested connection to the existing Pages
