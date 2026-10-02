@@ -92,7 +92,7 @@ function shell(title, content, description = slogan, source = null) {
 <title>${esc(title)} · Agent-Art-Lab</title><meta name="description" content="${esc(description)}">
 <link rel="alternate" type="application/json" title="Agent document index" href="${url('agent-index.json')}">
 ${source ? `<link rel="alternate" type="application/json" title="Complete document" href="${url(`documents/${documentId(source)}.json`)}">` : ''}
-<meta name="color-scheme" content="light dark"><meta name="theme-color" content="#fbf9f4" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><link rel="icon" href="${url('assets/favicon.svg')}" type="image/svg+xml">
+<meta name="color-scheme" content="light dark"><meta name="theme-color" content="#fbf9f4" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><link rel="icon" href="${url('assets/favicon.svg?v=editorial-1')}" type="image/svg+xml" sizes="any">
 <link rel="stylesheet" href="${url('assets/site.css')}"></head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><a class="brand" href="${url('index.html')}" aria-label="Agent-Art-Lab home">Agent-Art-Lab</a>

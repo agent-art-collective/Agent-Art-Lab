@@ -20,6 +20,18 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 editorial favicon (Lab-site lane): the operator requested an icon
+  aligned with the selected site style. The red four-square tile is replaced
+  with a typewriter-style `A.` in the site's warm paper/ink palette, using SVG
+  paths and internal system light/dark rules. Both page builders use the same
+  versioned icon URL to refresh earlier cached icons. Chrome loaded ten samples
+  at 16, 20, 32, 64 and 128 pixels across light/dark image contexts; screenshot
+  inspection found the mark and period legible. Local checks passed 45 tests,
+  20 pages and 428 links. All 20 generated pages reference the new icon URL;
+  the agent index and all 15 downloads remain byte-identical. These observations
+  cover the tested Chrome renders, not every browser's favicon cache behavior.
+  Next action: retain this mark and its theme colors as the blog develops.
+
 - 2026-10-02 contribution pipeline (Lab establishment/site lane): the operator
   requested rollout of a discoverable cross-repository article-to-PR procedure.
   CONTRIBUTING.md now covers existing/new collections, exact publication
