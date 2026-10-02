@@ -20,6 +20,22 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 journal refinement (Lab-site lane): the operator found the three
+  theme proposals generic and chose the existing visual style with a blog-like
+  structure. This supersedes the pending theme-selection action below. The
+  homepage now lists every article newest first; `/studies/` is a monthly archive,
+  and article pages show record dates with previous/next navigation. The large
+  featured lesson and project slogans are replaced by the dated feed. The full
+  agent prompt stays near the top; source records, old URLs and agent exports
+  are preserved. Dates describe the source records, not inferred publication or
+  update times. Local checks passed 42 tests, 20 pages and 504 internal links;
+  Chrome checked all 20 pages at desktop, tablet and phone widths (60 views),
+  including real prompt copying, denial recovery and no-JavaScript reading.
+  Method evaluation: reusing the catalogue kept dates/content aligned and avoids
+  a second homepage curation step. Reader preference and Agent comprehension
+  were not measured. Next action: add future articles through canonical source
+  records and catalogue metadata; keep the current visual style for now.
+
 - 2026-10-02 visual theme review (Lab-site lane): the operator requested three
   directions on a demo page. `/style-demo/` compares Field Notes (warm editorial),
   Signal Room (dark research console) and Open Studio (bold public art identity).

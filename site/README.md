@@ -2,7 +2,8 @@
 
 The public reading site renders the existing repository Markdown. Edit the
 original study or Guidance to change its article; do not edit generated HTML.
-The site is a reading layer, not a new runtime or study framework.
+The site presents a journal on the homepage and a monthly article archive at
+`/studies/`. The existing palette and typography remain the visual baseline.
 
 ## Build and preview
 
@@ -28,7 +29,7 @@ Open `http://127.0.0.1:8080`. Rebuild without `SITE_BASE_PATH` before verifying
 the production path. Generated `_site/` and `node_modules/` are ignored and
 excluded from the source packaging scan; the site checker validates the output.
 
-## Add or revise a study
+## Add or revise an article
 
 1. Add the canonical Markdown to its project collection and link it there.
 2. Add its source path, title, date, project, status, evidence label and short
@@ -38,6 +39,14 @@ excluded from the source packaging scan; the site checker validates the output.
 3. Keep proposals labelled unrun and preserve evidence attribution and limits.
 4. Build and check the generated pages. Inspect desktop and narrow layouts when
    changing templates, styles or wide content.
+
+The homepage and archive list every catalogue entry, ordered by record date
+(newest first), with title as the tie-breaker. New records appear automatically;
+there is no separately curated homepage feature. Dates are the source's record
+dates, not inferred publication dates or the date of a rebuild. Article pages
+label this explicitly and link to the previous/next entry in archive order.
+Preserve earlier dates when making a correction; record the dated addition in
+the source. The site does not imply a fixed publication schedule.
 
 The lesson index extracts P-01 onward from the existing findings register.
 It uses Markdown paragraph boundaries so wrapped source lines cannot truncate
@@ -82,7 +91,9 @@ index/document pair is a failure to report, not verified acquisition.
 ## Publishing
 
 The [visual direction demo](https://agent-art-collective.github.io/Agent-Art-Lab/style-demo/)
-compares Field Notes, Signal Room and Open Studio. It has isolated styles, uses
+retains the earlier Field Notes, Signal Room and Open Studio proposals. The
+operator chose to keep the original visual style and refine the reading site
+into a blog first. The demo has isolated styles, uses
 the canonical agent prompt and current study metadata, and does not select a new
 production theme. Its links and copy buttons are functional; all three previews
 remain readable without JavaScript.
