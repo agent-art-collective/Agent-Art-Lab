@@ -55,9 +55,7 @@ the source. The site does not imply a fixed publication schedule.
 
 There are no separate Archive or Lessons browsing sections. Guidance and other
 reference documents remain available through the footer, article links and agent
-index. The complete findings register remains a source document. The older style
-demo still uses an excerpt from it; Markdown paragraph extraction preserves that
-excerpt without truncating wrapped source lines.
+index. The complete findings register remains a source document.
 Article bodies, links and heading anchors come from their original Markdown.
 Repository operations such as the handoff stay linked on GitHub. Only the
 explicit reading-page list and site assets are copied to the deployment artifact.
@@ -98,12 +96,11 @@ index/document pair is a failure to report, not verified acquisition.
 ## Publishing
 
 The [visual direction demo](https://agent-art-collective.github.io/Agent-Art-Lab/style-demo/)
-retains the earlier Field Notes, Signal Room and Open Studio proposals. The
-operator chose to keep the original visual style and refine the reading site
-into a blog first. The demo has isolated styles, uses
-the canonical agent prompt and current study metadata, and does not select a new
-production theme. Its links and copy buttons are functional; all three previews
-remain readable without JavaScript.
+compares Plain-text journal, Swiss index and Quiet editorial. These replace the
+earlier rejected proposals. All three use the current slogan, canonical agent
+prompt and the same three recent articles with their record dates and evidence
+labels. Styles are isolated from the production blog; selection is still pending.
+Links and copy buttons work, and all previews remain readable without JavaScript.
 
 GitHub Pages uses the existing repository's GitHub Actions source. The pinned
 workflow builds and checks pull requests; pushes to `main` also deploy `_site`.

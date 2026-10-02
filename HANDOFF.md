@@ -20,6 +20,15 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 minimal style previews (Lab-site lane): `/style-demo/` now compares
+  Plain-text journal, Swiss index and Quiet editorial at the operator's request.
+  It replaces the earlier rejected theme proposals. Every preview uses the same
+  slogan, complete agent prompt and three recent articles with dates/evidence.
+  All 43 tests and 442 internal links passed; 12 theme/viewport checks covered
+  320–1440px, with matching content, native clipboard copy, denial recovery and
+  no-JavaScript reading. Production pages and agent documents remain byte-identical.
+  Next action: let the operator select a style before applying it to the blog.
+
 - 2026-10-02 slogan (Lab-site lane): the operator selected “Articles, studies
   and working notes on Agent Art.” as the slogan. The homepage heading, footer,
   default page description and README now use that exact wording. The existing

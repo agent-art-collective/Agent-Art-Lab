@@ -5,7 +5,6 @@ import { fileURLToPath } from 'node:url';
 import MarkdownIt from 'markdown-it';
 import GithubSlugger from 'github-slugger';
 import { buildAgentDocuments, documentId } from './agent-documents.mjs';
-import { extractLessonExcerpts } from './lesson-excerpts.mjs';
 import { renderStyleDemo } from './style-demo.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -150,6 +149,5 @@ for (const [source, route] of routes) {
 }
 
 write('404.html', shell('Page not found', '', heading('404 / A missing page', 'This page is not here.', 'The article may have moved. Return to the blog to keep reading.') + `<p><a class="button" href="${url('index.html')}">Back to the blog ↗</a></p>`));
-const lessons = extractLessonExcerpts(read('findings/REGISTER.md'));
-write('style-demo/index.html', renderStyleDemo({ basePath: base, agentPrompt, lesson: lessons.find(l => l.id === 'P-07'), studies, documentCount: agentDocuments.index.documents.length }));
+write('style-demo/index.html', renderStyleDemo({ basePath: base, slogan, agentPrompt, studies, documentCount: agentDocuments.index.documents.length }));
 console.log(`Built ${routes.size + 5} pages from ${studies.length} study records; base path ${base || '/'}.`);
