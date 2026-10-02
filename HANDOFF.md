@@ -29,8 +29,13 @@ before making repository-ownership or task-routing proposals.
   the agent index and all 15 document exports are byte-identical. Chrome's
   desktop and narrow mobile previews showed the selected font, weight and dots,
   no chooser, and no horizontal overflow. The existing separate style demo is
-  unchanged. Next action: publish this removal through the existing Pages
-  workflow, then verify the live site and complete agent downloads.
+  unchanged. Commit `7a9fc63` deployed successfully; the live HTTPS sweep passed
+  49 URLs covering all 20 pages, 42 served resources, 423 internal links and
+  15 agent documents, including schema, revision and byte-integrity checks.
+  Redirects and the custom 404 passed. One document GET reset once and passed
+  its retry; no failures remain. Chrome confirmed the live homepage has the
+  selected appearance and no panel. Next action: keep design controls out of
+  public reading pages while adding articles or refining the fixed style.
 
 - 2026-10-02 HTTPS completion (Lab-site/release lane): following explicit
   operator approval, the custom-domain setting was cleared and immediately
