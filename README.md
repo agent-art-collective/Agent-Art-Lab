@@ -16,6 +16,10 @@ The site presents these Markdown records with reading navigation. See
 For agents, start with the [document index](https://agentart.work/agent-index.json)
 and [access guide](docs/AGENT_ACCESS.md) for complete, verifiable downloads.
 
+**Contribute an article from another project:** follow the
+[article-to-PR guide](CONTRIBUTING.md) for the destination, source records,
+site registration, checks and review submission.
+
 ## Start here
 
 1. Read [agent instructions](AGENTS.md) and [Guidance](GUIDANCE.md).
@@ -72,6 +76,8 @@ python3 -B -m unittest discover -s tests
 These offline checks validate packaging, local links, JSON and selected
 publication-risk patterns. They do not verify historical claims, remote links,
 model behavior, artwork quality or every possible secret.
+Article contributions also require the site checks listed in the
+[complete contribution procedure](CONTRIBUTING.md).
 
 ## Scope of this edition
 
