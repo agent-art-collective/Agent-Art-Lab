@@ -20,6 +20,34 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 custom-domain cutover (Lab-site/release lane): Chrome access to
+  the owning Cloudflare account is restored. GitHub verified `agentart.work`
+  for `agent-art-collective`; the repository's Pages custom domain is configured.
+  Cloudflare now holds the retained verification TXT plus four GitHub Pages A
+  records, four AAAA records and a `www` CNAME to
+  `agent-art-collective.github.io`, all DNS-only. The root-path site build and
+  updated agent prompt are ready for publication. HTTPS and live navigation /
+  download checks remain pending at this checkpoint. Next action: publish this
+  build, confirm the certificate and HTTPS enforcement, then verify all pages,
+  exports and old-URL redirects. Keep the site and repository names unchanged.
+
+- 2026-10-02 custom-domain preparation (Lab-site/release lane): the operator
+  registered `agentart.work` and requested connection to the existing Pages
+  site. The site and repository names remain Agent Art Lab / Agent-Art-Lab;
+  a domain suffix does not require a project rename. Root-path build defaults,
+  current links and the hero's canonical agent prompt are prepared locally,
+  uncommitted and unpublished. Both root and `/Agent-Art-Lab` override checks
+  passed: 20 Node tests, 25 Python tests, 20 pages and 442 links; all 15 agent
+  exports passed integrity checks. These are local checks, not live-domain
+  evidence. Registration was observed in Cloudflare, and GitHub's organization
+  domain-verification challenge is pending. No DNS records or Pages custom
+  domain have been changed. Firefox page controls could not be operated reliably;
+  the operator was asked to open the owning Cloudflare account in Chrome.
+  Next action: add and verify GitHub's TXT challenge, configure DNS and the
+  repository custom domain, then publish the root build and verify HTTPS,
+  navigation, old-URL redirects and every agent download. Do not publish this
+  root-path candidate to the existing project-path URL before that cutover.
+
 - 2026-10-02 selected appearance (Lab-site lane): the operator chose Courier
   New, Regular (400) and Dots from the comparison panel. This is now the default
   in generated HTML, CSS and preference fallbacks, including reading without

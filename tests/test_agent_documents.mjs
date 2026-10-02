@@ -6,7 +6,7 @@ import { buildAgentDocuments, documentId } from '../scripts/agent-documents.mjs'
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 const fixture = overrides => ({
   id: 'test-record', title: 'Complete record', path: 'projects/test/record.md',
-  page: '/Agent-Art-Lab/projects/test/record.html',
+  page: '/projects/test/record.html',
   bytes: Buffer.from('# Complete record\n\nObservation.\n\n## Limits\nNot a reliability result.\n'),
   ...overrides,
 });
@@ -54,6 +54,19 @@ test('study status and evidence remain in both discovery and the complete docume
   assert.deepEqual(result.index.documents[0].study, study);
   assert.deepEqual(JSON.parse(result.documents.get('test-record')).study, study);
   assert.equal(result.index.documents[0].download.url, '/documents/test-record.json');
+});
+
+test('exports default to the domain root and retain explicit project-path support', () => {
+  for (const basePath of ['', '/Agent-Art-Lab']) {
+    const page = `${basePath}/projects/test/record.html`;
+    const result = buildAgentDocuments([fixture({ page })], basePath ? { basePath } : undefined);
+    const descriptor = result.index.documents[0];
+    const document = JSON.parse(result.documents.get('test-record'));
+    assert.equal(descriptor.download.url, `${basePath}/documents/test-record.json`);
+    assert.equal(descriptor.page, page);
+    assert.equal(document.page, page);
+    assert.equal(document.source.sha256, hash(fixture().bytes));
+  }
 });
 
 test('metadata changes are distinct from changes to canonical source bytes', () => {

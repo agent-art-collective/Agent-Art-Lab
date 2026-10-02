@@ -10,10 +10,10 @@ THOUGHT, or website deployment. It helps projects research a question, refine a
 study, observe what happens, analyze the result, and develop revisable practices.
 Each artwork keeps its own artistic aims and implementation.
 
-**Read the Lab:** [Agent-Art-Lab blog](https://agent-art-collective.github.io/Agent-Art-Lab/).
+**Read the Lab:** [Agent-Art-Lab blog](https://agentart.work/).
 The site presents these Markdown records with reading navigation. See
 [site maintenance](site/README.md) for the build and publication path.
-For agents, start with the [document index](https://agent-art-collective.github.io/Agent-Art-Lab/agent-index.json)
+For agents, start with the [document index](https://agentart.work/agent-index.json)
 and [access guide](docs/AGENT_ACCESS.md) for complete, verifiable downloads.
 
 ## Start here

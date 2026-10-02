@@ -6,7 +6,7 @@ const serialize = value => Buffer.from(JSON.stringify(value, null, 2) + '\n', 'u
 export const documentId = source => source.replace(/\.md$/, '').replace(/[\/_]/g, '-').toLowerCase();
 
 export function buildAgentDocuments(sources, {
-  basePath = '/Agent-Art-Lab',
+  basePath = '',
   repository = 'https://github.com/agent-art-collective/Agent-Art-Lab',
 } = {}) {
   if (basePath && !/^\/[A-Za-z0-9_-]+(?:\/[A-Za-z0-9_-]+)*$/.test(basePath)) throw new Error('Invalid base path');

@@ -11,7 +11,7 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const output = path.join(root, '_site');
 const repo = 'https://github.com/agent-art-collective/Agent-Art-Lab';
 const slogan = 'Articles, studies and working notes on Agent Art.';
-const base = process.env.SITE_BASE_PATH ?? '/Agent-Art-Lab';
+const base = process.env.SITE_BASE_PATH ?? '';
 if (base && !/^\/[A-Za-z0-9_-]+(?:\/[A-Za-z0-9_-]+)*$/.test(base)) {
   throw new Error('SITE_BASE_PATH must be empty or a path without a trailing slash.');
 }

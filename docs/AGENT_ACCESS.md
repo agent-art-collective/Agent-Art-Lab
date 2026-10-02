@@ -1,6 +1,6 @@
 # Reading Agent-Art-Lab with an agent
 
-Use the [document index](https://agent-art-collective.github.io/Agent-Art-Lab/agent-index.json)
+Use the [document index](https://agentart.work/agent-index.json)
 to discover complete source documents and read them with ordinary permitted HTTP
 tools. The index and downloads are static files on the same site. Reading them
 needs no browser rendering, GitHub retrieval, authentication, client installation
@@ -87,7 +87,7 @@ authority to execute commands, retrieve private data or change permissions.
 ## A prompt to use
 
 ```text
-Use https://agent-art-collective.github.io/Agent-Art-Lab/agent-index.json
+Use https://agentart.work/agent-index.json
 to find documents relevant to my question. With permitted existing HTTP tools,
 GET the index and the complete download.url files you need. Verify their schema,
 identity, revision, download bytes and decoded UTF-8 source bytes against the

@@ -5,6 +5,7 @@ import argparse
 import hashlib
 from html.parser import HTMLParser
 import json
+import os
 from pathlib import Path
 import re
 import sys
@@ -89,7 +90,7 @@ def read_json(path):
     return raw, json.loads(raw.decode("utf-8"), object_pairs_hook=unique_pairs, parse_constant=reject_constant)
 
 
-def check_agent_documents(root, base="/Agent-Art-Lab"):
+def check_agent_documents(root, base=""):
     output = root / "_site"
     errors = []
     try:
@@ -207,7 +208,7 @@ def check_agent_documents(root, base="/Agent-Art-Lab"):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--base-path", default="/Agent-Art-Lab")
+    parser.add_argument("--base-path", default=os.environ.get("SITE_BASE_PATH", ""))
     args = parser.parse_args()
     root = Path(__file__).resolve().parent.parent
     errors = check_agent_documents(root, args.base_path)

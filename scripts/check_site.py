@@ -275,7 +275,7 @@ def check_site(root, base):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--base-path", default=os.environ.get("SITE_BASE_PATH", "/Agent-Art-Lab"),
+        "--base-path", default=os.environ.get("SITE_BASE_PATH", ""),
         help="published path prefix; pass an empty string for a domain root",
     )
     args = parser.parse_args()

@@ -58,17 +58,18 @@ npm run build
 npm run check:site
 ```
 
-The default build uses the GitHub Pages project path `/Agent-Art-Lab`. For a
-local preview at the server root:
+The default build uses the root path for `https://agentart.work/`. For a local
+preview at the same root path:
 
 ```sh
-SITE_BASE_PATH='' npm run build
-npm run check:site -- --base-path ''
+npm run build
+npm run check:site
 python3 -m http.server 8080 --bind 127.0.0.1 --directory _site
 ```
 
-Open `http://127.0.0.1:8080`. Rebuild without `SITE_BASE_PATH` before verifying
-the production path. Generated `_site/` and `node_modules/` are ignored and
+Open `http://127.0.0.1:8080`. To check a project-path deployment explicitly,
+run the build and checks with `SITE_BASE_PATH=/Agent-Art-Lab`; restore the default
+root build before publishing. Generated `_site/` and `node_modules/` are ignored and
 excluded from the source packaging scan; the site checker validates the output.
 
 ## Add or revise an article
@@ -134,7 +135,7 @@ index/document pair is a failure to report, not verified acquisition.
 
 ## Publishing
 
-The [visual direction demo](https://agent-art-collective.github.io/Agent-Art-Lab/style-demo/)
+The [visual direction demo](https://agentart.work/style-demo/)
 compares Plain-text journal, Swiss index and Quiet editorial. These replace the
 earlier rejected proposals. All three use the current slogan, canonical agent
 prompt and the same three recent articles with their record dates and evidence
@@ -142,7 +143,11 @@ labels. Quiet editorial was selected and applied to the production blog; the
 demo styles remain isolated to preserve the original comparison.
 Links and copy buttons work, and all previews remain readable without JavaScript.
 
-GitHub Pages uses the existing repository's GitHub Actions source. The pinned
+GitHub Pages uses the existing repository's GitHub Actions source and the custom
+domain `agentart.work`, configured in Pages settings. Cloudflare provides DNS:
+four GitHub Pages A records, four AAAA records and a `www` CNAME pointing to
+`agent-art-collective.github.io`, all DNS-only. Retain the GitHub ownership TXT
+record. This Actions deployment does not use a `CNAME` file. The pinned
 workflow builds and checks pull requests; pushes to `main` also deploy `_site`.
 Reading requires no client JavaScript, remote fonts, analytics, database or
 third-party runtime. Reading pages load the optional font picker; the homepage

@@ -7,7 +7,7 @@ import { before, test } from 'node:test';
 import MarkdownIt from 'markdown-it';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const base = process.env.SITE_BASE_PATH ?? '/Agent-Art-Lab';
+const base = process.env.SITE_BASE_PATH ?? '';
 const read = file => readFileSync(path.join(root, file), 'utf8');
 const markdown = new MarkdownIt({ html: false, linkify: false });
 const studies = JSON.parse(read('site/studies.json'))
