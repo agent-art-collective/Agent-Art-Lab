@@ -54,6 +54,11 @@ source paths and study evidence labels. Article pages link to their complete
 document, and every page advertises the index. The generated `llms.txt` provides
 another discovery entry point without promising automatic agent support.
 
+The homepage hero displays the prompt from the access guide's “A prompt to use”
+section. Edit that canonical prompt to update both places. A small optional
+script copies it on click; the full text remains selectable without JavaScript,
+and clipboard failure selects it for manual copying.
+
 See [the access guide](../docs/AGENT_ACCESS.md) for the reading contract, relative
 source-link resolution and failure handling. `scripts/check_agent_documents.py`
 independently checks the export selection, exact bytes and metadata as part of
@@ -71,8 +76,9 @@ index/document pair is a failure to report, not verified acquisition.
 
 GitHub Pages uses the existing repository's GitHub Actions source. The pinned
 workflow builds and checks pull requests; pushes to `main` also deploy `_site`.
-No client JavaScript, remote fonts, analytics, database or third-party runtime
-is required. Build dependencies are pinned in `package-lock.json` and can be
+Reading requires no client JavaScript, remote fonts, analytics, database or
+third-party runtime. The homepage loads only its optional copy-button script.
+Build dependencies are pinned in `package-lock.json` and can be
 updated through an ordinary reviewed change.
 
 To roll back a site change, revert its source commit and publish through the

@@ -19,6 +19,7 @@ VOID_TAGS = {
     "meta", "param", "source", "track", "wbr",
 }
 PUBLIC_TYPES = {".html", ".css", ".svg"}
+PUBLIC_SCRIPTS = {Path("assets/copy-prompt.js")}
 PRIVATE_FOLDERS = {"private", "local", "tmp", "node_modules", "__pycache__"}
 
 
@@ -130,7 +131,7 @@ def check_site(root, base):
             if relative == Path(".nojekyll"):
                 files.append(path)
                 continue
-            if name.startswith(".") or (path.suffix not in PUBLIC_TYPES and relative not in agent_files):
+            if name.startswith(".") or (path.suffix not in PUBLIC_TYPES and relative not in agent_files and relative not in PUBLIC_SCRIPTS):
                 errors.append(f"non-public output file: {relative}")
                 continue
             files.append(path)

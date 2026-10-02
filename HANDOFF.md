@@ -20,6 +20,17 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 homepage prompt (Lab-site lane): at the operator's request, the
+  homepage hero now displays the canonical access-guide prompt and a copy button,
+  with directions to paste it into an agent and add a question. The build reads
+  the prompt from the guide so the two stay aligned. Reading/manual copying
+  remains available without JavaScript; clipboard denial selects the full text
+  and announces manual recovery. Local checks passed 19 pages, 40 public files,
+  432 links and all 23 existing tests. Browser checks covered desktop/mobile
+  layout, disabled JavaScript and simulated clipboard success/denial. No Agent
+  comprehension trial was run. Next action: maintain the guide's canonical
+  prompt when changing the document-access contract.
+
 - 2026-10-02 agent-access publication verified (Lab-site lane): commit `8ee23f8`
   passed Pages build/deploy. Direct read-only GET and HEAD checks passed for
   the index, all 15 complete documents, the guide, discovery text, home and CSS;

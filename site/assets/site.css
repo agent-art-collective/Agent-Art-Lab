@@ -45,6 +45,8 @@ a:hover {
 }
 
 a:focus-visible,
+button:focus-visible,
+#agent-prompt:focus-visible,
 summary:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 5px;
@@ -186,13 +188,17 @@ main,
 }
 
 .home-hero {
-  padding-block: 78px 76px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 56px;
+  padding-block: 64px;
 }
 
 .home-hero h1 {
   max-width: 15ch;
   margin-bottom: 30px;
-  font-size: clamp(68px, 7.3vw, 108px);
+  font-size: clamp(56px, 5.4vw, 78px);
   line-height: 0.99;
 }
 
@@ -213,6 +219,61 @@ main,
   align-items: center;
   gap: 30px;
   margin-top: 35px;
+}
+
+.hero-prompt {
+  min-width: 0;
+  padding: 28px;
+  border-top: 3px solid var(--accent);
+  background: var(--paper-deep);
+}
+
+.hero-prompt .eyebrow {
+  margin-bottom: 12px;
+}
+
+.hero-prompt h2 {
+  margin-bottom: 14px;
+  font-size: 34px;
+}
+
+.prompt-intro {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.prompt-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 22px;
+  margin-bottom: 20px;
+  font-size: 12px;
+}
+
+.prompt-copy {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.prompt-copy[hidden] {
+  display: none;
+}
+
+#agent-prompt {
+  margin: 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font: 12px/1.7 var(--mono);
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.prompt-status {
+  min-height: 1.7em;
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 12px;
 }
 
 .button {
@@ -722,6 +783,15 @@ main,
 }
 
 @media (max-width: 1000px) {
+  .home-hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .hero-prompt {
+    max-width: 660px;
+  }
+
   .site-header,
   main,
   .site-footer {
@@ -792,7 +862,7 @@ main,
 
   .home-hero h1 {
     margin-bottom: 25px;
-    font-size: clamp(48px, 10vw, 72px);
+    font-size: clamp(40px, 9vw, 64px);
     line-height: 1.04;
   }
 
@@ -806,6 +876,10 @@ main,
     flex-direction: column;
     gap: 17px;
     margin-top: 25px;
+  }
+
+  .hero-prompt {
+    padding: 22px 20px;
   }
 
   .section-heading {
