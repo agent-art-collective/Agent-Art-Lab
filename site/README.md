@@ -10,6 +10,7 @@ Requires Node.js 22+ and Python 3.10+ for the offline checks:
 
 ```sh
 npm ci --ignore-scripts
+npm test
 npm run build
 npm run check:site
 ```
@@ -42,6 +43,29 @@ The lesson index extracts P-01 onward from the existing findings register.
 Article bodies, links and heading anchors come from their original Markdown.
 Repository operations such as the handoff stay linked on GitHub. Only the
 explicit reading-page list and site assets are copied to the deployment artifact.
+
+## Agent document access
+
+The build also generates `agent-index.json`, `llms.txt` and one complete JSON
+document per canonical reading source under `documents/`. These come from the
+same Markdown bytes used for the HTML pages; do not edit the generated files.
+The index carries separate source and download lengths/hashes, content revisions,
+source paths and study evidence labels. Article pages link to their complete
+document, and every page advertises the index. The generated `llms.txt` provides
+another discovery entry point without promising automatic agent support.
+
+See [the access guide](../docs/AGENT_ACCESS.md) for the reading contract, relative
+source-link resolution and failure handling. `scripts/check_agent_documents.py`
+independently checks the export selection, exact bytes and metadata as part of
+the site check. When deliberately adding a new reading source, update that
+checker's selection alongside the build routes. Tests include representation,
+malformed-input and integrity-failure cases; no Agent or product trial is run.
+
+For a deployment check, use ordinary permitted HTTP GET and HEAD for the index
+and downloads, then verify the actual response bytes against the index and local
+build. GitHub Pages controls response headers; do not infer MIME types, security
+headers or live compatibility from local source checks. An inconsistent cached
+index/document pair is a failure to report, not verified acquisition.
 
 ## Publishing
 

@@ -11,6 +11,8 @@ import re
 import sys
 from urllib.parse import unquote, urlsplit
 
+from check_agent_documents import check_agent_documents, public_agent_files
+
 
 VOID_TAGS = {
     "area", "base", "br", "col", "embed", "hr", "img", "input", "link",
@@ -108,6 +110,10 @@ def check_site(root, base):
     links = 0
     if not output.is_dir():
         return ["missing _site directory; build the site first"], 0, 0, 0
+    try:
+        agent_files = public_agent_files(root)
+    except (OSError, UnicodeError, ValueError, TypeError, KeyError) as exc:
+        return [f"cannot derive public document allowlist: {exc}"], 0, 0, 0
 
     for folder, directories, names in os.walk(output, followlinks=False):
         for name in sorted(directories):
@@ -124,7 +130,7 @@ def check_site(root, base):
             if relative == Path(".nojekyll"):
                 files.append(path)
                 continue
-            if name.startswith(".") or path.suffix not in PUBLIC_TYPES:
+            if name.startswith(".") or (path.suffix not in PUBLIC_TYPES and relative not in agent_files):
                 errors.append(f"non-public output file: {relative}")
                 continue
             files.append(path)
@@ -204,6 +210,7 @@ def check_site(root, base):
     except (OSError, UnicodeError, ValueError, TypeError, KeyError) as exc:
         errors.append(f"cannot verify study catalogue: {exc}")
 
+    errors.extend(check_agent_documents(root, base))
     return errors, len(pages), len(files), links
 
 

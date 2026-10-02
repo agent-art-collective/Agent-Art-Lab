@@ -11,6 +11,8 @@ Each artwork keeps its own artistic aims and implementation.
 **Read the Lab:** [lessons and studies website](https://agent-art-collective.github.io/Agent-Art-Lab/).
 The site presents these Markdown records with reading navigation. See
 [site maintenance](site/README.md) for the build and publication path.
+For agents, start with the [document index](https://agent-art-collective.github.io/Agent-Art-Lab/agent-index.json)
+and [access guide](docs/AGENT_ACCESS.md) for complete, verifiable downloads.
 
 ## Start here
 

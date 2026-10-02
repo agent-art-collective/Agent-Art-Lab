@@ -704,7 +704,15 @@ main,
 }
 
 .site-footer > :last-child {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px 20px;
   text-align: right;
+}
+
+.site-footer > :last-child p {
+  flex-basis: 100%;
 }
 
 @media (min-width: 1600px) {
@@ -974,6 +982,7 @@ main,
   }
 
   .site-footer > :last-child {
+    justify-content: flex-start;
     text-align: left;
   }
 }

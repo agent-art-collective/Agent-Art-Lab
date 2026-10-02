@@ -20,6 +20,16 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 agent-access implementation (Lab-site lane): the operator requested
+  applying the existing document-access lessons to the reading pages. The Pulse
+  study, P-07 and native/explicit Guidance support a generated same-origin index
+  and complete JSON documents with exact-source hashes, download hashes,
+  revisions and evidence labels. [Agent access](docs/AGENT_ACCESS.md) records
+  prerequisites, link resolution, verification and failures; existing study
+  claims and scopes are preserved. No private records or project code are added.
+  Next action: verify the deployed GET/HEAD and saved-byte path. These checks
+  concern acquisition and integrity, not comprehension or general reliability.
+
 - 2026-10-02 reading site published: [Agent-Art-Lab website](https://agent-art-collective.github.io/Agent-Art-Lab/)
   is live from site commit `5e8dbbc`; the first Pages build and deployment passed.
   All 18 HTML pages and both assets returned successfully and matched the local
