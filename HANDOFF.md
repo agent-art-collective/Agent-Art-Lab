@@ -20,6 +20,14 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 automatic color themes (Lab-site lane): reading pages now follow
+  the system light/dark preference through CSS, including changes without a
+  reload. The prompt, font picker and native controls use matching colors;
+  print keeps dark text on white. Checks passed 76 page/theme/viewport views,
+  automatic switching with a saved font, no-JavaScript dark reading and print
+  contrast. Measured text contrast stayed above 5.18:1. Agent exports are
+  unchanged. Next action: preserve system-following colors in future UI edits.
+
 - 2026-10-02 font chooser (Lab-site lane): added a floating Fonts panel to every
   reading page with Georgia, Palatino, Times New Roman, Arial and Courier New.
   Choices apply across page text and persist locally; the collapsible panel

@@ -11,6 +11,10 @@ listing URLs redirect to its articles section, with a visible fallback link and
 no JavaScript requirement. The selected Quiet editorial style uses a narrow
 reading column, warm white background, serif headings and restrained rules.
 The header's Agent-Art-Lab name links home; GitHub is the only separate top link.
+Light and dark colors follow the system preference through CSS, including live
+system changes and reading without JavaScript. Dark mode uses warm charcoal,
+light text and a matching font panel. Print keeps a light background and dark
+text regardless of the screen theme.
 
 ## Font comparison
 

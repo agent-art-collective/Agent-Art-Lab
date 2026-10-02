@@ -1,14 +1,31 @@
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
   --paper: #fbf9f4;
   --ink: #34312d;
   --muted: #69625a;
   --line: #ded9cf;
+  --prompt-ink: #5c554d;
+  --panel: var(--paper);
+  --panel-active: #f1eee7;
+  --panel-shadow: rgb(52 49 45 / 9%);
   --site-font: Georgia, "Times New Roman", serif;
   --serif: var(--site-font);
   --sans: var(--site-font);
   --mono: var(--site-font);
   --font-controls: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #1c1b19;
+    --ink: #ebe5da;
+    --muted: #b7afa2;
+    --line: #49443c;
+    --prompt-ink: #cec3b4;
+    --panel: #24221f;
+    --panel-active: #36312b;
+    --panel-shadow: rgb(0 0 0 / 30%);
+  }
 }
 
 html[data-font="georgia"] { --site-font: Georgia, "Times New Roman", serif; }
@@ -63,7 +80,7 @@ main { min-width: 0; }
 .prompt-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 13px 23px; margin-block: 10px 17px; font-size: 15px; }
 .prompt-copy { min-height: 34px; padding-block: 5px; }
 .prompt-copy span { margin-left: 8px; }
-#agent-prompt { max-width: 100%; margin: 0; padding: 0; color: #5c554d; font: 400 16px/1.9 var(--sans); white-space: normal; overflow-wrap: anywhere; word-break: normal; }
+#agent-prompt { max-width: 100%; margin: 0; padding: 0; color: var(--prompt-ink); font: 400 16px/1.9 var(--sans); white-space: normal; overflow-wrap: anywhere; word-break: normal; }
 .prompt-status { margin: 14px 0 0; color: var(--muted); font-size: 14px; }
 
 .journal-feed { min-width: 0; margin-bottom: 48px; scroll-margin-top: 25px; }
@@ -153,8 +170,8 @@ body.font-tools-ready { padding-bottom: 80px; }
   border: 1px solid var(--line);
   border-radius: 3px;
   color: var(--ink);
-  background: var(--paper);
-  box-shadow: 0 5px 22px rgb(52 49 45 / 9%);
+  background: var(--panel);
+  box-shadow: 0 5px 22px var(--panel-shadow);
   font: 400 14px/1.5 var(--font-controls);
 }
 .font-panel > summary {
@@ -167,7 +184,7 @@ body.font-tools-ready { padding-bottom: 80px; }
   gap: 10px;
   min-height: 48px;
   padding: 12px 14px;
-  background: var(--paper);
+  background: var(--panel);
   list-style: none;
   cursor: pointer;
 }
@@ -184,7 +201,7 @@ body.font-tools-ready { padding-bottom: 80px; }
 .font-panel fieldset { min-width: 0; margin: 0; padding: 12px 0 0; border: 0; }
 .font-panel legend { padding: 0 14px; color: var(--muted); font-size: 14px; }
 .font-option { display: grid; grid-template-columns: 16px minmax(0, 1fr) 35px; align-items: center; gap: 10px; min-height: 53px; padding: 9px 14px; cursor: pointer; }
-.font-option:hover, .font-option:has(input:checked) { background: #f1eee7; }
+.font-option:hover, .font-option:has(input:checked) { background: var(--panel-active); }
 .font-option input { width: 15px; height: 15px; margin: 0; accent-color: var(--ink); cursor: pointer; }
 .font-option input:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .font-option > span { min-width: 0; }
@@ -257,6 +274,7 @@ body.font-tools-ready { padding-bottom: 80px; }
 }
 
 @media print {
+  :root { color-scheme: light; --paper: #fff; --ink: #000; --muted: #454545; --line: #aaa; --prompt-ink: #333; --panel: #fff; --panel-active: #eee; --panel-shadow: transparent; }
   html, body { color: #000; background: #fff; }
   body.font-tools-ready { padding-bottom: 0; }
   .site-header, main, .site-footer { width: 100%; }
