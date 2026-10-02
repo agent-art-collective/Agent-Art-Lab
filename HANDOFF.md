@@ -20,6 +20,17 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 reading site published: [Agent-Art-Lab website](https://agent-art-collective.github.io/Agent-Art-Lab/)
+  is live from site commit `5e8dbbc`; the first Pages build and deployment passed.
+  All 18 HTML pages and both assets returned successfully and matched the local
+  build byte for byte. Offline validation passed 323 generated links/fragments,
+  25 source documents, 78 repository links and all 10 checker tests. Desktop and
+  mobile browser inspection found no page-width overflow in the checked views;
+  the publication file scan reported no secrets. These validate the reading site,
+  not the underlying historical study claims. This completes the first-deployment
+  check below. Next action: edit canonical Markdown for article updates and keep
+  study metadata, evidence labels and site checks aligned as the archive grows.
+
 - 2026-10-02 reading-site work (Lab establishment): the operator accepted a
   small GitHub Pages reading site for this lessons repository. Home, Lessons,
   Studies and Guidance render the existing Markdown with scoped evidence labels;
