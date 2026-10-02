@@ -13,12 +13,12 @@ reading column, warm white background, serif headings and restrained rules.
 The header's Agent-Art-Lab name links home; GitHub is the only separate top link.
 Light and dark colors follow the system preference through CSS, including live
 system changes and reading without JavaScript. Dark mode uses warm charcoal,
-light text and a matching font panel. Print keeps a light background and dark
+light text and a matching appearance panel. Print keeps a light background and dark
 text regardless of the screen theme.
 
-## Font comparison
+## Appearance comparison
 
-Every reading page has a floating, collapsible Fonts panel with Georgia,
+Every reading page has a floating, collapsible Appearance panel with Georgia,
 Palatino, Times New Roman, Arial and Courier New. A choice applies to the whole
 reading page, including navigation, headings, metadata, prompt and code. The
 chooser keeps stable controls and previews each option in its own typeface.
@@ -30,14 +30,19 @@ These are device fonts with CSS fallbacks; exact rendering depends on installed
 fonts. No font service or font download is required. The earlier style demo
 preserves its original, separate previews.
 
-The optional `font-picker.js` restores validated font and weight choices from
+The Background controls offer five textures: Paper grain, Linen, Canvas,
+Laid paper and Dots, with Plain restoring the original untextured background.
+Each choice has a preview swatch. Lightweight local CSS/SVG patterns follow the
+system color theme and stay subtle behind text; print remains plain white.
+
+The optional `font-picker.js` restores validated font, weight and texture choices from
 separate local storage keys before rendering and saves changes for later pages
-and visits. The default is Georgia Regular. Storage denial
+and visits. The default is Georgia Regular on Plain. Storage denial
 does not prevent switching; the panel explains when a choice cannot be saved.
 Its open/closed state lasts for the browser session. With no saved panel state,
 it starts collapsed at widths up to 1320px and open on wider screens. Native
 radio controls support keyboard selection; Escape closes the panel. Without
-JavaScript, the panel stays hidden and all content is readable in Georgia.
+JavaScript, the panel stays hidden and all content is readable in Georgia on Plain.
 
 ## Build and preview
 

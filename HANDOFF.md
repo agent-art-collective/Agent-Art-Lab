@@ -20,6 +20,22 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 background textures (Lab-site lane): the floating panel is now
+  called Appearance and adds Paper, Linen, Canvas, Laid and Dots, plus Plain
+  to restore the original background. Font, weight and texture persist through
+  separate local preferences. Native controls, preview swatches, system colors
+  and plain-white printing remain available. Local checks passed 44 tests,
+  20 pages and 442 links; 48 browser views covered all backgrounds, both color
+  themes, desktop and mobile. Keyboard, storage denial, cross-tab changes,
+  independent choices and no-JavaScript defaults passed. Visual review found
+  the first Paper preview too regular and led to an irregular grain refinement;
+  Canvas line intersections were softened after an initial contrast shortfall.
+  Paper's eight affected views passed again; sampled text contrast stayed at
+  least 4.64:1 in light mode and 6.33:1 in dark mode across the final textures.
+  Agent index and all 15 document exports remain byte-identical. These checks
+  cover rendering and behavior in Chrome, not reader preference or comprehension.
+  Next action: compare the five textures with font and weight on the live site.
+
 - 2026-10-02 font weights (Lab-site lane): the floating Fonts panel now offers
   Light (300), Regular (400) and Bold (700). Font and weight persist independently
   across pages and tabs; source emphasis stays bold. Sixty local Chrome views

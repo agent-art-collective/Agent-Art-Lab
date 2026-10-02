@@ -134,7 +134,7 @@ test('the brand returns home and top navigation contains only GitHub', () => {
   assert.ok(checked > studies.length, 'check the reading pages as well as the articles');
 });
 
-test('every reading page provides font and weight choices with an inert no-JavaScript fallback', () => {
+test('every reading page provides font, weight and texture choices with an inert no-JavaScript fallback', () => {
   for (const file of readdirSync(path.join(root, '_site'), { recursive: true }).filter(file => file.endsWith('.html') && !file.startsWith('style-demo/'))) {
     const page = read(`_site/${file}`);
     const panel = one(page, 'details', 'font-panel');
@@ -152,6 +152,21 @@ test('every reading page provides font and weight choices with an inert no-JavaS
     });
     assert.deepEqual(weights.map(choice => [choice.value, choice.label]), [['300', 'Light'], ['400', 'Regular'], ['700', 'Bold']], file);
     assert.deepEqual(weights.filter(choice => 'checked' in choice).map(choice => choice.value), ['400'], file);
+    const textureGroup = one(panel.inner, 'fieldset', 'texture-controls');
+    assert.equal(one(textureGroup.inner, 'legend').inner, 'Background', file);
+    const textures = elements(textureGroup.inner, 'label', 'texture-option').map(label => {
+      const input = [...label.inner.matchAll(/<input\b([^>]*)>/g)];
+      assert.equal(input.length, 1, file);
+      const attrs = attributes(input[0][1]);
+      assert.equal(attrs.type, 'radio', file);
+      assert.equal(attrs.name, 'site-texture', file);
+      const swatch = one(label.inner, 'span', 'texture-swatch');
+      assert.equal(swatch.attrs['data-texture'], attrs.value, file);
+      assert.equal(swatch.attrs['aria-hidden'], 'true', file);
+      return { ...attrs, label: text(one(label.inner, 'span', 'texture-name').inner) };
+    });
+    assert.deepEqual(textures.map(choice => [choice.value, choice.label]), [['plain', 'Plain'], ['paper', 'Paper'], ['linen', 'Linen'], ['canvas', 'Canvas'], ['laid', 'Laid'], ['dots', 'Dots']], file);
+    assert.deepEqual(textures.filter(choice => 'checked' in choice).map(choice => choice.value), ['plain'], file);
     const labels = elements(panel.inner, 'label', 'font-option');
     const choices = labels.map(label => {
       const input = [...label.inner.matchAll(/<input\b([^>]*)>/g)];

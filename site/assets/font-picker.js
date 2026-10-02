@@ -1,7 +1,8 @@
-// Optional local preference. The default typeface and reading work without JS.
+// Optional local preferences. The default appearance and reading work without JS.
 (() => {
   const fontKey = 'agent-art-lab:font';
   const weightKey = 'agent-art-lab:weight';
+  const textureKey = 'agent-art-lab:texture';
   const panelKey = 'agent-art-lab:font-panel';
   const fontLabels = new Map([
     ['georgia', 'Georgia'], ['palatino', 'Palatino'],
@@ -10,8 +11,13 @@
   const weightLabels = new Map([
     ['300', 'Light'], ['400', 'Regular'], ['700', 'Bold'],
   ]);
+  const textureLabels = new Map([
+    ['plain', 'Plain'], ['paper', 'Paper'], ['linen', 'Linen'],
+    ['canvas', 'Canvas'], ['laid', 'Laid'], ['dots', 'Dots'],
+  ]);
   const supportedFont = value => fontLabels.has(value) ? value : 'georgia';
   const supportedWeight = value => weightLabels.has(value) ? value : '400';
+  const supportedTexture = value => textureLabels.has(value) ? value : 'plain';
 
   function readSetting(storage, key) {
     try { return window[storage].getItem(key); } catch { return null; }
@@ -21,27 +27,31 @@
     try { window[storage].setItem(key, value); return true; } catch { return false; }
   }
 
-  // Apply saved preferences before the stylesheet to avoid a typeface flash.
+  // Apply saved preferences before the stylesheet to avoid an appearance flash.
   document.documentElement.dataset.font = supportedFont(readSetting('localStorage', fontKey));
   document.documentElement.dataset.weight = supportedWeight(readSetting('localStorage', weightKey));
+  document.documentElement.dataset.texture = supportedTexture(readSetting('localStorage', textureKey));
 
   function initializePicker() {
     const panel = document.getElementById('font-panel');
     const currentLabel = document.getElementById('font-current');
     const currentWeightLabel = document.getElementById('weight-current');
+    const currentTextureLabel = document.getElementById('texture-current');
     const summary = panel?.querySelector('summary');
     if (!panel || !currentLabel || !summary) return;
     const choices = panel.querySelectorAll('input[type="radio"][name="site-font"]');
     const weightChoices = panel.querySelectorAll('input[type="radio"][name="site-weight"]');
+    const textureChoices = panel.querySelectorAll('input[type="radio"][name="site-texture"]');
 
     function savePreference(key, value) {
       const saved = saveSetting('localStorage', key, value);
-      const bothSaved = saved
+      const allSaved = saved
         && supportedFont(readSetting('localStorage', fontKey)) === document.documentElement.dataset.font
-        && supportedWeight(readSetting('localStorage', weightKey)) === document.documentElement.dataset.weight;
+        && supportedWeight(readSetting('localStorage', weightKey)) === document.documentElement.dataset.weight
+        && supportedTexture(readSetting('localStorage', textureKey)) === document.documentElement.dataset.texture;
       const hint = panel.querySelector('.font-panel-hint');
-      if (hint) hint.textContent = bothSaved ? 'Your font and weight follow you between pages.'
-        : 'Applied here. Your browser couldn’t save both choices.';
+      if (hint) hint.textContent = allSaved ? 'Your choices follow you between pages.'
+        : 'Applied here. Your browser couldn’t save all choices.';
     }
 
     function applyFont(value, remember = false) {
@@ -62,13 +72,25 @@
       if (remember) savePreference(weightKey, weight);
     }
 
+    function applyTexture(value, remember = false) {
+      const texture = supportedTexture(value);
+      document.documentElement.dataset.texture = texture;
+      if (currentTextureLabel) currentTextureLabel.textContent = textureLabels.get(texture);
+      textureChoices.forEach(choice => { choice.checked = choice.value === texture; });
+      if (remember) savePreference(textureKey, texture);
+    }
+
     applyFont(document.documentElement.dataset.font);
     applyWeight(document.documentElement.dataset.weight);
+    applyTexture(document.documentElement.dataset.texture);
     choices.forEach(choice => choice.addEventListener('change', () => {
       if (choice.checked && fontLabels.has(choice.value)) applyFont(choice.value, true);
     }));
     weightChoices.forEach(choice => choice.addEventListener('change', () => {
       if (choice.checked && weightLabels.has(choice.value)) applyWeight(choice.value, true);
+    }));
+    textureChoices.forEach(choice => choice.addEventListener('change', () => {
+      if (choice.checked && textureLabels.has(choice.value)) applyTexture(choice.value, true);
     }));
 
     const savedPanel = readSetting('sessionStorage', panelKey);
@@ -97,6 +119,9 @@
       }
       if (event.key === weightKey || event.key === null) {
         applyWeight(readSetting('localStorage', weightKey));
+      }
+      if (event.key === textureKey || event.key === null) {
+        applyTexture(readSetting('localStorage', textureKey));
       }
     });
     panel.hidden = false;
