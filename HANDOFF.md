@@ -34,9 +34,14 @@ before making repository-ownership or task-routing proposals.
   The rehearsal exposed a title/H1 wording mismatch, corrected to allow shorter
   feed titles consistent with existing articles. It did not exercise remote
   forks or PR access and does not establish general contributor reliability.
-  No fixture or new tooling is included in this change. Next action: merge the
-  reviewed guide rollout when CI passes, verify publication and the updated
-  contribution download, then use this procedure for the next real article PR.
+  No fixture or new tooling is included in this change. PR #2 passed CI and
+  merged at `e8259c9`; the Pages deployment succeeded. Live HTTPS checks verified
+  49 URLs, 20 pages, 428 internal links and all 15 complete documents against the
+  build, including the new contribution guide's schema, revision and bytes.
+  One HTTP index redirect returned 502 on the first sweep, then passed a focused
+  recheck with the exact index bytes; the remaining redirects and custom 404
+  passed. Next action: use CONTRIBUTING.md for the next real article PR, with
+  contributor submission and maintainer merge kept separate.
 
 - 2026-10-02 appearance-panel removal (Lab-site lane): the operator clarified
   that the chooser was for internal design only. Published reading pages now
