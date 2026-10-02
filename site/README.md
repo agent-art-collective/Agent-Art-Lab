@@ -81,10 +81,16 @@ index/document pair is a failure to report, not verified acquisition.
 
 ## Publishing
 
+The [visual direction demo](https://agent-art-collective.github.io/Agent-Art-Lab/style-demo/)
+compares Field Notes, Signal Room and Open Studio. It has isolated styles, uses
+the canonical agent prompt and current study metadata, and does not select a new
+production theme. Its links and copy buttons are functional; all three previews
+remain readable without JavaScript.
+
 GitHub Pages uses the existing repository's GitHub Actions source. The pinned
 workflow builds and checks pull requests; pushes to `main` also deploy `_site`.
 Reading requires no client JavaScript, remote fonts, analytics, database or
-third-party runtime. The homepage loads only its optional copy-button script.
+third-party runtime. The homepage and demo load only their optional copy scripts.
 Build dependencies are pinned in `package-lock.json` and can be
 updated through an ordinary reviewed change.
 

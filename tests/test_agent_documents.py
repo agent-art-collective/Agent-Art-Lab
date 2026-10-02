@@ -55,7 +55,7 @@ class AgentDocumentFixture:
                                                           "sha256": digest(raw), "byteLength": len(raw)}})
             self.put(f"_site/{route}{'index.html' if route.endswith('/') else ''}", self.page(target))
         self.put("_site/index.html", self.page(prompt=PROMPT))
-        for route in ("lessons/index.html", "studies/index.html", "404.html"):
+        for route in ("lessons/index.html", "studies/index.html", "404.html", "style-demo/index.html"):
             self.put(f"_site/{route}", self.page())
         self.put("_site/llms.txt", (f"[Index]({BASE}/agent-index.json)\n" + "".join(
             f"[Record]({entry['download']['url']})\n" for entry in self.entries)).encode())

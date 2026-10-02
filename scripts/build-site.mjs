@@ -1,4 +1,4 @@
-// Markdown remains canonical; optional client JS only copies the homepage prompt.
+// Markdown remains canonical; optional client JS only copies agent prompts.
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -6,6 +6,7 @@ import MarkdownIt from 'markdown-it';
 import GithubSlugger from 'github-slugger';
 import { buildAgentDocuments, documentId } from './agent-documents.mjs';
 import { extractLessonExcerpts } from './lesson-excerpts.mjs';
+import { renderStyleDemo } from './style-demo.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const output = path.join(root, '_site');
@@ -144,4 +145,5 @@ for (const [source, route] of routes) {
 }
 
 write('404.html', shell('Page not found', '', heading('404 / A missing page', 'This page is not here.', 'The record may have moved. Browse the studies or return to the notebook.') + `<p><a class="button" href="${url('index.html')}">Back to the notebook ↗</a></p>`));
-console.log(`Built ${routes.size + 4} pages from ${studies.length} study records; base path ${base || '/'}.`);
+write('style-demo/index.html', renderStyleDemo({ basePath: base, agentPrompt, lesson: lessons.find(l => l.id === 'P-07'), studies, documentCount: agentDocuments.index.documents.length }));
+console.log(`Built ${routes.size + 5} pages from ${studies.length} study records; base path ${base || '/'}.`);

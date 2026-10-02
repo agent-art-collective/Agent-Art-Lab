@@ -19,7 +19,7 @@ VOID_TAGS = {
     "meta", "param", "source", "track", "wbr",
 }
 PUBLIC_TYPES = {".html", ".css", ".svg"}
-PUBLIC_SCRIPTS = {Path("assets/copy-prompt.js")}
+PUBLIC_SCRIPTS = {Path("assets/copy-prompt.js"), Path("assets/style-demo.js")}
 PRIVATE_FOLDERS = {"private", "local", "tmp", "node_modules", "__pycache__"}
 
 
@@ -184,7 +184,7 @@ def check_site(root, base):
     if output / "index.html" not in pages:
         errors.append("missing readable homepage")
     expected_pages = {Path("index.html"), Path("lessons/index.html"),
-                      Path("studies/index.html"), Path("404.html")} | {
+                      Path("studies/index.html"), Path("404.html"), Path("style-demo/index.html")} | {
         Path(route) / "index.html" if route.endswith("/") else Path(route)
         for route in routes.values()
     }

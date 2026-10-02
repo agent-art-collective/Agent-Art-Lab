@@ -20,6 +20,19 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 visual theme review (Lab-site lane): the operator requested three
+  directions on a demo page. `/style-demo/` compares Field Notes (warm editorial),
+  Signal Room (dark research console) and Open Studio (bold public art identity).
+  Each uses the same complete guide prompt, P-07 introduction and current study
+  records, with working navigation and copy buttons. Styles are isolated; the
+  main reading-site theme awaits the operator's selection. Local validation
+  passed all 37 tests, 20 pages and 480 internal links. Chrome checks passed all
+  three previews at four widths (320–1440px), exact native clipboard/guide parity,
+  denied-clipboard recovery and reading without JavaScript. Contrast/source
+  review found no blockers. Using identical material helped compare the styles;
+  these checks do not measure visitor preference or Agent comprehension.
+  Next action: obtain the operator's choice before applying a production theme.
+
 - 2026-10-02 complete site validation (Lab-site lane): fixed lesson previews in
   `949f0b1`; the old multiline regex stopped at source line endings. Markdown
   paragraph extraction now retains all seven complete introductions. Added
