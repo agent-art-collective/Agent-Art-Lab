@@ -22,12 +22,17 @@ Every reading page has a floating, collapsible Fonts panel with Georgia,
 Palatino, Times New Roman, Arial and Courier New. A choice applies to the whole
 reading page, including navigation, headings, metadata, prompt and code. The
 chooser keeps stable controls and previews each option in its own typeface.
+Light (300), Regular (400) and Bold (700) apply a base weight to page text and
+font previews; source emphasis and table headings remain bold. The panel shows
+the active weight beside the font name. Some device fonts have no light face,
+so browsers may render Light like Regular; the panel explains this when selected.
 These are device fonts with CSS fallbacks; exact rendering depends on installed
 fonts. No font service or font download is required. The earlier style demo
 preserves its original, separate previews.
 
-The optional `font-picker.js` restores a validated choice from local storage
-before rendering and saves changes for later pages and visits. Storage denial
+The optional `font-picker.js` restores validated font and weight choices from
+separate local storage keys before rendering and saves changes for later pages
+and visits. The default is Georgia Regular. Storage denial
 does not prevent switching; the panel explains when a choice cannot be saved.
 Its open/closed state lasts for the browser session. With no saved panel state,
 it starts collapsed at widths up to 1320px and open on wider screens. Native

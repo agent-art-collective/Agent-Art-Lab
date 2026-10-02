@@ -20,6 +20,19 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 font weights (Lab-site lane): the floating Fonts panel now offers
+  Light (300), Regular (400) and Bold (700). Font and weight persist independently
+  across pages and tabs; source emphasis stays bold. Sixty local Chrome views
+  covered all 15 combinations on home/article pages at desktop/mobile widths,
+  plus keyboard, storage denial, cross-tab updates and no-JavaScript reading.
+  All checks passed after correcting two browser-harness assumptions (default
+  preferences need no stored key, and numeric CSS attribute values need quotes).
+  Actual glyph inspection found that all five installed fonts use their regular
+  face for Light on this machine; the panel explains that fallback when selected.
+  Agent index and all 15 document exports remain byte-identical. The browser
+  checks establish behavior on this machine, not reader preference or other
+  devices' font availability. Next action: compare weights on the live site.
+
 - 2026-10-02 automatic color themes (Lab-site lane): reading pages now follow
   the system light/dark preference through CSS, including changes without a
   reload. The prompt, font picker and native controls use matching colors;

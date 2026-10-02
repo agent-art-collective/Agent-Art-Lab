@@ -134,12 +134,24 @@ test('the brand returns home and top navigation contains only GitHub', () => {
   assert.ok(checked > studies.length, 'check the reading pages as well as the articles');
 });
 
-test('every reading page provides five labelled font choices with an inert no-JavaScript fallback', () => {
+test('every reading page provides font and weight choices with an inert no-JavaScript fallback', () => {
   for (const file of readdirSync(path.join(root, '_site'), { recursive: true }).filter(file => file.endsWith('.html') && !file.startsWith('style-demo/'))) {
     const page = read(`_site/${file}`);
     const panel = one(page, 'details', 'font-panel');
     assert.ok('hidden' in panel.attrs, `${file}: hide controls until they work`);
-    assert.equal(one(panel.inner, 'legend').inner, 'Try a typeface', file);
+    assert.equal(one(one(panel.inner, 'fieldset', 'font-family-controls').inner, 'legend').inner, 'Try a typeface', file);
+    const weightGroup = one(panel.inner, 'fieldset', 'weight-controls');
+    assert.equal(one(weightGroup.inner, 'legend').inner, 'Weight', file);
+    const weights = elements(weightGroup.inner, 'label', 'weight-option').map(label => {
+      const input = [...label.inner.matchAll(/<input\b([^>]*)>/g)];
+      assert.equal(input.length, 1, file);
+      const attrs = attributes(input[0][1]);
+      assert.equal(attrs.type, 'radio', file);
+      assert.equal(attrs.name, 'site-weight', file);
+      return { ...attrs, label: text(one(label.inner, 'span').inner) };
+    });
+    assert.deepEqual(weights.map(choice => [choice.value, choice.label]), [['300', 'Light'], ['400', 'Regular'], ['700', 'Bold']], file);
+    assert.deepEqual(weights.filter(choice => 'checked' in choice).map(choice => choice.value), ['400'], file);
     const labels = elements(panel.inner, 'label', 'font-option');
     const choices = labels.map(label => {
       const input = [...label.inner.matchAll(/<input\b([^>]*)>/g)];
