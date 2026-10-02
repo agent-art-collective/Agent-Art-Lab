@@ -8,8 +8,9 @@ The public reading site renders the existing repository Markdown. Edit the
 original study or Guidance to change its article; do not edit generated HTML.
 The homepage is the single blog feed. The former `/studies/` and `/lessons/`
 listing URLs redirect to its articles section, with a visible fallback link and
-no JavaScript requirement. The selected Quiet editorial style uses a narrow
-reading column, warm white background, serif headings and restrained rules.
+no JavaScript requirement. The selected Quiet editorial layout uses a narrow
+reading column and restrained rules. The operator selected Courier New Regular
+with Dots as the default appearance on 2026-10-02.
 The header's Agent-Art-Lab name links home; GitHub is the only separate top link.
 Light and dark colors follow the system preference through CSS, including live
 system changes and reading without JavaScript. Dark mode uses warm charcoal,
@@ -37,12 +38,14 @@ system color theme and stay subtle behind text; print remains plain white.
 
 The optional `font-picker.js` restores validated font, weight and texture choices from
 separate local storage keys before rendering and saves changes for later pages
-and visits. The default is Georgia Regular on Plain. Storage denial
-does not prevent switching; the panel explains when a choice cannot be saved.
+and visits. The default is Courier New Regular on Dots; saved reader choices
+take precedence. Storage denial does not prevent switching; the panel explains
+when a choice cannot be saved.
 Its open/closed state lasts for the browser session. With no saved panel state,
 it starts collapsed at widths up to 1320px and open on wider screens. Native
 radio controls support keyboard selection; Escape closes the panel. Without
-JavaScript, the panel stays hidden and all content is readable in Georgia on Plain.
+JavaScript, the panel stays hidden and all content is readable in Courier New
+Regular on Dots.
 
 ## Build and preview
 

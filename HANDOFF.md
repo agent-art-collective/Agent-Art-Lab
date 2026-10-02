@@ -20,6 +20,16 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-02 selected appearance (Lab-site lane): the operator chose Courier
+  New, Regular (400) and Dots from the comparison panel. This is now the default
+  in generated HTML, CSS and preference fallbacks, including reading without
+  JavaScript. Explicit saved reader choices still take precedence; the panel
+  remains available and light/dark colors still follow the system. Agent
+  documents are unchanged. Checks passed 44 tests, 20 pages, 442 links and
+  eight desktop/mobile browser views in both color themes, plus preference
+  storage and no-JavaScript cases. Next action: retain this selected appearance
+  as new articles are added.
+
 - 2026-10-02 background textures (Lab-site lane): the floating panel is now
   called Appearance and adds Paper, Linen, Canvas, Laid and Dots, plus Plain
   to restore the original background. Font, weight and texture persist through

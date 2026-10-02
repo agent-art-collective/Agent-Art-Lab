@@ -166,7 +166,7 @@ test('every reading page provides font, weight and texture choices with an inert
       return { ...attrs, label: text(one(label.inner, 'span', 'texture-name').inner) };
     });
     assert.deepEqual(textures.map(choice => [choice.value, choice.label]), [['plain', 'Plain'], ['paper', 'Paper'], ['linen', 'Linen'], ['canvas', 'Canvas'], ['laid', 'Laid'], ['dots', 'Dots']], file);
-    assert.deepEqual(textures.filter(choice => 'checked' in choice).map(choice => choice.value), ['plain'], file);
+    assert.deepEqual(textures.filter(choice => 'checked' in choice).map(choice => choice.value), ['dots'], file);
     const labels = elements(panel.inner, 'label', 'font-option');
     const choices = labels.map(label => {
       const input = [...label.inner.matchAll(/<input\b([^>]*)>/g)];
@@ -178,7 +178,7 @@ test('every reading page provides font, weight and texture choices with an inert
       return attrs;
     });
     assert.deepEqual(choices.map(choice => choice.value), ['georgia', 'palatino', 'times', 'arial', 'courier'], file);
-    assert.deepEqual(choices.filter(choice => 'checked' in choice).map(choice => choice.value), ['georgia'], file);
+    assert.deepEqual(choices.filter(choice => 'checked' in choice).map(choice => choice.value), ['courier'], file);
     const pickerScript = elements(page, 'script').filter(script => script.attrs.src === `${base}/assets/font-picker.js`);
     assert.equal(pickerScript.length, 1, file);
     assert.ok(pickerScript[0].start < page.indexOf('<body>'), `${file}: restore the preference before page rendering`);

@@ -15,9 +15,9 @@
     ['plain', 'Plain'], ['paper', 'Paper'], ['linen', 'Linen'],
     ['canvas', 'Canvas'], ['laid', 'Laid'], ['dots', 'Dots'],
   ]);
-  const supportedFont = value => fontLabels.has(value) ? value : 'georgia';
+  const supportedFont = value => fontLabels.has(value) ? value : 'courier';
   const supportedWeight = value => weightLabels.has(value) ? value : '400';
-  const supportedTexture = value => textureLabels.has(value) ? value : 'plain';
+  const supportedTexture = value => textureLabels.has(value) ? value : 'dots';
 
   function readSetting(storage, key) {
     try { return window[storage].getItem(key); } catch { return null; }
