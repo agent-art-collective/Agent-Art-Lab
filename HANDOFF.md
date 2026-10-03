@@ -20,6 +20,12 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-03 footer simplification (Lab-site lane): the operator requested
+  a single closing line. “Part of Agent Art Work” now links to the Lab's
+  GitHub repository; the separate “agentart.work · starting with the Lab”
+  line and its unused CSS are removed. Homepage metadata retains the umbrella
+  scope. Next action: retain this single attribution line in the shared footer.
+
 - 2026-10-03 DNS completion (Lab-site release lane): the operator restored
   access to the owning Cloudflare account. The www CNAME now points to
   `agent-art-work.github.io` and the new `_github-pages-challenge-agent-art-work`
