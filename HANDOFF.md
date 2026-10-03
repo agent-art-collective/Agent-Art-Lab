@@ -20,6 +20,19 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-03 DNS completion (Lab-site release lane): the operator restored
+  access to the owning Cloudflare account. The www CNAME now points to
+  `agent-art-work.github.io` and the new `_github-pages-challenge-agent-art-work`
+  TXT record carries GitHub's retained verification value. Cloudflare's UI
+  and public Google DNS both confirmed the records. Existing apex records,
+  DNS-only status and the earlier verification TXT are preserved. GitHub
+  reports the domain verified, certificate approved and HTTPS enforced.
+  Seven live checks passed for apex/HTTP/www, an article, the agent index and
+  the new GitHub Pages address, including exact served bytes and retained paths.
+  This completes the pending DNS step recorded below; the organization/domain
+  migration is complete. Next action: retain these DNS and ownership records
+  while continuing ordinary article contributions to `agent-art-work/Agent-Art-Lab`.
+
 - 2026-10-03 organization rename (Lab establishment/site release lane): the
   operator authorized aligning the umbrella with agentart.work. GitHub now
   shows `agent-art-work`, display name **Agent Art Work**, with the same

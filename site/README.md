@@ -127,16 +127,16 @@ demo styles remain isolated to preserve the original comparison.
 Links and copy buttons work, and all previews remain readable without JavaScript.
 
 GitHub Pages uses the existing repository's GitHub Actions source and the custom
-domain `agentart.work`, configured in Pages settings. The expected DNS after the
-organization rename is four GitHub Pages A records, four AAAA records and a
+domain `agentart.work`, configured in Pages settings. Cloudflare serves four
+GitHub Pages A records, four AAAA records and a
 `www` CNAME pointing to `agent-art-work.github.io`, all DNS-only in Cloudflare.
 GitHub retained domain verification, the valid apex/www certificate and HTTPS
 enforcement after the rename on 2026-10-03. Live pages, agent exports and
 redirects to `https://agentart.work/` passed, retaining article and document paths.
-DNS migration is pending access to the owning Cloudflare account: public `www`
-still targets `agent-art-collective.github.io`. Change it to the new target and
-add `_github-pages-challenge-agent-art-work` with GitHub's retained verification
-value, then recheck DNS and HTTPS redirects.
+The `www` target and `_github-pages-challenge-agent-art-work` TXT record were
+verified through public DNS on 2026-10-03 using GitHub's retained verification
+value. HTTPS and path-preserving redirects passed again after the DNS update.
+Retain the ownership TXT record; the earlier challenge record is also preserved.
 This Actions deployment does not use a `CNAME` file. The pinned
 workflow builds and checks pull requests; pushes to `main` also deploy `_site`.
 Reading requires no client JavaScript, remote fonts, analytics, database or
