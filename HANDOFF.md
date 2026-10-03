@@ -31,12 +31,17 @@ before making repository-ownership or task-routing proposals.
   428 links. All 15 JSON download envelopes were rebuilt with new source URLs;
   only CONTRIBUTING and BOUNDARIES source revisions changed. GitHub retained
   domain verification, its approved apex/www certificate and HTTPS enforcement.
+  Commit `3f74bc5` deployed successfully under the new owner. A live HTTPS sweep
+  passed 50 URLs, 20 pages, 428 internal links and all 15 complete documents,
+  including schemas, revisions, download bytes and decoded source bytes. All
+  eight new-Pages/HTTP/www redirect cases and the custom 404 passed, with no
+  retries or failures. Both old repository web URLs redirect to the new owner.
   DNS migration is still pending: public `www` points to the old GitHub owner
   and the challenge uses the old slug. Chrome currently exposes a different
   Cloudflare account; the operator has been asked to open the owning account.
   Next action: change the www CNAME to `agent-art-work.github.io`, add GitHub's
   new `_github-pages-challenge-agent-art-work` TXT host with the existing
-  verification value, then verify deployment, HTTPS redirects and live exports.
+  verification value, then recheck public DNS and HTTPS redirects.
 
 - 2026-10-03 quieter positioning (Lab-site lane): the operator found the hero
   annotation too prominent. It is removed from the hero and shortened to
