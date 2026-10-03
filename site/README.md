@@ -30,16 +30,17 @@ its preference script are removed from published pages, so previously saved
 comparison choices no longer change the reading style. The earlier style demo
 preserves its original, separate previews.
 
-The favicon uses a five-by-five crop of the site's Dots pattern on warm paper.
-The dots are enlarged and use the muted text colors to stay visible at tab size.
-Its SVG carries its own system light/dark colors. Both page builders use a
-versioned icon URL to refresh earlier cached designs.
+The favicon is **Off grid**, selected by the operator on 2026-10-03: nine dots
+with one stepping outside the regular pattern. It retains the site's warm
+paper/charcoal palette and carries its own system light/dark colors. The active
+`site/assets/favicon.svg` matches `site/assets/icon-concepts/off-grid.svg`.
+Both page builders use `?v=off-grid-1` to refresh earlier cached designs.
 
 The separate [icon comparison page](https://agentart.work/icon-demo/) presents
 three Agent Art Work concepts: Off grid, Shared stroke and Open form, in light
 and dark contexts at 16, 32 and 96 pixels. Their SVGs live in
 `site/assets/icon-concepts/`; `scripts/icon-demo.mjs` renders the comparison.
-These are candidates for selection, not the active site favicon.
+The page records Off grid as selected and preserves the two alternatives.
 
 ## Build and preview
 

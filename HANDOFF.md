@@ -20,6 +20,15 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-03 Off grid selection (Lab-site/release lane): the operator selected
+  Off grid from the three icon concepts. The active favicon now matches its
+  nine-dot SVG exactly, including system light/dark colors; both page builders
+  use `?v=off-grid-1` to refresh cached favicons. The comparison page records
+  the selection and retains the alternatives. This supersedes the pending
+  selection below. All 45 local tests and the 21-page/461-link site check passed;
+  every generated page uses the new icon URL and the agent index is unchanged.
+  Next action: retain Off grid as the active mark when maintaining the site.
+
 - 2026-10-03 stable checkpoint and icon concepts (Lab-site/release lane):
   annotated tag `v0.1.1` is pushed at `07ac40f`, the verified organization/domain
   and corrected footer state. It precedes the exploratory icon comparison.

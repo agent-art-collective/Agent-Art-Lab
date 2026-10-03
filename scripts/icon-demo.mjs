@@ -1,4 +1,4 @@
-// An isolated comparison page; candidate marks do not change the site's favicon.
+// An isolated record of the three concepts and the operator's selection.
 export function renderIconConcepts(url) {
   const concepts = [
     ['off-grid', 'Off grid', 'A dot steps out of the pattern. A small act of intention, rooted in the site’s existing texture.'],
@@ -13,9 +13,9 @@ export function renderIconConcepts(url) {
   </div>`;
   return `<header class="page-heading"><p class="eyebrow">Agent Art Work / Icon studies</p>
     <h1>Three small marks.</h1><p class="lead">A pattern, a shared line, an open space.</p>
-    <p class="icon-note">Concepts for the umbrella. The current dots favicon stays in place while we choose.</p></header>
+    <p class="icon-note">Off grid is the selected mark for Agent Art Work.</p></header>
     <div class="icon-concepts">${concepts.map(([id, title, description], index) => `<article class="icon-concept" aria-labelledby="${id}">
-      <p class="eyebrow">0${index + 1}</p><h2 id="${id}">${title}</h2>
+      <p class="eyebrow">0${index + 1}${id === 'off-grid' ? ' / Selected' : ''}</p><h2 id="${id}">${title}</h2>
       <div class="icon-samples">${samples(id, title, 'light')}${samples(id, title, 'dark')}</div>
       <p class="icon-description">${description}</p><a class="text-link" href="${url(`assets/icon-concepts/${id}.svg`)}">Open SVG ↗</a>
     </article>`).join('')}</div>
