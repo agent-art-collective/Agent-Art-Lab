@@ -150,10 +150,11 @@ main { min-width: 0; }
 .article-pagination a:hover { text-decoration: underline; text-decoration-thickness: 1px; }
 .article-pagination .label { margin-bottom: 9px; font-size: 14px; letter-spacing: 0; }
 .site-footer { margin-top: 45px; padding-block: 23px 39px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
-.footer-brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; }
-.footer-brand img { display: block; flex: none; width: 32px; height: 32px; }
 .site-footer p { margin: 8px 0 0; }
 .site-footer nav { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 20px; margin-top: 20px; }
+.site-footer nav .footer-affiliation { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; flex-basis: 100%; margin-top: 3px; }
+.footer-affiliation a { display: inline-flex; align-items: center; gap: 6px; }
+.footer-affiliation img { display: block; flex: none; width: 18px; height: 18px; }
 
 @media (max-width: 720px) {
   .site-header, main, .site-footer { width: calc(100% - 48px); }

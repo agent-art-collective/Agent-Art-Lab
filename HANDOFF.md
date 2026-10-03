@@ -20,6 +20,17 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-03 footer correction (Lab-site/release lane): the operator rejected
+  replacing the footer's Lab heading. Agent-Art-Lab is restored as the footer
+  home link, with the slogan and reference links beneath it. The separate
+  “Part of Agent Art Work” line is restored, adding only an 18px Off grid icon
+  beside the linked organization name. “Part of” remains unlinked. This
+  supersedes the footer organization mark placement below. The separately
+  requested GitHub organization avatar was saved as Off grid and is retained.
+  All 45 tests and the 21-page/502-link site check passed; Chrome confirmed
+  the restored links and 18px icon in desktop light and mobile dark previews.
+  Next action: preserve the Lab heading and secondary organization attribution.
+
 - 2026-10-03 footer organization mark (Lab-site/release lane): the operator
   requested the Off grid icon with Agent Art Work at the bottom, linking to its
   GitHub organization. The shared footer's brand is now a 32px icon and visible
