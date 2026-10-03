@@ -20,6 +20,13 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-03 quieter positioning (Lab-site lane): the operator found the hero
+  annotation too prominent. It is removed from the hero and shortened to
+  “agentart.work · starting with the Lab” in the shared footer at 13px, using
+  the existing muted color. Homepage metadata retains the broader scope.
+  This supersedes the visible placement in the preceding iteration below.
+  Next action: keep this positioning secondary to the articles and agent prompt.
+
 - 2026-10-03 site positioning (Lab-site lane): the operator described
   agentart.work as a broader home for Agent Art works and projects, beginning
   with the Lab. A small, muted annotation beneath the existing homepage slogan
