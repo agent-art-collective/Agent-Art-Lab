@@ -6,6 +6,7 @@ import MarkdownIt from 'markdown-it';
 import GithubSlugger from 'github-slugger';
 import { buildAgentDocuments, documentId } from './agent-documents.mjs';
 import { renderStyleDemo } from './style-demo.mjs';
+import { renderIconConcepts } from './icon-demo.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const output = path.join(root, '_site');
@@ -87,14 +88,14 @@ function render(source) {
   return { title, headings, body: md.renderer.render(tokens, md.options, {}) };
 }
 
-function shell(title, content, description = slogan, source = null) {
+function shell(title, content, description = slogan, source = null, stylesheets = []) {
   return `<!doctype html>
 <html lang="en" data-font="courier" data-weight="400" data-texture="dots"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)} · Agent-Art-Lab</title><meta name="description" content="${esc(description)}">
 <link rel="alternate" type="application/json" title="Agent document index" href="${url('agent-index.json')}">
 ${source ? `<link rel="alternate" type="application/json" title="Complete document" href="${url(`documents/${documentId(source)}.json`)}">` : ''}
 <meta name="color-scheme" content="light dark"><meta name="theme-color" content="#fbf9f4" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><link rel="icon" href="${url('assets/favicon.svg?v=dots-2')}" type="image/svg+xml" sizes="any">
-<link rel="stylesheet" href="${url('assets/site.css')}"></head><body>
+<link rel="stylesheet" href="${url('assets/site.css')}">${stylesheets.map(file => `<link rel="stylesheet" href="${url(file)}">`).join('')}</head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><a class="brand" href="${url('index.html')}" aria-label="Agent-Art-Lab home">Agent-Art-Lab</a>
 <nav class="site-nav" aria-label="Main navigation"><a href="${repo}">GitHub <span aria-hidden="true">↗</span></a></nav></header>
@@ -149,4 +150,5 @@ for (const [source, route] of routes) {
 
 write('404.html', shell('Page not found', heading('404 / A missing page', 'This page is not here.', 'The article may have moved. Return to the blog to keep reading.') + `<p><a class="button" href="${url('index.html')}">Back to the blog ↗</a></p>`));
 write('style-demo/index.html', renderStyleDemo({ basePath: base, slogan, agentPrompt, studies, documentCount: agentDocuments.index.documents.length }));
-console.log(`Built ${routes.size + 5} pages from ${studies.length} study records; base path ${base || '/'}.`);
+write('icon-demo/index.html', shell('Icon studies', renderIconConcepts(url), 'Three icon concepts for Agent Art Work: Off grid, Shared stroke and Open form.', null, ['assets/icon-demo.css']));
+console.log(`Built ${routes.size + 6} pages from ${studies.length} study records; base path ${base || '/'}.`);

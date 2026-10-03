@@ -186,7 +186,8 @@ def check_site(root, base):
     if output / "index.html" not in pages:
         errors.append("missing readable homepage")
     expected_pages = {Path("index.html"), Path("lessons/index.html"),
-                      Path("studies/index.html"), Path("404.html"), Path("style-demo/index.html")} | {
+                      Path("studies/index.html"), Path("404.html"), Path("style-demo/index.html"),
+                      Path("icon-demo/index.html")} | {
         Path(route) / "index.html" if route.endswith("/") else Path(route)
         for route in routes.values()
     }

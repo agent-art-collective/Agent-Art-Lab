@@ -35,6 +35,12 @@ The dots are enlarged and use the muted text colors to stay visible at tab size.
 Its SVG carries its own system light/dark colors. Both page builders use a
 versioned icon URL to refresh earlier cached designs.
 
+The separate [icon comparison page](https://agentart.work/icon-demo/) presents
+three Agent Art Work concepts: Off grid, Shared stroke and Open form, in light
+and dark contexts at 16, 32 and 96 pixels. Their SVGs live in
+`site/assets/icon-concepts/`; `scripts/icon-demo.mjs` renders the comparison.
+These are candidates for selection, not the active site favicon.
+
 ## Build and preview
 
 Requires Node.js 22+ and Python 3.10+ for the offline checks:

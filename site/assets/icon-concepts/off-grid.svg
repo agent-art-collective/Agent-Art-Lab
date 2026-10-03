@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-labelledby="title">
+  <title id="title">Agent Art Work — Off grid</title>
+  <style>
+    :root { color-scheme: light dark; }
+    .paper { fill: #fbf9f4; }
+    .ink { fill: #34312d; }
+    @media (prefers-color-scheme: dark) {
+      .paper { fill: #1c1b19; }
+      .ink { fill: #ebe5da; }
+    }
+  </style>
+  <rect class="paper" width="32" height="32" rx="2"/>
+  <g class="ink">
+    <circle cx="7" cy="9" r="2.2"/>
+    <circle cx="15" cy="9" r="2.2"/>
+    <circle cx="26" cy="5" r="2.2"/>
+    <circle cx="7" cy="17" r="2.2"/>
+    <circle cx="15" cy="17" r="2.2"/>
+    <circle cx="23" cy="17" r="2.2"/>
+    <circle cx="7" cy="25" r="2.2"/>
+    <circle cx="15" cy="25" r="2.2"/>
+    <circle cx="23" cy="25" r="2.2"/>
+  </g>
+</svg>

@@ -20,6 +20,18 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-03 stable checkpoint and icon concepts (Lab-site/release lane):
+  annotated tag `v0.1.1` is pushed at `07ac40f`, the verified organization/domain
+  and corrected footer state. It precedes the exploratory icon comparison.
+  `/icon-demo/` presents Off grid, Shared stroke and Open form for Agent Art Work,
+  each in light/dark contexts at 16, 32 and 96 pixels. The existing five-by-five
+  dots favicon remains active. Local checks passed all 45 tests, 21 pages and
+  461 links; Chrome showed all 18 samples loaded at their intended sizes and
+  no horizontal overflow on desktop or a 360px content viewport. These are
+  design concepts, not a new article or change to the agent document contract.
+  Next action: ask the operator to select or refine a concept before replacing
+  the active favicon.
+
 - 2026-10-03 footer simplification (Lab-site lane): the operator requested
   a single closing line. “Part of Agent Art Work” now links to the Lab's
   GitHub repository; the separate “agentart.work · starting with the Lab”

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-labelledby="title">
+  <title id="title">Agent Art Work — Open form</title>
+  <style>
+    :root { color-scheme: light dark; }
+    .paper { fill: #fbf9f4; }
+    .form { fill: none; stroke: #34312d; }
+    .point { fill: #34312d; }
+    @media (prefers-color-scheme: dark) {
+      .paper { fill: #1c1b19; }
+      .form { stroke: #ebe5da; }
+      .point { fill: #ebe5da; }
+    }
+  </style>
+  <rect class="paper" width="32" height="32" rx="2"/>
+  <path class="form" d="M25 15V7H7V25H15" stroke-width="2.6" stroke-linecap="square" stroke-linejoin="miter"/>
+  <circle class="point" cx="25" cy="25" r="2.6"/>
+</svg>
