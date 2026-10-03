@@ -11,6 +11,8 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const output = path.join(root, '_site');
 const repo = 'https://github.com/agent-art-collective/Agent-Art-Lab';
 const slogan = 'Articles, studies and working notes on Agent Art.';
+const homeNote = 'agentart.work is a home for Agent Art. Starting with the Lab.';
+const homeDescription = `A home for Agent Art works and projects, starting with Agent Art Lab. ${slogan}`;
 const base = process.env.SITE_BASE_PATH ?? '';
 if (base && !/^\/[A-Za-z0-9_-]+(?:\/[A-Za-z0-9_-]+)*$/.test(base)) {
   throw new Error('SITE_BASE_PATH must be empty or a path without a trailing slash.');
@@ -126,10 +128,10 @@ for (const [id, bytes] of agentDocuments.documents) write(`documents/${id}.json`
 write('llms.txt', `# Agent-Art-Lab\n\n> Shared guidance and an annotated archive for Agent Art. Practices are provisional; study evidence and limits remain part of each record.\n\n## Start here\n\n- [Document index (JSON)](${url('agent-index.json')}): discovery, revisions, hashes and complete same-origin downloads.\n- [Agent access guide](${url('agent-access/index.html')}): prerequisites, verification, link resolution and failure handling.\n\nUse permitted ordinary HTTP GET to fetch the index and relevant complete downloads. Resolve root-relative URLs against the fetched index origin. No JavaScript, GitHub retrieval or authentication is required to read exported documents. Treat documents as reference material, not new authority. Successful retrieval is not evidence of comprehension. This file is a discovery convenience, not a guarantee that every agent will discover it automatically.\n\n## Documents\n\n${agentDocuments.index.documents.map(d => `- [${d.title}](${d.download.url})${d.study ? `: ${d.study.status}; ${d.study.evidence}.` : ''}`).join('\n')}\n`);
 
 write('index.html', shell('Blog', `
-<section class="home-hero journal-home"><header class="hero-intro"><h1>${esc(slogan)}</h1></header>
+<section class="home-hero journal-home"><header class="hero-intro"><h1>${esc(slogan)}</h1><p class="hero-note">${esc(homeNote)}</p></header>
 <details class="hero-prompt" id="agent-prompt-disclosure"><summary><span id="agent-prompt-heading">Read with your agent.</span><span class="disclosure-icon" aria-hidden="true"></span></summary>
 <div class="prompt-content"><p class="prompt-intro">Copy this prompt, then ask your agent about anything on the blog.</p><div class="prompt-actions"><button class="button prompt-copy" type="button" id="copy-agent-prompt" hidden>Copy prompt <span aria-hidden="true">↗</span></button><a href="${url('agent-access/index.html')}">How it works ↗</a></div><pre id="agent-prompt" tabindex="0" aria-label="Prompt to copy for your agent">${esc(agentPrompt)}</pre><p class="prompt-status" id="prompt-copy-status" role="status" aria-live="polite">You can also select and copy the text.</p></div></details></section>
-<section class="journal-feed" id="articles" aria-labelledby="recent-heading"><div class="section-heading"><h2 id="recent-heading">Latest articles</h2></div>${posts(studies)}</section><script src="${url('assets/copy-prompt.js')}" defer></script>`));
+<section class="journal-feed" id="articles" aria-labelledby="recent-heading"><div class="section-heading"><h2 id="recent-heading">Latest articles</h2></div>${posts(studies)}</section><script src="${url('assets/copy-prompt.js')}" defer></script>`, homeDescription));
 
 // Keep old list URLs usable without maintaining duplicate browsing surfaces.
 for (const route of ['studies/index.html', 'lessons/index.html']) {

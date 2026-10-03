@@ -13,6 +13,8 @@ Each artwork keeps its own artistic aims and implementation.
 **Read the Lab:** [Agent-Art-Lab blog](https://agentart.work/).
 The site presents these Markdown records with reading navigation. See
 [site maintenance](site/README.md) for the build and publication path.
+The domain is intended as a broader home for Agent Art works and projects,
+starting with the Lab. This repository remains Agent-Art-Lab.
 For agents, start with the [document index](https://agentart.work/agent-index.json)
 and [access guide](docs/AGENT_ACCESS.md) for complete, verifiable downloads.
 

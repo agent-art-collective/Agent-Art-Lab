@@ -20,6 +20,18 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-03 site positioning (Lab-site lane): the operator described
+  agentart.work as a broader home for Agent Art works and projects, beginning
+  with the Lab. A small, muted annotation beneath the existing homepage slogan
+  now states that relationship; homepage metadata carries the same scope.
+  README and site notes preserve the distinction for later contributors.
+  The Lab name and article descriptions remain. Local checks passed 45 tests,
+  20 pages and 428 links. Chrome desktop and narrow previews showed the note
+  without horizontal overflow (835px and 375px content viewports). The agent
+  index and all 15 complete downloads remain byte-identical. This states an
+  intended scope, not complete coverage of Agent Art. Next action: retain this
+  distinction when adding works or projects beyond the Lab.
+
 - 2026-10-02 dots favicon (Lab-site lane): the operator chose the background
   dots motif in place of the earlier `A.` mark. The initial icon used a three-by-three
   dot pattern on the same paper/charcoal tile, with larger dots and muted text
