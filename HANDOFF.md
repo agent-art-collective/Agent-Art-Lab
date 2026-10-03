@@ -24,7 +24,10 @@ before making repository-ownership or task-routing proposals.
   a single closing line. “Part of Agent Art Work” now links to the Lab's
   GitHub repository; the separate “agentart.work · starting with the Lab”
   line and its unused CSS are removed. Homepage metadata retains the umbrella
-  scope. Next action: retain this single attribution line in the shared footer.
+  scope. Later that day, the operator clarified the link: “Part of” is plain
+  text and only “Agent Art Work” links to `https://github.com/agent-art-work`.
+  This corrects the initial repository destination above. Next action: retain
+  this single attribution line and organization link in the shared footer.
 
 - 2026-10-03 DNS completion (Lab-site release lane): the operator restored
   access to the owning Cloudflare account. The www CNAME now points to

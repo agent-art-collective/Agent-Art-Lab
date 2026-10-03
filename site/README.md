@@ -2,10 +2,11 @@
 
 The site slogan is “Articles, studies and working notes on Agent Art.” Its shared
 value in `scripts/build-site.mjs` supplies the homepage heading, footer and default
-page description. The footer ends with “Part of Agent Art Work”, linked to the
-Lab's GitHub repository; the hero contains only the slogan and agent prompt.
-Homepage metadata names the broader scope and the current Lab starting point. Article-specific
-descriptions keep their own summaries.
+page description. The footer ends with “Part of Agent Art Work”: “Part of” is
+plain text and only “Agent Art Work” links to the GitHub organization at
+`https://github.com/agent-art-work`. The hero contains only the slogan and agent
+prompt. Homepage metadata names the broader scope and the current Lab starting
+point. Article-specific descriptions keep their own summaries.
 
 The public reading site renders the existing repository Markdown. Edit the
 original study or Guidance to change its article; do not edit generated HTML.
