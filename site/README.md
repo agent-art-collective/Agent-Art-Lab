@@ -15,7 +15,9 @@ listing URLs redirect to its articles section, with a visible fallback link and
 no JavaScript requirement. The selected Quiet editorial layout uses a narrow
 reading column and restrained rules. The operator selected Courier New Regular
 with Dots as the fixed appearance on 2026-10-02.
-The header's Agent-Art-Lab name links home; GitHub is the only separate top link.
+The header's Off grid icon links home, with the accessible name “Agent-Art-Lab
+home”; GitHub is the only separate top link. The icon is 40px inside a 44px link
+target. The footer retains the Lab name.
 Light and dark colors follow the system preference through CSS, including live
 system changes and reading without JavaScript. Dark mode uses warm charcoal,
 light text and subtle dots. Print keeps a light background and dark text

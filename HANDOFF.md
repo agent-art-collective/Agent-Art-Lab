@@ -20,6 +20,16 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-03 header mark (Lab-site/release lane): the operator requested the
+  selected Off grid icon in place of the top-left Agent-Art-Lab text. The shared
+  header and style demo's outer header now use the 40px icon in a 44px home link,
+  retaining its accessible name and keyboard focus styling. The footer's Lab
+  name and the archived style previews retain their text. All 45 tests and the
+  21-page/482-link site check passed. Chrome verified light desktop and dark
+  mobile headers at 885px and 360px content widths, including icon size, no
+  horizontal overflow and navigation from Guidance back home. Next action:
+  retain this icon home link while maintaining the site.
+
 - 2026-10-03 Off grid selection (Lab-site/release lane): the operator selected
   Off grid from the three icon concepts. The active favicon now matches its
   nine-dot SVG exactly, including system light/dark colors; both page builders

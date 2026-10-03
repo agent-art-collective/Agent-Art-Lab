@@ -97,7 +97,7 @@ ${source ? `<link rel="alternate" type="application/json" title="Complete docume
 <meta name="color-scheme" content="light dark"><meta name="theme-color" content="#fbf9f4" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><link rel="icon" href="${url('assets/favicon.svg?v=off-grid-1')}" type="image/svg+xml" sizes="any">
 <link rel="stylesheet" href="${url('assets/site.css')}">${stylesheets.map(file => `<link rel="stylesheet" href="${url(file)}">`).join('')}</head><body>
 <a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header"><a class="brand" href="${url('index.html')}" aria-label="Agent-Art-Lab home">Agent-Art-Lab</a>
+<header class="site-header"><a class="brand" href="${url('index.html')}" aria-label="Agent-Art-Lab home"><img src="${url('assets/favicon.svg?v=off-grid-1')}" width="40" height="40" alt=""></a>
 <nav class="site-nav" aria-label="Main navigation"><a href="${repo}">GitHub <span aria-hidden="true">↗</span></a></nav></header>
 <main id="main">${content}</main>
 <footer class="site-footer"><div><a class="brand" href="${url('index.html')}">Agent-Art-Lab</a><p>${esc(slogan)}</p></div><nav aria-label="Reference links"><a href="${url('guidance/index.html')}">Guidance</a><a href="${url('agent-access/index.html')}">Agent access</a><a href="${url('agent-index.json')}">Document index (JSON)</a><a href="${url('contribute/index.html')}">Contribute</a><a href="${url('research/index.html')}">Research notes</a><a href="${repo}">Source &amp; history ↗</a><p>Part of <a href="https://github.com/agent-art-work">Agent Art Work</a></p></nav></footer></body></html>\n`;

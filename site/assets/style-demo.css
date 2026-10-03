@@ -23,7 +23,9 @@
 .demo-page > main, .demo-page .demo-topbar { width: min(1220px, calc(100% - 80px)); margin-inline: auto; }
 .demo-page .skip-link { position: absolute; top: 12px; left: 16px; z-index: 10; padding: 10px 16px; color: #fff; background: #222; transform: translateY(-180%); }
 .demo-page .skip-link:focus { transform: none; }
-.demo-page .demo-topbar { display: flex; justify-content: space-between; gap: 24px; padding-block: 26px; font-size: 12px; }
+.demo-page .demo-topbar { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 26px; font-size: 12px; }
+.demo-page .demo-brand { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 44px; height: 44px; }
+.demo-page .demo-brand img { display: block; width: 40px; height: 40px; }
 .demo-page .demo-topbar span { color: var(--demo-muted); }
 .demo-page .demo-intro { padding-block: 32px 24px; }
 .demo-page .demo-intro h1 { margin-bottom: 13px; font-size: 38px; font-weight: 500; letter-spacing: -0.045em; }
