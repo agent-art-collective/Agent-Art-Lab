@@ -31,13 +31,15 @@ site registration, checks and review submission.
 4. Use the [project intake](templates/PROJECT.md) and [study template](templates/STUDY.md)
    for a new inquiry.
 
-**Current state:** standalone v0 published on 2026-09-21 at
-[agent-art-collective/Agent-Art-Lab](https://github.com/agent-art-collective/Agent-Art-Lab).
+**Current state:** standalone v0 first published on 2026-09-21; now at
+[agent-art-work/Agent-Art-Lab](https://github.com/agent-art-work/Agent-Art-Lab).
 It contains a usable documentation practice and reviewed derivative records,
 not a validated universal method, portable runtime, or complete artwork archive.
-The shared Agent Art organization is
-[agent-art-collective](https://github.com/agent-art-collective), registered by
-the operator and verified on 2026-09-21. The repository name is `Agent-Art-Lab`.
+The umbrella is **Agent Art Work**, with the website **agentart.work** and
+GitHub organization [agent-art-work](https://github.com/agent-art-work).
+The organization was registered on 2026-09-21 as `agent-art-collective` and
+renamed on 2026-10-03. **Agent Art Lab** is its research and publication component;
+the repository name remains `Agent-Art-Lab`.
 Repository visibility is public. No reuse license has been selected. See the
 [organization context and task split](docs/ORGANIZATION_AND_SPLIT.md).
 

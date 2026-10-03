@@ -15,7 +15,7 @@ export function renderStyleDemo({ basePath, slogan, agentPrompt, studies, docume
     <p class="post-summary">${esc(study.summary)}</p><p class="post-evidence">${esc(study.evidence)}</p></div>
   </article>`).join('');
   const preview = direction => `<div class="site-preview ${direction.id}"><div class="preview-inner">
-    <header class="preview-nav"><a class="preview-brand" href="${url('index.html')}">Agent-Art-Lab</a><nav aria-label="${direction.name} preview navigation"><a href="${url('index.html')}">Blog</a><a href="https://github.com/agent-art-collective/Agent-Art-Lab">GitHub ↗</a></nav></header>
+    <header class="preview-nav"><a class="preview-brand" href="${url('index.html')}">Agent-Art-Lab</a><nav aria-label="${direction.name} preview navigation"><a href="${url('index.html')}">Blog</a><a href="https://github.com/agent-art-work/Agent-Art-Lab">GitHub ↗</a></nav></header>
     <header class="preview-intro"><h3>${esc(slogan)}</h3></header>
     <div class="preview-layout"><aside class="agent-card" aria-labelledby="${direction.id}-agent-heading">
       <h4 id="${direction.id}-agent-heading">Read with your agent.</h4><p class="agent-intro">Copy this prompt, then add your question.</p>

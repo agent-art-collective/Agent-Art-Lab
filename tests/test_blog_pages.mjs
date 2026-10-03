@@ -124,7 +124,7 @@ test('the brand returns home and top navigation contains only GitHub', () => {
     if (!navigation.length) continue; // The isolated style demonstration has its own controls.
     assert.equal(navigation.length, 1, file);
     const links = elements(navigation[0].inner, 'a');
-    assert.deepEqual(links.map(link => link.attrs.href), ['https://github.com/agent-art-collective/Agent-Art-Lab'], file);
+    assert.deepEqual(links.map(link => link.attrs.href), ['https://github.com/agent-art-work/Agent-Art-Lab'], file);
     assert.match(text(links[0].inner), /^GitHub\b/, file);
     const brand = one(one(page, 'header', 'site-header').inner, 'a', 'brand');
     assert.equal(brand.attrs.href, `${base}/`, file);

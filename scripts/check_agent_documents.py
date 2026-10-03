@@ -12,7 +12,7 @@ import sys
 from urllib.parse import unquote, urlsplit
 
 
-REPOSITORY = "https://github.com/agent-art-collective/Agent-Art-Lab"
+REPOSITORY = "https://github.com/agent-art-work/Agent-Art-Lab"
 ROUTES = {
     "GUIDANCE.md": "guidance/",
     "findings/REGISTER.md": "findings/",

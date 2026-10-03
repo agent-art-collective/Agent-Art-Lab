@@ -2,7 +2,30 @@
 
 Recorded 2026-09-20 following the operator's correction.
 
-## Current repository status, 2026-09-21
+## Current organization and repositories, 2026-10-03
+
+The operator authorized renaming the existing organization from
+`agent-art-collective` to [agent-art-work](https://github.com/agent-art-work)
+to align the umbrella **Agent Art Work** with [agentart.work](https://agentart.work/).
+GitHub confirmed the rename, display name and website. Organization and
+repository identities are unchanged; this is a rename, not a new organization.
+
+| Layer | Current identity |
+| --- | --- |
+| Umbrella | Agent Art Work |
+| Website | agentart.work |
+| GitHub organization | agent-art-work |
+| Research and publication component | Agent Art Lab |
+| Lab repository | [agent-art-work/Agent-Art-Lab](https://github.com/agent-art-work/Agent-Art-Lab) |
+| Signature prototype | [agent-art-work/agent-art-Signature-prototype](https://github.com/agent-art-work/agent-art-Signature-prototype) |
+
+Both repositories remain public. Their local remotes now use the new owner;
+no prototype files or commits were changed. The signatures.gallery transfer
+remains on hold. Participation still does not require repository transfer.
+Use the new owner for current repository links, API calls and contributions.
+The dated records below preserve earlier names and decisions as history.
+
+## Repository status, 2026-09-21 (historical)
 
 The operator put `signatures.gallery` transfer on hold while work continues
 there and requested the separate Signature prototype transfer instead.

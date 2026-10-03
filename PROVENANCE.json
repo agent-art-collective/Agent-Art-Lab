@@ -62,12 +62,13 @@
     "Added repository handoff, publication guidance, and offline packaging checks.",
     "Operator naming update on 2026-09-20: renamed the current project and repository from Agent Lab / agent-lab to Agent-Art-Lab; preserved original source paths, hashes and historical runner identifiers.",
     "On 2026-09-20, recorded the completed operator-directed Lab task ownership transfer and added a new local practice-led study proposal. The proposal is not an imported source record or an executed artwork study; missing creative material is explicit.",
-    "On 2026-09-21, updated current organization records to the verified agent-art-collective slug while preserving earlier dated planning notes and source attribution."
+    "On 2026-09-21, updated current organization records to the verified agent-art-collective slug while preserving earlier dated planning notes and source attribution.",
+    "On 2026-10-03, the operator authorized renaming the same GitHub organization to agent-art-work, with display name Agent Art Work and website agentart.work. Updated current repository and contribution links while preserving dated registration and publication history."
   ],
   "evidenceAccess": "Derivative summaries are retained here; original private reports and transcripts are not. Their absence limits independent verification.",
   "sourcePreservation": "Preparation does not move, delete, or modify source originals.",
   "publication": "Operator authorized public publication to agent-art-collective/Agent-Art-Lab on 2026-09-21. The reviewed 19-file edition was committed as 177ccab and pushed to main. GitHub verified PUBLIC visibility, a nonempty repository and main as the default branch. No reuse license was added; private source originals remain excluded.",
   "definitionSource": "Inshell public Agent Art documentation; source attribution, not Agent-Art-Lab governance.",
-  "organizationalContext": "See docs/ORGANIZATION_AND_SPLIT.md and HANDOFF.md. On 2026-09-20 OPS relayed the operator-directed transfer and this dedicated Agent-Art-Lab task accepted Lab continuation ownership. DEPLOY-SUPERVISOR focuses on Inshell Studio Preview; Applications owns product fixes. Intended shared organization: agent-art. Update 2026-09-21: the actual registered organization is agent-art-collective, verified through GitHub API; use it for future repository destinations.",
-  "repository": "https://github.com/agent-art-collective/Agent-Art-Lab"
+  "organizationalContext": "See docs/ORGANIZATION_AND_SPLIT.md and HANDOFF.md. On 2026-09-20 OPS relayed the operator-directed transfer and this dedicated Agent-Art-Lab task accepted Lab continuation ownership. DEPLOY-SUPERVISOR focuses on Inshell Studio Preview; Applications owns product fixes. Intended shared organization: agent-art. Update 2026-09-21: the actual registered organization is agent-art-collective, verified through GitHub API; use it for future repository destinations. Update 2026-10-03: GitHub verified the same organization renamed to agent-art-work under the Agent Art Work umbrella. Use agent-art-work for current repository destinations; Agent-Art-Lab remains the Lab repository.",
+  "repository": "https://github.com/agent-art-work/Agent-Art-Lab"
 }

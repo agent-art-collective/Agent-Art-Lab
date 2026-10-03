@@ -63,7 +63,7 @@ excluded from the source packaging scan; the site checker validates the output.
 
 Follow [Contribute an article](../CONTRIBUTING.md) for the complete procedure:
 existing or new project files, catalogue fields, full checks, branch/fork setup,
-and a PR to `agent-art-collective/Agent-Art-Lab:main`. That guide is the source
+and a PR to `agent-art-work/Agent-Art-Lab:main`. That guide is the source
 of contribution instructions; this file covers site behavior and maintenance.
 
 The homepage lists every catalogue entry, ordered by record date
@@ -127,12 +127,13 @@ demo styles remain isolated to preserve the original comparison.
 Links and copy buttons work, and all previews remain readable without JavaScript.
 
 GitHub Pages uses the existing repository's GitHub Actions source and the custom
-domain `agentart.work`, configured in Pages settings. Cloudflare provides DNS:
-four GitHub Pages A records, four AAAA records and a `www` CNAME pointing to
-`agent-art-collective.github.io`, all DNS-only. Retain the GitHub ownership TXT
-record. GitHub serves a valid certificate for the apex and `www` domains and
-enforces HTTPS; `www` and the previous GitHub Pages URL redirect to
-`https://agentart.work/`, retaining article and document paths.
+domain `agentart.work`, configured in Pages settings. The expected DNS after the
+organization rename is four GitHub Pages A records, four AAAA records and a
+`www` CNAME pointing to `agent-art-work.github.io`, all DNS-only in Cloudflare.
+Migration verification is pending: confirm this target, the renamed organization's
+GitHub ownership TXT record, valid certificates and HTTPS enforcement for the
+apex and `www` domains, and redirects to `https://agentart.work/` that retain
+article and document paths.
 This Actions deployment does not use a `CNAME` file. The pinned
 workflow builds and checks pull requests; pushes to `main` also deploy `_site`.
 Reading requires no client JavaScript, remote fonts, analytics, database or

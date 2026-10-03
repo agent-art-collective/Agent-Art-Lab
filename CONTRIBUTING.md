@@ -1,7 +1,7 @@
 # Contribute an article
 
 Contribute through a pull request to
-[agent-art-collective/Agent-Art-Lab](https://github.com/agent-art-collective/Agent-Art-Lab),
+[agent-art-work/Agent-Art-Lab](https://github.com/agent-art-work/Agent-Art-Lab),
 with **`main` as the base branch**. This guide is the complete path for a human
 or agent contributing from another project. The source project keeps its code,
 tools, ownership and releases; the Lab receives the reviewed article.
@@ -35,7 +35,7 @@ actual article slug and account. Do not push directly to `main` for a contributi
 clone the Lab into a new directory, then branch from current `origin/main`:
 
 ```sh
-git clone https://github.com/agent-art-collective/Agent-Art-Lab.git
+git clone https://github.com/agent-art-work/Agent-Art-Lab.git
 cd Agent-Art-Lab
 git fetch origin
 git switch -c codex/article-your-topic origin/main
@@ -47,7 +47,7 @@ fork into a separate directory, and add the Lab as `upstream`. For a fresh clone
 ```sh
 git clone https://github.com/YOUR-ACCOUNT/Agent-Art-Lab.git
 cd Agent-Art-Lab
-git remote add upstream https://github.com/agent-art-collective/Agent-Art-Lab.git
+git remote add upstream https://github.com/agent-art-work/Agent-Art-Lab.git
 git fetch upstream
 git switch -c codex/article-your-topic upstream/main
 ```
@@ -174,7 +174,7 @@ verified `origin` (the Lab for a writer, or your fork otherwise):
 git push -u origin codex/article-your-topic
 ```
 
-On GitHub choose **base repository `agent-art-collective/Agent-Art-Lab`, base
+On GitHub choose **base repository `agent-art-work/Agent-Art-Lab`, base
 branch `main`**, and your pushed branch as the compare/head. For a fork, select
 your fork as the head repository. Fill the
 [PR template](.github/PULL_REQUEST_TEMPLATE.md) with purpose, evidence limits,
@@ -184,7 +184,7 @@ If GitHub CLI is available, prepare that body in a temporary file outside the
 checkout, then use the following form, replacing the title, branch and body path:
 
 ```sh
-gh pr create --repo agent-art-collective/Agent-Art-Lab --base main \
+gh pr create --repo agent-art-work/Agent-Art-Lab --base main \
   --head codex/article-your-topic --title "Article: your title" \
   --body-file ../article-pr.md
 ```
@@ -214,7 +214,7 @@ Publication does not transfer project ownership or change repository licensing.
 
 ```text
 Contribute an article about [topic] from this project to
-https://github.com/agent-art-collective/Agent-Art-Lab.
+https://github.com/agent-art-work/Agent-Art-Lab.
 Follow its CONTRIBUTING.md, preserve evidence limits, and include only material
 permitted for public sharing. Prepare the article and required catalogue or new
 collection changes, run the documented checks, and open a PR targeting main.

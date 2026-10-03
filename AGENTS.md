@@ -3,7 +3,7 @@
 ## Read first
 
 Read README.md, GUIDANCE.md and HANDOFF.md before planning work.
-Read docs/ORGANIZATION_AND_SPLIT.md for the registered `agent-art-collective` context and
+Read docs/ORGANIZATION_AND_SPLIT.md for the registered `agent-art-work` context and
 the operator-directed separation from Inshell release coordination.
 Then read the relevant project collection, its evidence limits and study record.
 Use findings/REGISTER.md for provisional practices, not as universal truth.

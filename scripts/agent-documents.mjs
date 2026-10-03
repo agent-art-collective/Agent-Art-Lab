@@ -7,7 +7,7 @@ export const documentId = source => source.replace(/\.md$/, '').replace(/[\/_]/g
 
 export function buildAgentDocuments(sources, {
   basePath = '',
-  repository = 'https://github.com/agent-art-collective/Agent-Art-Lab',
+  repository = 'https://github.com/agent-art-work/Agent-Art-Lab',
 } = {}) {
   if (basePath && !/^\/[A-Za-z0-9_-]+(?:\/[A-Za-z0-9_-]+)*$/.test(basePath)) throw new Error('Invalid base path');
   const documents = new Map();

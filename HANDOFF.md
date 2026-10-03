@@ -20,6 +20,24 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-03 organization rename (Lab establishment/site release lane): the
+  operator authorized aligning the umbrella with agentart.work. GitHub now
+  shows `agent-art-work`, display name **Agent Art Work**, with the same
+  organization and two public repository identities. `Agent-Art-Lab` and
+  `agent-art-Signature-prototype` retain their names; both local origins use
+  the new owner, with no prototype file or commit changes. The gallery transfer
+  stays on hold. Current source, contribution and site links are updated;
+  dated old names remain history. Local checks passed 45 tests, 20 pages and
+  428 links. All 15 JSON download envelopes were rebuilt with new source URLs;
+  only CONTRIBUTING and BOUNDARIES source revisions changed. GitHub retained
+  domain verification, its approved apex/www certificate and HTTPS enforcement.
+  DNS migration is still pending: public `www` points to the old GitHub owner
+  and the challenge uses the old slug. Chrome currently exposes a different
+  Cloudflare account; the operator has been asked to open the owning account.
+  Next action: change the www CNAME to `agent-art-work.github.io`, add GitHub's
+  new `_github-pages-challenge-agent-art-work` TXT host with the existing
+  verification value, then verify deployment, HTTPS redirects and live exports.
+
 - 2026-10-03 quieter positioning (Lab-site lane): the operator found the hero
   annotation too prominent. It is removed from the hero and shortened to
   “agentart.work · starting with the Lab” in the shared footer at 13px, using

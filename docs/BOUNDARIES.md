@@ -16,9 +16,10 @@ These scopes are **not mandatory stages for every artwork**.
 
 ## Responsibility
 
-The registered Agent Art organization is `agent-art-collective`, verified on
-2026-09-21; see the [organization and task split](ORGANIZATION_AND_SPLIT.md).
-Registration does not establish a completed repository transfer. Participation
+The umbrella is **Agent Art Work**, with website `agentart.work` and GitHub
+organization `agent-art-work`, renamed from `agent-art-collective` on 2026-10-03.
+Agent Art Lab is its research and publication component; see the
+[organization and task split](ORGANIZATION_AND_SPLIT.md). Participation
 does not require transferring a project's repository into the organization.
 
 The Lab maintains shared practice and records. Projects retain artistic
