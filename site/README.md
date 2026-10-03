@@ -2,8 +2,8 @@
 
 The site slogan is “Articles, studies and working notes on Agent Art.” Its shared
 value in `scripts/build-site.mjs` supplies the homepage heading, footer and default
-page description. The footer ends with “Part of Agent Art Work”: “Part of” is
-plain text and only “Agent Art Work” links to the GitHub organization at
+page description. The footer starts with the Off grid icon beside “Agent Art
+Work”, together linking to the GitHub organization at
 `https://github.com/agent-art-work`. The hero contains only the slogan and agent
 prompt. Homepage metadata names the broader scope and the current Lab starting
 point. Article-specific descriptions keep their own summaries.
@@ -17,7 +17,8 @@ reading column and restrained rules. The operator selected Courier New Regular
 with Dots as the fixed appearance on 2026-10-02.
 The header's Off grid icon links home, with the accessible name “Agent-Art-Lab
 home”; GitHub is the only separate top link. The icon is 40px inside a 44px link
-target. The footer retains the Lab name.
+target. The footer's organization link uses a 32px icon and a 44px-high target;
+its visible text supplies the accessible name.
 Light and dark colors follow the system preference through CSS, including live
 system changes and reading without JavaScript. Dark mode uses warm charcoal,
 light text and subtle dots. Print keeps a light background and dark text

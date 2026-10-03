@@ -20,6 +20,18 @@ before making repository-ownership or task-routing proposals.
 
 ## Current position
 
+- 2026-10-03 footer organization mark (Lab-site/release lane): the operator
+  requested the Off grid icon with Agent Art Work at the bottom, linking to its
+  GitHub organization. The shared footer's brand is now a 32px icon and visible
+  “Agent Art Work” text in one link to `https://github.com/agent-art-work`.
+  This replaces the Lab home link and consolidates the former “Part of” line;
+  the slogan and reference links remain. GitHub calls this an organization.
+  All 45 tests and the 21-page/482-link site check passed. Chrome verified
+  the rendered footer in light desktop and dark mobile previews, including
+  the destination, accessible label, icon size and absence of horizontal overflow.
+  Next action: retain the header as the home link and the footer brand as the
+  organization link.
+
 - 2026-10-03 header mark (Lab-site/release lane): the operator requested the
   selected Off grid icon in place of the top-left Agent-Art-Lab text. The shared
   header and style demo's outer header now use the 40px icon in a 44px home link,
